@@ -8,6 +8,11 @@ public class Task {
     public Task() {
     }
 
+    public Task(int index, String description) {
+        this.index = index;
+        this.description = description;
+    }
+
     public boolean isSameTask(String taskDescription) {
         return this.description.equals(taskDescription);
     }

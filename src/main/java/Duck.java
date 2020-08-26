@@ -1,9 +1,9 @@
 import command.Command;
 import command.CommandResult;
+import command.ExitCommand;
+import parser.Parser;
 import system.TaskManager;
 import ui.TextUi;
-
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
@@ -24,7 +24,7 @@ public class Duck {
     }
 
     private void run() {
-        TextUi.showGreetings();
+        welcomeUser();
         runCommandLoopUntilExitCommand();
     }
 
@@ -43,12 +43,22 @@ public class Duck {
         Scanner scanner = new Scanner(System.in);
         do {
             userCommandText = scanner.nextLine();
-            echo(userCommandText);
-        } while (!userCommandText.equals("bye"));
+            command = new Parser().parseCommand(taskManager, userCommandText);
+            executeCommand(command);
+        } while (!ExitCommand.isExit(command));
     }
 
-    public static void echo(String userCommandText) {
-        System.out.println(userCommandText);
-        TextUi.printDivider();
+    private CommandResult executeCommand(Command command) {
+        try {
+            // supplies the data the command will operate on.
+            // if there is no file to load or the file is empty, setData will initialize a new taskManager system
+            command.setData(taskManager);
+            // Execute according to the command itself
+            commandResult = command.execute();
+        } catch (Exception ex) {
+            // the out layer exception handler
+            System.out.println(ex);
+        }
+        return commandResult;
     }
 }

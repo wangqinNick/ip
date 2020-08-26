@@ -1,14 +1,19 @@
 package ui;
 
+import task.Task;
 import util.Message;
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 
+import java.util.ArrayList;
+
 import static org.fusesource.jansi.Ansi.Color.*;
 import static org.fusesource.jansi.Ansi.ansi;
+import static util.Message.*;
 
 public class TextUi {
-
+    public static final int INDEX_OFF_SET = -1;
+    public static final int LIST_INDEX_OFFSET = 1;
     public static final Ansi.Color SYSTEM_COLOR_MESSAGE = BLUE;
     public static final Ansi.Color SYSTEM_COLOR_RESPONSE = GREEN;
     public static final Ansi.Color SYSTEM_COLOR_DIVIDER = BLACK;
@@ -27,9 +32,7 @@ public class TextUi {
         AnsiConsole.systemInstall();
         printDivider();
         System.out.print(String.format(Message.respondFormat,
-                ansi().bold().fg(SYSTEM_COLOR_MESSAGE).a(Message.MESSAGE_WELCOME_1).reset()) );
-        System.out.print(String.format(Message.respondFormat,
-                ansi().bold().fg(SYSTEM_COLOR_MESSAGE).a(Message.MESSAGE_WELCOME_2).reset()) );
+                ansi().bold().fg(SYSTEM_COLOR_MESSAGE).a(Message.MESSAGE_WELCOME).reset()) );
         printDivider();
         AnsiConsole.systemUninstall();
     }
@@ -58,6 +61,18 @@ public class TextUi {
         AnsiConsole.systemUninstall();
     }
 
+    public static void printLS(){
+        AnsiConsole.systemInstall();
+        System.out.print(ansi().bold().fg(SYSTEM_COLOR_DIVIDER).a(MESSAGE_LS).reset());
+        AnsiConsole.systemUninstall();
+    }
+
+    public static void printRS(){
+        AnsiConsole.systemInstall();
+        System.out.println(ansi().bold().fg(SYSTEM_COLOR_DIVIDER).a(MESSAGE_RS).reset());
+        AnsiConsole.systemUninstall();
+    }
+
     public static void printMessage(Ansi.Color color, String message){
         AnsiConsole.systemInstall();
         ansi().reset();
@@ -69,6 +84,51 @@ public class TextUi {
     public static void printDivider() {
         AnsiConsole.systemInstall();
         System.out.println( ansi().bold().fg(SYSTEM_COLOR_DIVIDER).a(Message.DIVIDER).reset() );
+        AnsiConsole.systemUninstall();
+    }
+
+    /**
+     * Print all tasks in the task list
+     */
+    public static String printAllTasks(ArrayList<Task> taskList){
+        //message for a single task
+        String taskMessage = "";
+        //message for all tasks, combined together
+        listMessage = new StringBuilder();
+        //
+        getTaskListMessage(taskList);
+        return listMessage.toString();
+    }
+
+    /**
+     * get tasklist message
+     * @param taskList
+     */
+    private static void getTaskListMessage(ArrayList<Task> taskList) {
+        for (int index =  LIST_INDEX_OFFSET; index <= taskList.size() ; index++) {
+            Task task = taskList.get(index+ INDEX_OFF_SET);
+            printTaskMessage(index, task);
+        }
+        TextUi.printMessage(TextUi.SYSTEM_COLOR_RESPONSE,
+                String.format(MESSAGE_SHOW_TASK_NUMBER,
+                        taskList.size()));
+    }
+
+    private static void printTaskMessage(int index, Task task) {
+        printTask(task, index);
+    }
+
+    public static void printTask(Task task, int index){
+        printTask(SYSTEM_COLOR_RESPONSE,String.format(Message.MESSAGE_LIST_RESPOND_FORMAT,
+                String.format(Message.MESSAGE_TASK_LIST,index,task.getDescription())));
+    }
+
+    public static void printTask(Ansi.Color color, String message){
+        AnsiConsole.systemInstall();
+        printLS();
+        System.out.print(
+                ansi().bold().fg(color).a(message).reset());
+        printRS();
         AnsiConsole.systemUninstall();
     }
 }
