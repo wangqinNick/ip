@@ -42,6 +42,21 @@ public class TextUi {
         AnsiConsole.systemUninstall();
     }
 
+    //echo function, display user's input
+    public static void showResult(String text) {
+        //printDivider();
+        printMessage(CYAN, text);
+        printDivider();
+    }
+
+    public static void printMessage(Ansi.Color color, String message){
+        AnsiConsole.systemInstall();
+        ansi().reset();
+        System.out.print(String.format(Message.respondFormat,
+                ansi().bold().fg(color).a(message).reset()));
+        AnsiConsole.systemUninstall();
+    }
+
     public static void printDivider() {
         AnsiConsole.systemInstall();
         System.out.println( ansi().bold().fg(SYSTEM_COLOR_DIVIDER).a(Message.DIVIDER).reset() );
