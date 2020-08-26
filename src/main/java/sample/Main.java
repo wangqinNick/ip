@@ -1,3 +1,5 @@
+package sample;
+
 import ui.TextUi;
 
 public class Main {
