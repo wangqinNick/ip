@@ -9,7 +9,7 @@ import util.Message;
 import static util.Message.messageAddTaskSuccess;
 
 public class AddCommand extends Command {
-
+    public static final String COMMAND_WORD = "add";
     private Task toAdd;
 
     public AddCommand() {
