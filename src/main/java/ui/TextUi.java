@@ -49,6 +49,15 @@ public class TextUi {
         printDivider();
     }
 
+    /**
+     * clear the screen.
+     */
+    public static void clearScreen() {
+        AnsiConsole.systemInstall();
+        System.out.println(ansi().eraseScreen());
+        AnsiConsole.systemUninstall();
+    }
+
     public static void printMessage(Ansi.Color color, String message){
         AnsiConsole.systemInstall();
         ansi().reset();

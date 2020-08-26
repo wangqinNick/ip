@@ -9,9 +9,11 @@ public class Message {
             + "|____/ \\__,_|_|\\_\\___|\n";
     public static final String DIVIDER = "-".repeat(100);
     public static final String respondFormat = "===-             %-70s-===%n";
-    public static final String MESSAGE_WELCOME_1 = "Hello! I'm Duke";
+    public static final String MESSAGE_WELCOME_1 = "Hello! I'm Duck";
     public static final String MESSAGE_WELCOME_2 = "What can I do for you?";
     public static final String MESSAGE_FAREWELL = "Bye. Hope to see you again soon!\n";
-
+    public static String messageAddTaskSuccess(String description) {
+        return String.format("SUCCESS!! Task %s has been added.\n", description);
+    }
 
 }
