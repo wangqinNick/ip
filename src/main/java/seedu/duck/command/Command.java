@@ -1,9 +1,9 @@
-package command;
+package seedu.duck.command;
 
 
-import system.TaskManager;
-import task.Task;
-import ui.TextUi;
+import seedu.duck.system.TaskManager;
+import seedu.duck.task.Task;
+import seedu.duck.ui.TextUi;
 
 public abstract class Command {
     public String COMMAND_WORD;
@@ -25,7 +25,7 @@ public abstract class Command {
     }
 
     /**
-     * Supplies the data the command will operate on.
+     * Supplies the data the duck.command will operate on.
      */
     public void setData(TaskManager taskManager) {
         this.taskManager = taskManager;

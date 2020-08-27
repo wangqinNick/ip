@@ -1,7 +1,7 @@
-package ui;
+package seedu.duck.ui;
 
-import task.Task;
-import util.Message;
+import seedu.duck.task.Task;
+import seedu.duck.util.Message;
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import static org.fusesource.jansi.Ansi.Color.*;
 import static org.fusesource.jansi.Ansi.ansi;
-import static util.Message.*;
+import static seedu.duck.util.Message.*;
 
 public class TextUi {
     public static final int DISPLAYED_INDEX_OFFSET = 1;
@@ -83,7 +83,7 @@ public class TextUi {
     }
 
     /**
-     * Print all tasks in the task list
+     * Print all tasks in the duck.task list
      */
     public static String printAllTasks(ArrayList<Task> taskList){
         //message for all tasks, combined together

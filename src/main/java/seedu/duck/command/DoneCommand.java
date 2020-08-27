@@ -1,12 +1,12 @@
-package command;
+package seedu.duck.command;
 
-import task.Task;
-import util.Message;
+import seedu.duck.task.Task;
+import seedu.duck.util.Message;
 
 public class DoneCommand extends Command {
 
     public static final String COMMAND_WORD = "done";
-    public static final String MESSAGE_DONE = "  Nice! I've marked this task as done:  [D] %s";
+    public static final String MESSAGE_DONE = "  Nice! I've marked this duck.task as done:  [D] %s";
     public DoneCommand(int toDoneIndex) {
         super(toDoneIndex);
     }

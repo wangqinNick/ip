@@ -1,7 +1,7 @@
-package command;
+package seedu.duck.command;
 
-import ui.TextUi;
-import util.Message;
+import seedu.duck.ui.TextUi;
+import seedu.duck.util.Message;
 
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";

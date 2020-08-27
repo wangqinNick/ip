@@ -1,6 +1,6 @@
-package command;
+package seedu.duck.command;
 
-import util.Message;
+import seedu.duck.util.Message;
 
 public class ExitCommand extends Command {
     public ExitCommand() {

@@ -1,6 +1,6 @@
-package command;
+package seedu.duck.command;
 
-import ui.TextUi;
+import seedu.duck.ui.TextUi;
 
 public class IncorrectCommand extends Command {
 

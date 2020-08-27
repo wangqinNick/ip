@@ -1,12 +1,11 @@
-package command.add;
+package seedu.duck.command.add;
 
-import command.Command;
-import command.CommandResult;
-import system.TaskManager;
-import task.Task;
-import util.Message;
+import seedu.duck.command.Command;
+import seedu.duck.command.CommandResult;
+import seedu.duck.system.TaskManager;
+import seedu.duck.task.Task;
 
-import static util.Message.messageAddTaskSuccess;
+import static seedu.duck.util.Message.messageAddTaskSuccess;
 
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";

@@ -1,12 +1,11 @@
-package system;
+package seedu.duck.system;
 
-import task.Task;
+import seedu.duck.task.Task;
 
 import java.util.ArrayList;
 
 public class TaskManager {
     private static ArrayList<Task> taskList;
-
     /**
      *  Initiates an empty Task list
      */

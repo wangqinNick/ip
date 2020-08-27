@@ -1,6 +1,6 @@
-package task;
+package seedu.duck.task;
 
-import util.Message;
+import seedu.duck.util.Message;
 
 public class Task {
 
