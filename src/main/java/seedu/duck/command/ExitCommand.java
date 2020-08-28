@@ -1,21 +1,24 @@
 package seedu.duck.command;
 
-import seedu.duck.util.Message;
+import static seedu.duck.ui.TextUi.showFarewells;
 
 public class ExitCommand extends Command {
     public ExitCommand() {
 
     }
     public static final String COMMAND_WORD = "bye";
-    public static final String MESSAGE_USAGE_1 = COMMAND_WORD + ": Exit the program.";
-    public static final String MESSAGE_USAGE_2 = "    Example: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exit the program.";
 
     @Override
     public CommandResult execute() {
-        return new CommandResult(String.format(Message.MESSAGE_FAREWELL));
+        exitProgram();
+        return null;
     }
-
-    public static boolean isExit(Command command) {
-        return command instanceof ExitCommand;
+    /**
+     * Displays the goodbye message and exits the runtime.
+     */
+    private static void exitProgram() {
+        showFarewells();
+        System.exit(0);
     }
 }

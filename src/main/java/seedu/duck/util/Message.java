@@ -18,6 +18,8 @@ public class Message {
     public static final String MESSAGE_SHOW_TASK_NUMBER = "There are total %d duck.task(s) in the list";
     public static final String MESSAGE_LIST_RESPOND_FORMAT = "%-90s";
     public static final String MESSAGE_LS = "===-             ";
+    public static final String LINE_PREFIX = "===-             ";
+
     //public static final String MESSAGE_RS = "-===";
     public static final String MESSAGE_TASK_LIST = "%d. [%c] %s";
     public static final String MESSAGE_ALERT = "[ALERT!]";

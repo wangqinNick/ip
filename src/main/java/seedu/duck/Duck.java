@@ -2,15 +2,15 @@ package seedu.duck;
 
 import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
-import seedu.duck.command.ExitCommand;
 import seedu.duck.parser.Parser;
 import seedu.duck.system.TaskManager;
 import seedu.duck.ui.TextUi;
 
 import java.util.Scanner;
 
-
 public class Duck {
+
+    private static final Scanner SCANNER = new Scanner(System.in);
     private CommandResult commandResult;
     public static TaskManager taskManager;
 
@@ -23,31 +23,33 @@ public class Duck {
     }
 
     private void run() {
-        welcomeUser();
+        initDuck();
+        showWelcomeMessage();
         runCommandLoopUntilExitCommand();
-        //farewellUser();
     }
 
-    public void welcomeUser() {
+    private static void initDuck(){
+        //initialize manger, data
+    }
+
+    public static void showWelcomeMessage() {
         TextUi.clearScreen();
         TextUi.showGreetings();
     }
 
-    public void farewellUser() {
-        TextUi.clearScreen();
-        TextUi.showFarewells();
-        TextUi.clearScreen();
-    }
-
     private void runCommandLoopUntilExitCommand() {
         Command command;
-        String userCommandText;
-        Scanner scanner = new Scanner(System.in);
-        do {
-            userCommandText = scanner.nextLine();
-            command = Parser.parseCommand(userCommandText);
+        String inputLine;
+        while(true) {
+            inputLine = getUserInput();
+            command = Parser.parseCommand(inputLine);
             executeCommand(command);
-        } while (!ExitCommand.isExit(command));
+        }
+    }
+
+    private static String getUserInput() {
+        String inputLine = SCANNER.nextLine();
+        return inputLine;
     }
 
     private void executeCommand(Command command) {
