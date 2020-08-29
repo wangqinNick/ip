@@ -1,5 +1,7 @@
 package seedu.duck.ui;
 
+import seedu.duck.Duck;
+import seedu.duck.system.TaskManager;
 import seedu.duck.task.Task;
 import seedu.duck.util.Message;
 import org.fusesource.jansi.Ansi;
@@ -88,23 +90,21 @@ public class TextUi {
     public static String printAllTasks(ArrayList<Task> taskList){
         //message for all tasks, combined together
         listMessage = new StringBuilder();
-        getTaskListMessage(taskList);
+        getTaskListMessage();
         return listMessage.toString();
     }
 
     /**
      * get tasklist message
-     * @param taskList
      */
-    private static void getTaskListMessage(ArrayList<Task> taskList) {
-        for (int index =  LIST_INDEX_OFFSET; index <= taskList.size() ; index++) {
-            Task task = taskList.get(index+ INDEX_OFF_SET);
+    private static void getTaskListMessage() {
+        for (int index = LIST_INDEX_OFFSET; index <= TaskManager.size() ; index++) {
+            Task task = TaskManager.get(index+ INDEX_OFF_SET);
             printTaskMessage(index, task);
         }
-        //print "there are 2 tasks in the list"
-        TextUi.printMessage(TextUi.SYSTEM_COLOR_RESPONSE,
+        printMessage(SYSTEM_COLOR_RESPONSE,
                 String.format(MESSAGE_SHOW_TASK_NUMBER,
-                        taskList.size()));
+                        TaskManager.size()));
     }
 
     private static void printTaskMessage(int index, Task task) {
@@ -137,5 +137,20 @@ public class TextUi {
                 ansi().bold().fg(SYSTEM_COLOR_ALERT).a(Message.MESSAGE_ALERT).reset()) );
         AnsiConsole.systemUninstall();
     }
+
+    public static void alertToAddDuplicateTask(Task toCheck){
+        printAlert();
+        printMessage(SYSTEM_COLOR_MESSAGE,
+                String.format(MESSAGE_DUPLICATE_TASK_ALERT_1, toCheck.getIndex()));
+//        printMessage(SYSTEM_COLOR_MESSAGE,
+//                MESSAGE_DUPLICATE_TASK_ALERT_2);
+//        printMessage(SYSTEM_COLOR_MESSAGE,
+//                MESSAGE_DUPLICATE_TASK_ALERT_3);
+    }
+
+    public static void printDuplicateTaskNotAdded(){
+        printMessage(SYSTEM_COLOR_MESSAGE, MESSAGE_DUPLICATE_TASK_NOT_ADDED);
+    }
+
 }
 

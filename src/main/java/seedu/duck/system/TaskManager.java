@@ -50,4 +50,8 @@ public class TaskManager {
     public static int size(){
         return taskList.size();
     }
+
+    public static Task get(int index){
+        return taskList.get(index);
+    }
 }

@@ -9,10 +9,16 @@ import static seedu.duck.util.Message.messageAddTaskSuccess;
 
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
-    private Task toAdd;
+    protected Task toAdd;
 
     public AddCommand() {
     }
+
+    public AddCommand(Task toAdd) {
+        this.toAdd = toAdd;
+    }
+
+
 
     @Override
     public CommandResult execute() {
@@ -20,8 +26,5 @@ public class AddCommand extends Command {
         return new CommandResult(messageAddTaskSuccess(toAdd.getDescription()));
     }
 
-    public AddCommand(Task toAdd) {
-        this.toAdd = toAdd;
-    }
 
 }

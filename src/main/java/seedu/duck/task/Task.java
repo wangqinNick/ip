@@ -3,19 +3,40 @@ package seedu.duck.task;
 import seedu.duck.system.TaskManager;
 import seedu.duck.util.Message;
 
-public class Task {
+import java.time.LocalDate;
 
+public abstract class Task {
+
+    public static final String DEFAULT_TASK_TIME = "-1";
     protected int index;
     protected String description;
     protected boolean isDone;
+    protected TaskType type;
+    /** deadline and event task attributes*/
+    protected String taskTime;
+    /** deadline task attributes*/
+    protected LocalDate taskDeadlineDate;
 
     public Task() {
     }
 
+    /**
+     * Constructor called by non-type task
+     * @param description Task description
+     */
     public Task(String description) {
         this.index = TaskManager.size();
         this.description = description;
         this.isDone = false;
+    }
+
+    public Task(String taskDescription, TaskType taskType) {
+        this.index = TaskManager.size();
+        this.description = taskDescription;
+        this.type = taskType;
+        this.isDone = false;
+        this.taskTime = DEFAULT_TASK_TIME;
+        this.taskDeadlineDate = LocalDate.MAX;
     }
 
     public void setDone(boolean done) {
@@ -23,11 +44,23 @@ public class Task {
     }
 
     public char getChar(){
-        char isDone;
         if (this.isDone){
             return Message.DONE;
         } else {
             return Message.NOTDONE;
+        }
+    }
+
+    public char getType() {
+        switch (type){
+        case D:
+            return 'D';
+        case E:
+            return 'E';
+        case T:
+            return 'T';
+        default:
+            return ' ';
         }
     }
 
@@ -50,4 +83,6 @@ public class Task {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public abstract String getTaskInformation();
 }

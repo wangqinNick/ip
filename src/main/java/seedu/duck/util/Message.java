@@ -19,7 +19,7 @@ public class Message {
     public static final String MESSAGE_LIST_RESPOND_FORMAT = "%-90s";
     public static final String MESSAGE_LS = "===-             ";
     public static final String LINE_PREFIX = "===-             ";
-
+    public static final String MESSAGE_TODO_SUCCESS = "Got it. I've added this task: [ID:%d][%c][%c] %s";
     //public static final String MESSAGE_RS = "-===";
     public static final String MESSAGE_TASK_LIST = "%d. [%c] %s";
     public static final String MESSAGE_ALERT = "[ALERT!]";
@@ -28,5 +28,8 @@ public class Message {
     public static String messageAddTaskSuccess(String description) {
         return String.format("SUCCESS!! Task %s has been added.\n", description);
     }
-
+    public static final String MESSAGE_DUPLICATE_TASK_ALERT_1 = "This task is same as task at [Index %d]";
+    public static final String MESSAGE_DUPLICATE_TASK_ALERT_2 = "Do you want to add a duplicate task?";
+    public static final String MESSAGE_DUPLICATE_TASK_ALERT_3 = "Press Y to add and others to not add: ";
+    public static final String MESSAGE_DUPLICATE_TASK_NOT_ADDED = "The duplicate task is not added!";
 }

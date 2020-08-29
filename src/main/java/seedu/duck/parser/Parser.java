@@ -6,15 +6,20 @@ import seedu.duck.command.ExitCommand;
 import seedu.duck.command.IncorrectCommand;
 import seedu.duck.command.ListCommand;
 import seedu.duck.command.add.AddCommand;
+import seedu.duck.command.add.AddTodoCommand;
 import seedu.duck.exception.ParseException;
 import seedu.duck.Duck;
 import seedu.duck.system.TaskManager;
 import seedu.duck.task.Task;
+import seedu.duck.task.TodoTask;
 import seedu.duck.util.Message;
 
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static seedu.duck.Duck.taskManager;
+import static seedu.duck.ui.TextUi.*;
 import static seedu.duck.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.duck.util.Message.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
@@ -52,6 +57,9 @@ public class Parser {
      */
     private static Command getCommand(String commandWord, String commandType, String commandArgs) {
         switch (commandType){
+        //Add to-do
+        case AddTodoCommand.COMMAND_WORD:
+            return prepareAddTodoTask(commandArgs);
         //Done
         case DoneCommand.COMMAND_WORD:
             return prepareDone(commandWord);
@@ -61,22 +69,49 @@ public class Parser {
         //Exit
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
-        //Add
-        case AddCommand.COMMAND_WORD:
-            return prepareAddTask(commandArgs);
         //Incorrect
         default:
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
 
-    private static Command prepareAddTask( String commandDescription) {
-        return new AddCommand(new Task(commandDescription));
+    private static Command prepareAddTodoTask(String commandArgs) {
+        printDivider();
+        if (!isValid(commandArgs)) {
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+        for (Task toCheck:TaskManager.getTaskList()) {
+            if (isDuplicateTask(toCheck, commandArgs)){
+                printDuplicateTaskNotAdded();
+                printDivider();
+                return new ListCommand();
+            }
+        }
+        return new AddTodoCommand(new TodoTask(commandArgs));
     }
+
+    private static boolean isDuplicateTask(Task toCheck, String commandArgs) {
+        if (toCheck.getDescription().contentEquals(commandArgs)) {
+            alertToAddDuplicateTask(toCheck);
+            return true;
+        }
+        return false;
+    }
+
+//    private static boolean isAddTodoDuplicate() {
+//        Scanner scanner = new Scanner(System.in);
+//        char userChoice  = scanner.next().charAt(USER_CHOICE_INDEX);
+//        switch (userChoice){
+//        case CAP_ACKNOWLEDGEMENT:
+//        case ACKNOWLEDGEMENT:
+//            return true;
+//        default:
+//            return false;
+//        }
+//    }
 
     private static Command prepareDone (String args) {
         try {
-            //targetIndex is the task needed to be done
             final int targetIndex = parseArgsAsDisplayedIndex(args);
             return new DoneCommand(targetIndex);
         } catch (ParseException pe) {
@@ -96,5 +131,9 @@ public class Parser {
             throw new StringIndexOutOfBoundsException(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         return Integer.parseInt(args.substring(Parser.DONE_INDEX));
+    }
+
+    private static Boolean isValid(String str) {
+        return str.length() > 0;
     }
 }
