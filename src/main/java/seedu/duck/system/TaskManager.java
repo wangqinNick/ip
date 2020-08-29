@@ -10,7 +10,7 @@ public class TaskManager {
      *  Initiates an empty Task list
      */
     public TaskManager() {
-        this.taskList = new ArrayList<>();
+        taskList = new ArrayList<>();
     }
 
     /**
@@ -18,7 +18,7 @@ public class TaskManager {
      * @param taskList
      */
     public static void setTaskList(ArrayList<Task> taskList) {
-        TaskManager.taskList = taskList;
+        taskList = taskList;
     }
 
     /**
@@ -27,11 +27,11 @@ public class TaskManager {
      *  The Task List
      */
     public static ArrayList<Task> getTaskList() {
-        return TaskManager.taskList;
+        return taskList;
     }
 
     private static boolean contains(String description) {
-        for (Task task : TaskManager.taskList) {
+        for (Task task : taskList) {
             if (task.isSameTask(description)) {
                 return true;
             }
@@ -43,7 +43,11 @@ public class TaskManager {
         if (contains(toAdd.getDescription())) {
             //throw new DuplicateTaskException();
         } else {
-            TaskManager.taskList.add(toAdd);
+            taskList.add(toAdd);
         }
+    }
+
+    public static int size(){
+        return taskList.size();
     }
 }

@@ -1,5 +1,6 @@
 package seedu.duck.task;
 
+import seedu.duck.system.TaskManager;
 import seedu.duck.util.Message;
 
 public class Task {
@@ -11,8 +12,8 @@ public class Task {
     public Task() {
     }
 
-    public Task(int index, String description) {
-        this.index = index;
+    public Task(String description) {
+        this.index = TaskManager.size();
         this.description = description;
         this.isDone = false;
     }

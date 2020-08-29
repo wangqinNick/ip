@@ -48,8 +48,7 @@ public class Duck {
     }
 
     private static String getUserInput() {
-        String inputLine = SCANNER.nextLine();
-        return inputLine;
+        return SCANNER.nextLine();
     }
 
     private void executeCommand(Command command) {

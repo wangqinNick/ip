@@ -8,11 +8,15 @@ import seedu.duck.command.ListCommand;
 import seedu.duck.command.add.AddCommand;
 import seedu.duck.exception.ParseException;
 import seedu.duck.Duck;
+import seedu.duck.system.TaskManager;
 import seedu.duck.task.Task;
 import seedu.duck.util.Message;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static seedu.duck.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.duck.util.Message.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 /**
  *  Parser the String to a Command object
@@ -33,21 +37,21 @@ public class Parser {
     public static final int COMMAND_WORD_INDEX = 0;
 
     public static Command parseCommand(String userInput) {
-        final String command = userInput;
         /** Split the first part, get the duck.command word */
-        final String []commandParts = command.split(COMMAND_SPLITTER);
+        final String []commandTypeAndParams = userInput.split(COMMAND_SPLITTER);
         /** further split the user input, get the secondary part, the description */
-        final String commandDescription = command.substring(commandParts[COMMAND_WORD_INDEX].length());
+        final String commandType = commandTypeAndParams[COMMAND_WORD_INDEX];
+        final String commandArgs = userInput.substring(commandTypeAndParams[COMMAND_WORD_INDEX].length()).trim();
         //operates according to different duck.command word
-        return getCommand(Duck.taskManager.getTaskList().size(), command, commandParts, commandDescription);
+        return getCommand(userInput, commandType, commandArgs);
     }
 
     /**
-     * @param commandWordFirstPart, commandWordDescription the input String spited parts
+     * @param commandType, commandArgs the input String spited parts
      * @return parsed duck.command
      */
-    private static Command getCommand(int nextTaskIndex, String commandWord, String[] commandWordFirstPart, String commandWordDescription) {
-        switch (commandWordFirstPart[COMMAND_WORD_INDEX]){
+    private static Command getCommand(String commandWord, String commandType, String commandArgs) {
+        switch (commandType){
         //Done
         case DoneCommand.COMMAND_WORD:
             return prepareDone(commandWord);
@@ -59,37 +63,37 @@ public class Parser {
             return new ExitCommand();
         //Add
         case AddCommand.COMMAND_WORD:
-            return prepareAddTask(nextTaskIndex, commandWordDescription.trim());
+            return prepareAddTask(commandArgs);
         //Incorrect
         default:
-            return new IncorrectCommand(Message.MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
 
-    private static Command prepareAddTask(int nextTaskIndex, String commandDescription) {
-        return new AddCommand(new Task(nextTaskIndex, commandDescription));
+    private static Command prepareAddTask( String commandDescription) {
+        return new AddCommand(new Task(commandDescription));
     }
 
     private static Command prepareDone (String args) {
         try {
+            //targetIndex is the task needed to be done
             final int targetIndex = parseArgsAsDisplayedIndex(args);
             return new DoneCommand(targetIndex);
         } catch (ParseException pe) {
-
-            return new IncorrectCommand(Message.MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         } catch (NumberFormatException | StringIndexOutOfBoundsException nfe) {
-            return new IncorrectCommand(Message.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            return new IncorrectCommand(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
     }
 
-    private static int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException,
+    public static int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException,
             StringIndexOutOfBoundsException{
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            throw new ParseException(Message.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         if (args.length() < Parser.DONE_INDEX) {
-            throw new StringIndexOutOfBoundsException(Message.MESSAGE_INVALID_COMMAND_FORMAT);
+            throw new StringIndexOutOfBoundsException(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         return Integer.parseInt(args.substring(Parser.DONE_INDEX));
     }
