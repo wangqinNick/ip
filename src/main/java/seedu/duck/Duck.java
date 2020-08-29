@@ -5,13 +5,11 @@ import seedu.duck.command.CommandResult;
 import seedu.duck.parser.Parser;
 import seedu.duck.system.TaskManager;
 import seedu.duck.ui.TextUi;
-
-import java.util.Scanner;
+import seedu.duck.ui.Ui;
 
 public class Duck {
 
-    private static final Scanner SCANNER = new Scanner(System.in);
-    private CommandResult commandResult;
+    static CommandResult commandResult;
     public static TaskManager taskManager;
 
     public Duck() {
@@ -38,25 +36,10 @@ public class Duck {
     }
 
     private void runCommandLoopUntilExitCommand() {
-        Command command;
-        String inputLine;
         while(true) {
-            inputLine = getUserInput();
-            command = Parser.parseCommand(inputLine);
-            executeCommand(command);
-        }
-    }
-
-    private static String getUserInput() {
-        return SCANNER.nextLine();
-    }
-
-    private void executeCommand(Command command) {
-        try {
-            command.setData(taskManager);
-            commandResult = command.execute();
-        } catch (Exception ex) {
-            System.out.println(ex);
+            String userCommand = Ui.getUserInput();
+            Command parsedCommand = Parser.parseCommand(userCommand);
+            Executor.executeCommand(parsedCommand);
         }
     }
 }

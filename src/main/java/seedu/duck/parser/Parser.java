@@ -37,9 +37,9 @@ public class Parser {
     public static final int COMMAND_WORD_INDEX = 0;
 
     public static Command parseCommand(String userInput) {
-        /** Split the first part, get the duck.command word */
+        /** Split by " "*/
         final String []commandTypeAndParams = userInput.split(COMMAND_SPLITTER);
-        /** further split the user input, get the secondary part, the description */
+        /** further split the user input, get the commandType, and the description */
         final String commandType = commandTypeAndParams[COMMAND_WORD_INDEX];
         final String commandArgs = userInput.substring(commandTypeAndParams[COMMAND_WORD_INDEX].length()).trim();
         //operates according to different duck.command word
