@@ -6,10 +6,12 @@ import seedu.duck.command.ExitCommand;
 import seedu.duck.command.IncorrectCommand;
 import seedu.duck.command.ListCommand;
 import seedu.duck.command.add.AddCommand;
+import seedu.duck.command.add.AddDeadlineCommand;
 import seedu.duck.command.add.AddTodoCommand;
 import seedu.duck.exception.ParseException;
 import seedu.duck.Duck;
 import seedu.duck.system.TaskManager;
+import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.Task;
 import seedu.duck.task.TodoTask;
 import seedu.duck.util.Message;
@@ -60,6 +62,10 @@ public class Parser {
         //Add to-do
         case AddTodoCommand.COMMAND_WORD:
             return prepareAddTodoTask(commandArgs);
+        //add event task
+        //add deadline task
+        case AddDeadlineCommand.COMMAND_WORD:
+            return prepareAddDeadlineTask(commandArgs);
         //Done
         case DoneCommand.COMMAND_WORD:
             return prepareDone(commandWord);
@@ -97,6 +103,28 @@ public class Parser {
         }
         return false;
     }
+
+    private static Command prepareAddDeadlineTask(String commandArgs) {
+        printDivider();
+        String [] taskDescriptionAndTime;
+        if (!isValid(commandArgs)) {
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+        taskDescriptionAndTime = commandArgs.split(DATE_SPLITTER);
+        for (Task toCheck: TaskManager.getTaskList()) {
+            if (isDuplicateTask(toCheck, taskDescriptionAndTime[DESCRIPTION_INDEX]))
+                printDuplicateTaskNotAdded();
+                printDivider();
+                return new ListCommand();            }
+        if (!isValid(taskDescriptionAndTime[DESCRIPTION_INDEX])){
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+        if (!isValid(taskDescriptionAndTime[TIME_INDEX])){
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+        return new AddDeadlineCommand(new DeadlineTask(taskDescriptionAndTime[DESCRIPTION_INDEX],taskDescriptionAndTime[TIME_INDEX]));
+    }
+
 
 //    private static boolean isAddTodoDuplicate() {
 //        Scanner scanner = new Scanner(System.in);

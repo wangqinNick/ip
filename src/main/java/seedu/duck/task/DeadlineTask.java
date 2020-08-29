@@ -20,6 +20,10 @@ public class DeadlineTask extends Task{
         return taskTime;
     }
 
+    public String getTaskStartTime() {
+        return taskTime;
+    }
+
     public LocalDate getTaskDeadlineDate() {
         return taskDeadlineDate;
     }

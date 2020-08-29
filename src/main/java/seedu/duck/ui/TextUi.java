@@ -2,7 +2,10 @@ package seedu.duck.ui;
 
 import seedu.duck.Duck;
 import seedu.duck.system.TaskManager;
+import seedu.duck.task.DeadlineTask;
+import seedu.duck.task.EventTask;
 import seedu.duck.task.Task;
+import seedu.duck.task.TodoTask;
 import seedu.duck.util.Message;
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
@@ -88,37 +91,77 @@ public class TextUi {
      * Print all tasks in the duck.task list
      */
     public static String printAllTasks(ArrayList<Task> taskList){
-        //message for all tasks, combined together
         listMessage = new StringBuilder();
         getTaskListMessage();
         return listMessage.toString();
     }
 
     /**
-     * get tasklist message
+     * get taskList message
      */
     private static void getTaskListMessage() {
         for (int index = LIST_INDEX_OFFSET; index <= TaskManager.size() ; index++) {
             Task task = TaskManager.get(index+ INDEX_OFF_SET);
             printTaskMessage(index, task);
         }
-        printMessage(SYSTEM_COLOR_RESPONSE,
+        printMessage(
+                SYSTEM_COLOR_RESPONSE,
                 String.format(MESSAGE_SHOW_TASK_NUMBER,
-                        TaskManager.size()));
+                TaskManager.size()));
     }
 
     private static void printTaskMessage(int index, Task task) {
-        printTask(task, index);
-        System.out.println();
+        if (task instanceof TodoTask) {
+            printTodoTask((TodoTask) task, index);
+        } else if (task instanceof DeadlineTask) {
+            printDeadlineTask((DeadlineTask) task, index);
+        } else if( task instanceof EventTask) {
+            printEventTask((EventTask) task, index);
+        }
     }
 
-    public static void printTask(Task task, int index){
-        printTask(SYSTEM_COLOR_RESPONSE,String.format(Message.MESSAGE_LIST_RESPOND_FORMAT,
+    public static void printTodoTask(TodoTask todoTask, int index){
+        printTask(SYSTEM_COLOR_RESPONSE,String.format(
+                MESSAGE_LIST_RESPOND_FORMAT,
                 String.format(
-                        Message.MESSAGE_TASK_LIST,
-                        index,
-                        task.getChar(),
-                        task.getDescription())));
+                    MESSAGE_TODO_LIST,
+                    index,
+                    todoTask.getType(),
+                    todoTask.getChar(),
+                    todoTask.getDescription())
+                )
+        ) ;
+    }
+
+    /**
+     * print deadline-type task
+     * @param deadlineTask deadline task to print
+     * @param index index of deadline task
+     */
+    public static void printDeadlineTask(DeadlineTask deadlineTask, int index){
+        printTask(SYSTEM_COLOR_RESPONSE,
+                String.format(MESSAGE_LIST_RESPOND_FORMAT, String.format(
+                    MESSAGE_DEADLINE_LIST,
+                    index,
+                    deadlineTask.getType(),
+                    deadlineTask.getChar(),
+                    deadlineTask.getDescription(),
+                    deadlineTask.getTaskDeadline())));
+    }
+
+    /**
+     * print event-type task
+     * @param eventTask event task to print
+     * @param index index of event task
+     */
+    public static void printEventTask(EventTask eventTask, int index){
+        printTask(SYSTEM_COLOR_RESPONSE,String.format(MESSAGE_LIST_RESPOND_FORMAT, String.format(
+                MESSAGE_EVENT_LIST,
+                index,
+                eventTask.getType(),
+                eventTask.getChar(),
+                eventTask.getDescription(),
+                eventTask.getTaskStartTime())));
     }
 
     public static void printTask(Ansi.Color color, String message){

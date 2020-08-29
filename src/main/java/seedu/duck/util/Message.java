@@ -16,13 +16,16 @@ public class Message {
     public static final String MESSAGE_EMPTY_LIST = "There is no current duck.task in the list!";
     public static StringBuilder listMessage;
     public static final String MESSAGE_SHOW_TASK_NUMBER = "There are total %d duck.task(s) in the list";
-    public static final String MESSAGE_LIST_RESPOND_FORMAT = "%-90s";
+    public static final String MESSAGE_LIST_RESPOND_FORMAT = "%-90s%n";
+    public static final String MESSAGE_TODO_LIST = "%d. [%c][%c] %s";
     public static final String MESSAGE_LS = "===-             ";
     public static final String LINE_PREFIX = "===-             ";
+    public static final String MESSAGE_EVENT_LIST = "%d. [%c][%c] %s (%s)";
     public static final String MESSAGE_TODO_SUCCESS = "Got it. I've added this task: [ID:%d][%c][%c] %s";
     //public static final String MESSAGE_RS = "-===";
-    public static final String MESSAGE_TASK_LIST = "%d. [%c] %s";
     public static final String MESSAGE_ALERT = "[ALERT!]";
+    public static final String MESSAGE_DEADLINE_SUCCESS = "Got it. I've added this task: [ID:%d][%c][%c] %s (%s)";
+    public static final String MESSAGE_DEADLINE_LIST = "%d. [%c][%c] %s (%s)";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid duck.command format!";
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The duck.task index provided is invalid";
     public static String messageAddTaskSuccess(String description) {
