@@ -26,6 +26,7 @@ public class Message {
     public static final String MESSAGE_ALERT = "[ALERT!]";
     public static final String MESSAGE_DEADLINE_SUCCESS = "Got it. I've added this task: [ID:%d][%c][%c] %s (%s)";
     public static final String MESSAGE_DEADLINE_LIST = "%d. [%c][%c] %s (%s)";
+    public static final String MESSAGE_EVENT_SUCCESS = "Got it. I've added this task: [ID:%d][%c][%c] %s (%s)";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid duck.command format!";
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The duck.task index provided is invalid";
     public static String messageAddTaskSuccess(String description) {

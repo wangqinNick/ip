@@ -7,11 +7,13 @@ import seedu.duck.command.IncorrectCommand;
 import seedu.duck.command.ListCommand;
 import seedu.duck.command.add.AddCommand;
 import seedu.duck.command.add.AddDeadlineCommand;
+import seedu.duck.command.add.AddEventCommand;
 import seedu.duck.command.add.AddTodoCommand;
 import seedu.duck.exception.ParseException;
 import seedu.duck.Duck;
 import seedu.duck.system.TaskManager;
 import seedu.duck.task.DeadlineTask;
+import seedu.duck.task.EventTask;
 import seedu.duck.task.Task;
 import seedu.duck.task.TodoTask;
 import seedu.duck.util.Message;
@@ -44,12 +46,9 @@ public class Parser {
     public static final int COMMAND_WORD_INDEX = 0;
 
     public static Command parseCommand(String userInput) {
-        /** Split by " "*/
         final String []commandTypeAndParams = userInput.split(COMMAND_SPLITTER);
-        /** further split the user input, get the commandType, and the description */
         final String commandType = commandTypeAndParams[COMMAND_WORD_INDEX];
         final String commandArgs = userInput.substring(commandTypeAndParams[COMMAND_WORD_INDEX].length()).trim();
-        //operates according to different duck.command word
         return getCommand(userInput, commandType, commandArgs);
     }
 
@@ -63,6 +62,8 @@ public class Parser {
         case AddTodoCommand.COMMAND_WORD:
             return prepareAddTodoTask(commandArgs);
         //add event task
+        case AddEventCommand.COMMAND_WORD:
+            return prepareAddEventTask(commandArgs);
         //add deadline task
         case AddDeadlineCommand.COMMAND_WORD:
             return prepareAddDeadlineTask(commandArgs);
@@ -112,10 +113,12 @@ public class Parser {
         }
         taskDescriptionAndTime = commandArgs.split(DATE_SPLITTER);
         for (Task toCheck: TaskManager.getTaskList()) {
-            if (isDuplicateTask(toCheck, taskDescriptionAndTime[DESCRIPTION_INDEX]))
+            if (isDuplicateTask(toCheck, taskDescriptionAndTime[DESCRIPTION_INDEX])) {
                 printDuplicateTaskNotAdded();
                 printDivider();
-                return new ListCommand();            }
+                return new ListCommand();
+            }
+        }
         if (!isValid(taskDescriptionAndTime[DESCRIPTION_INDEX])){
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
@@ -125,18 +128,22 @@ public class Parser {
         return new AddDeadlineCommand(new DeadlineTask(taskDescriptionAndTime[DESCRIPTION_INDEX],taskDescriptionAndTime[TIME_INDEX]));
     }
 
-
-//    private static boolean isAddTodoDuplicate() {
-//        Scanner scanner = new Scanner(System.in);
-//        char userChoice  = scanner.next().charAt(USER_CHOICE_INDEX);
-//        switch (userChoice){
-//        case CAP_ACKNOWLEDGEMENT:
-//        case ACKNOWLEDGEMENT:
-//            return true;
-//        default:
-//            return false;
-//        }
-//    }
+    private static Command prepareAddEventTask(String commandDescription) {
+        printDivider();
+        String [] taskDescriptionAndTime;
+        if (!isValid(commandDescription)) {
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+        taskDescriptionAndTime = commandDescription.split(DATE_SPLITTER);
+        for (Task toCheck: TaskManager.getTaskList()) {
+            if (isDuplicateTask(toCheck, taskDescriptionAndTime[DESCRIPTION_INDEX])) {
+                printDuplicateTaskNotAdded();
+                printDivider();
+                return new ListCommand();
+            }
+        }
+        return new AddEventCommand(new EventTask(taskDescriptionAndTime[DESCRIPTION_INDEX],taskDescriptionAndTime[TIME_INDEX]));
+    }
 
     private static Command prepareDone (String args) {
         try {
