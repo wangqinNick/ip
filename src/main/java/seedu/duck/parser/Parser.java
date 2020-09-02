@@ -46,6 +46,9 @@ public class Parser {
     public static final int COMMAND_WORD_INDEX = 0;
 
     public static Command parseCommand(String userInput) {
+        if (userInput == null){
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
         final String []commandTypeAndParams = userInput.split(COMMAND_SPLITTER);
         final String commandType = commandTypeAndParams[COMMAND_WORD_INDEX];
         final String commandArgs = userInput.substring(commandTypeAndParams[COMMAND_WORD_INDEX].length()).trim();

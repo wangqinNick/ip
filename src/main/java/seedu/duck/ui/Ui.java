@@ -6,6 +6,10 @@ public class Ui {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static String getUserInput() {
-        return SCANNER.nextLine();
+        if (SCANNER.hasNextLine()){
+            return SCANNER.nextLine();
+        } else {
+            return null;
+        }
     }
 }
