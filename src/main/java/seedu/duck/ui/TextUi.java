@@ -195,5 +195,8 @@ public class TextUi {
         printMessage(SYSTEM_COLOR_MESSAGE, MESSAGE_DUPLICATE_TASK_NOT_ADDED);
     }
 
+    public static void askForReInput(){
+        printMessage(SYSTEM_COLOR_MESSAGE, MESSAGE_ASK_FOR_REINPUT);
+    }
 }
 

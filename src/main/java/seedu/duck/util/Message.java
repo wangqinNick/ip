@@ -36,4 +36,5 @@ public class Message {
     public static final String MESSAGE_DUPLICATE_TASK_ALERT_2 = "Do you want to add a duplicate task?";
     public static final String MESSAGE_DUPLICATE_TASK_ALERT_3 = "Press Y to add and others to not add: ";
     public static final String MESSAGE_DUPLICATE_TASK_NOT_ADDED = "The duplicate task is not added!";
+    public static final String MESSAGE_ASK_FOR_REINPUT = "Invalid Input! Please enter again!";
 }
