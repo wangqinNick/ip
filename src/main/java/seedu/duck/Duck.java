@@ -1,5 +1,9 @@
 package seedu.duck;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
 import seedu.duck.parser.Parser;
@@ -11,7 +15,7 @@ import java.util.NoSuchElementException;
 
 import static seedu.duck.ui.TextUi.askForReInput;
 
-public class Duck {
+public class Duck extends Application {
 
     static CommandResult commandResult;
     public static TaskManager taskManager;
@@ -19,6 +23,14 @@ public class Duck {
 
     public Duck() {
         taskManager = new TaskManager();
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 
     public static void main(String[] args) {
