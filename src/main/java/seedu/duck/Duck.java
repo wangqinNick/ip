@@ -6,7 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ImageInput;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -22,6 +26,11 @@ import seedu.duck.ui.Ui;
 
 import java.util.NoSuchElementException;
 
+import static javafx.scene.layout.BackgroundPosition.CENTER;
+import static javafx.scene.layout.BackgroundRepeat.NO_REPEAT;
+import static javafx.scene.layout.BackgroundRepeat.REPEAT;
+import static javafx.scene.layout.BackgroundSize.AUTO;
+import static javafx.scene.layout.BackgroundSize.DEFAULT;
 import static seedu.duck.ui.TextUi.askForReInput;
 
 public class Duck extends Application {
@@ -30,6 +39,7 @@ public class Duck extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
+    private Image imageBG = new Image(this.getClass().getResourceAsStream("/images/bgp3.jpg"));
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
     static CommandResult commandResult;
@@ -42,11 +52,16 @@ public class Duck extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        BackgroundSize backgroundSize = new BackgroundSize(385, 535, true, true, true, false);
+        BackgroundImage backgroundImage = new BackgroundImage(imageBG, NO_REPEAT, REPEAT, CENTER, backgroundSize);
+        Background background = new Background(backgroundImage);
+
         //Step 1. Setting up required components
 
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
+        dialogContainer.setBackground(background);
         scrollPane.setContent(dialogContainer);
 
         userInput = new TextField();
