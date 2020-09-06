@@ -7,10 +7,15 @@ import seedu.duck.system.TaskManager;
 import seedu.duck.ui.TextUi;
 import seedu.duck.ui.Ui;
 
+import java.util.NoSuchElementException;
+
+import static seedu.duck.ui.TextUi.askForReInput;
+
 public class Duck {
 
     static CommandResult commandResult;
     public static TaskManager taskManager;
+    private String userCommand;
 
     public Duck() {
         taskManager = new TaskManager();
@@ -37,9 +42,17 @@ public class Duck {
 
     private void runCommandLoopUntilExitCommand() {
         while(true) {
-            String userCommand = Ui.getUserInput();
-            Command parsedCommand = Parser.parseCommand(userCommand);
-            Executor.executeCommand(parsedCommand);
+            try{
+                userCommand = Ui.getUserInput();
+            } catch (NoSuchElementException ex1){
+                askForReInput();
+                do {
+                    userCommand = Ui.getUserInput();
+                } while (userCommand != null);
+            } finally {
+                Command parsedCommand = Parser.parseCommand(userCommand);
+                Executor.executeCommand(parsedCommand);
+            }
         }
     }
 }
