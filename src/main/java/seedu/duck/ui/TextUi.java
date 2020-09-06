@@ -161,7 +161,7 @@ public class TextUi {
                 eventTask.getType(),
                 eventTask.getChar(),
                 eventTask.getDescription(),
-                eventTask.getTaskStartTime())));
+                eventTask.getTime())));
     }
 
     public static void printTask(Ansi.Color color, String message){

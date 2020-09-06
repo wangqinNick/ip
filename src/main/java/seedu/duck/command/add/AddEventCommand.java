@@ -34,6 +34,6 @@ public class AddEventCommand extends AddCommand {
                 COMMAND_TYPE,
                 eventTask.getChar(),
                 eventTask.getDescription(),
-                eventTask.getTaskStartTime()));
+                eventTask.getTime()));
     }
 }

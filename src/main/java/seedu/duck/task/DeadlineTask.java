@@ -5,7 +5,7 @@ import seedu.duck.util.Month;
 
 import java.time.LocalDate;
 
-public class DeadlineTask extends Task{
+public class DeadlineTask extends Task implements Timeliness{
     protected String taskInformation;
     public DeadlineTask() {
     }
@@ -18,14 +18,6 @@ public class DeadlineTask extends Task{
 
     public String getTaskDeadline() {
         return taskTime;
-    }
-
-    public String getTaskStartTime() {
-        return taskTime;
-    }
-
-    public LocalDate getTaskDeadlineDate() {
-        return taskDeadlineDate;
     }
 
     /*
@@ -51,5 +43,10 @@ public class DeadlineTask extends Task{
                     getTaskDeadline());
         }
         return taskInformation;
+    }
+
+    @Override
+    public String getTime() {
+        return getTaskDeadline();
     }
 }

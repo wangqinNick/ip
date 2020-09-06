@@ -1,6 +1,6 @@
 package seedu.duck.task;
 
-public class EventTask extends Task{
+public class EventTask extends Task implements Timeliness{
 
     public EventTask() {
     }
@@ -15,11 +15,8 @@ public class EventTask extends Task{
         this.taskTime = taskStartTime;
     }
 
-    public String getTaskStartTime() {
-        return taskTime;
-    }
-
-    public String getTaskEndTime() {
+    @Override
+    public String getTime() {
         return taskTime;
     }
 }
