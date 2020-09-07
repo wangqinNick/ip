@@ -33,6 +33,8 @@ import static javafx.scene.layout.BackgroundSize.AUTO;
 import static javafx.scene.layout.BackgroundSize.DEFAULT;
 
 public class Duck extends Application {
+    public static final int STAGE_HEIGHT = 700;
+    public static final int STAGE_WIDTH = 600;
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
@@ -70,12 +72,12 @@ public class Duck extends Application {
         //Step 2. Formatting the window to look as expected
         stage.setTitle("Duke");
         stage.setResizable(false);
-        stage.setMinHeight(600.0);
-        stage.setMinWidth(400.0);
+        stage.setMinHeight(STAGE_HEIGHT);
+        stage.setMinWidth(STAGE_WIDTH);
 
-        mainLayout.setPrefSize(400.0, 600.0);
+        mainLayout.setPrefSize(STAGE_WIDTH, STAGE_HEIGHT);
 
-        scrollPane.setPrefSize(385, 535);
+        scrollPane.setPrefSize(STAGE_WIDTH-15, STAGE_HEIGHT-65);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
@@ -84,7 +86,7 @@ public class Duck extends Application {
 
         // You will need to import `javafx.scene.layout.Region` for this.
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        userInput.setPrefWidth(325.0);
+        userInput.setPrefWidth(STAGE_WIDTH-75);
 
         sendButton.setPrefWidth(55.0);
 
@@ -95,19 +97,6 @@ public class Duck extends Application {
 
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
-
-        // more code to be added here later
-
-        //Step 3. Add functionality to handle user input.
-        sendButton.setOnMouseClicked((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-
-        userInput.setOnAction((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
 
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
