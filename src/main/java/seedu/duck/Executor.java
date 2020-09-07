@@ -1,17 +1,19 @@
 package seedu.duck;
 
 import seedu.duck.command.Command;
-
-import static seedu.duck.Duck.commandResult;
+import seedu.duck.command.CommandResult;
 import static seedu.duck.Duck.taskManager;
 
 public class Executor {
-    static void executeCommand(Command parsedCommand) {
+
+    private static CommandResult commandResult;
+    static CommandResult executeCommand(Command parsedCommand) {
         try {
             parsedCommand.setData(taskManager);
-            commandResult = parsedCommand.execute();
+            return parsedCommand.execute();
         } catch (Exception ex) {
             System.out.println(ex);
         }
+        return commandResult;
     }
 }

@@ -1,7 +1,5 @@
 package seedu.duck.command;
 
-import static seedu.duck.ui.TextUi.showFarewells;
-
 public class ExitCommand extends Command {
     public ExitCommand() {
 
@@ -18,7 +16,6 @@ public class ExitCommand extends Command {
      * Displays the goodbye message and exits the runtime.
      */
     private static void exitProgram() {
-        showFarewells();
         System.exit(0);
     }
 }

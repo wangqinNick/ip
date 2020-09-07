@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    compile 'com.jfoenix:jfoenix:9.0.10'
     implementation 'org.fusesource.jansi:jansi:1.18'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'

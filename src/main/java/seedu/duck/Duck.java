@@ -31,7 +31,6 @@ import static javafx.scene.layout.BackgroundRepeat.NO_REPEAT;
 import static javafx.scene.layout.BackgroundRepeat.REPEAT;
 import static javafx.scene.layout.BackgroundSize.AUTO;
 import static javafx.scene.layout.BackgroundSize.DEFAULT;
-import static seedu.duck.ui.TextUi.askForReInput;
 
 public class Duck extends Application {
     private ScrollPane scrollPane;
@@ -39,10 +38,8 @@ public class Duck extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image imageBG = new Image(this.getClass().getResourceAsStream("/images/bgp3.jpg"));
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
-    static CommandResult commandResult;
     public static TaskManager taskManager;
     private String userCommand;
 
@@ -52,16 +49,11 @@ public class Duck extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        BackgroundSize backgroundSize = new BackgroundSize(385, 535, true, true, true, false);
-        BackgroundImage backgroundImage = new BackgroundImage(imageBG, NO_REPEAT, REPEAT, CENTER, backgroundSize);
-        Background background = new Background(backgroundImage);
-
         //Step 1. Setting up required components
 
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
-        dialogContainer.setBackground(background);
         scrollPane.setContent(dialogContainer);
 
         userInput = new TextField();
@@ -92,7 +84,6 @@ public class Duck extends Application {
 
         // You will need to import `javafx.scene.layout.Region` for this.
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-
         userInput.setPrefWidth(325.0);
 
         sendButton.setPrefWidth(55.0);
@@ -142,6 +133,7 @@ public class Duck extends Application {
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
 
+
         return textToAdd;
     }
 
@@ -164,42 +156,9 @@ public class Duck extends Application {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    private String getResponse(String input) {
-        return "Duke heard: " + input;
-    }
-
-    public static void main(String[] args) {
-        new Duck().run();
-    }
-
-    private void run() {
-        initDuck();
-        showWelcomeMessage();
-        runCommandLoopUntilExitCommand();
-    }
-
-    private static void initDuck(){
-        //initialize manger, data
-    }
-
-    public static void showWelcomeMessage() {
-        TextUi.clearScreen();
-        TextUi.showGreetings();
-    }
-
-    private void runCommandLoopUntilExitCommand() {
-        while(true) {
-            try{
-                userCommand = Ui.getUserInput();
-            } catch (NoSuchElementException ex1){
-                askForReInput();
-                do {
-                    userCommand = Ui.getUserInput();
-                } while (userCommand != null);
-            } finally {
-                Command parsedCommand = Parser.parseCommand(userCommand);
-                Executor.executeCommand(parsedCommand);
-            }
-        }
+    private String getResponse(String userInput) {
+        Command parsedCommand = Parser.parseCommand(userInput);
+        CommandResult commandResult = Executor.executeCommand(parsedCommand);
+        return commandResult.getFeedbackToUser();
     }
 }
