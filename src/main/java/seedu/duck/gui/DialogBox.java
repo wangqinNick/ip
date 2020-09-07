@@ -3,6 +3,7 @@ package seedu.duck.gui;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -13,12 +14,9 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import static javafx.scene.layout.BorderStroke.MEDIUM;
 
@@ -50,20 +48,23 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(Label l, ImageView iv) {
-        l.setMaxWidth(375);
-        l.setPrefHeight(50);
-        l.setBorder(new Border(new BorderStroke(Color.web("#4141B2"), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, MEDIUM)));
-        l.setBackground(new Background(new BackgroundFill(Color.web("#9ED49E"), CornerRadii.EMPTY, Insets.EMPTY)));
+        customLabel(l);
         return new DialogBox(l, iv);
     }
 
     public static DialogBox getDukeDialog(Label l, ImageView iv) {
-        l.setMaxWidth(375);
-        l.setPrefHeight(50);
-        l.setBorder(new Border(new BorderStroke(Color.web("#4141B2"), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, MEDIUM)));
-        l.setBackground(new Background(new BackgroundFill(Color.web("#9ED49E"), CornerRadii.EMPTY, Insets.EMPTY)));
+        customLabel(l);
         var db = new DialogBox(l, iv);
         db.flip();
         return db;
+    }
+
+    private static void customLabel(Label l) {
+        Font font = new Font("Courier", 14);
+        l.setFont(font);
+        l.setMaxWidth(375);
+        l.setMinHeight(50);
+        l.setBorder(new Border(new BorderStroke(Color.web("#4141B2"), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, MEDIUM)));
+        l.setBackground(new Background(new BackgroundFill(Color.web("#9ED49E"), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 }

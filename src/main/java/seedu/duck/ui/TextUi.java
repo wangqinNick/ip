@@ -58,7 +58,7 @@ public class TextUi {
                         todoTask.getChar(),
                         todoTask.getDescription())
                 )
-        ).append("\n") ;
+        ).append("\n");
     }
 
     /**

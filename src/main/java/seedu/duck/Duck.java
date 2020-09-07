@@ -1,6 +1,7 @@
 package seedu.duck;
 
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +13,9 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,8 +30,7 @@ import seedu.duck.ui.Ui;
 import java.util.NoSuchElementException;
 
 import static javafx.scene.layout.BackgroundPosition.CENTER;
-import static javafx.scene.layout.BackgroundRepeat.NO_REPEAT;
-import static javafx.scene.layout.BackgroundRepeat.REPEAT;
+import static javafx.scene.layout.BackgroundRepeat.*;
 import static javafx.scene.layout.BackgroundSize.AUTO;
 import static javafx.scene.layout.BackgroundSize.DEFAULT;
 
@@ -40,10 +42,10 @@ public class Duck extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
+    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/bgp.png"));
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
     public static TaskManager taskManager;
-    private String userCommand;
 
     public Duck() {
         taskManager = new TaskManager();
@@ -51,20 +53,30 @@ public class Duck extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        ImageView bgpView = new ImageView(backgroundImage);
+        bgpView.setOpacity(0.5);
         //Step 1. Setting up required components
 
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
+
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
-
+        /**////////
+        Font font = new Font("Courier", 14);
         userInput = new TextField();
+        userInput.setFont(font);
+
+        /**////////
         sendButton = new Button("Send");
 
         AnchorPane mainLayout = new AnchorPane();
+        AnchorPane subLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
-
-        scene = new Scene(mainLayout);
+        subLayout.getChildren().add(bgpView);
+//        mainLayout.setViewOrder();
+        Parent root = new StackPane(mainLayout, subLayout);
+        scene = new Scene(root);
 
         stage.setScene(scene);
         stage.show();

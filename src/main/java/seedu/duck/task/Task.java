@@ -47,7 +47,7 @@ public abstract class Task {
         if (this.isDone){
             return Message.DONE;
         } else {
-            return Message.NOTDONE;
+            return Message.NOT_DONE;
         }
     }
 
