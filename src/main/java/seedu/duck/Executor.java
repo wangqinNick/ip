@@ -7,7 +7,7 @@ import static seedu.duck.Duck.taskManager;
 public class Executor {
 
     private static CommandResult commandResult;
-    static CommandResult executeCommand(Command parsedCommand) {
+    public static CommandResult executeCommand(Command parsedCommand) {
         try {
             parsedCommand.setData(taskManager);
             return parsedCommand.execute();
