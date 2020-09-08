@@ -7,32 +7,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.ImageInput;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
 import seedu.duck.gui.DialogBox;
 import seedu.duck.parser.Parser;
 import seedu.duck.system.TaskManager;
-import seedu.duck.ui.TextUi;
-import seedu.duck.ui.Ui;
-
-import java.util.NoSuchElementException;
-
-import static javafx.scene.layout.BackgroundPosition.CENTER;
-import static javafx.scene.layout.BackgroundRepeat.*;
-import static javafx.scene.layout.BackgroundSize.AUTO;
-import static javafx.scene.layout.BackgroundSize.DEFAULT;
 
 public class Duck extends Application {
     public static final int STAGE_HEIGHT = 700;
@@ -42,9 +33,9 @@ public class Duck extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/bgp.png"));
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/bgp.png"));
     public static TaskManager taskManager;
 
     public Duck() {
@@ -53,8 +44,20 @@ public class Duck extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        Media backgroundMusic = new Media(getClass().getResource("/music/windbgm1.mp3").toExternalForm());
+
         ImageView bgpView = new ImageView(backgroundImage);
-        bgpView.setOpacity(0.5);
+        MediaPlayer backgroundMusicPlayer = new MediaPlayer(backgroundMusic);
+        backgroundMusicPlayer.setAutoPlay(true);
+        backgroundMusicPlayer.setVolume(0.9);
+        //***************** loop (repeat) the music  ******************
+        backgroundMusicPlayer.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                backgroundMusicPlayer.seek(Duration.ZERO);
+            }
+        });
+        MediaView bgmView = new MediaView(backgroundMusicPlayer);
+        bgpView.setOpacity(0.2);
         //Step 1. Setting up required components
 
         //The container for the content of the chat to scroll.
@@ -62,19 +65,17 @@ public class Duck extends Application {
 
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
-        /**////////
         Font font = new Font("Courier", 14);
         userInput = new TextField();
         userInput.setFont(font);
 
-        /**////////
         sendButton = new Button("Send");
 
         AnchorPane mainLayout = new AnchorPane();
         AnchorPane subLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
-        subLayout.getChildren().add(bgpView);
-//        mainLayout.setViewOrder();
+        subLayout.getChildren().addAll(bgpView, bgmView);
+
         Parent root = new StackPane(mainLayout, subLayout);
         scene = new Scene(root);
 
