@@ -31,12 +31,10 @@ public class Duck extends Application {
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
+    public static TaskManager taskManager;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
-    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/bgp.png"));
-    public static TaskManager taskManager;
+
 
     public Duck() {
         taskManager = new TaskManager();
@@ -44,40 +42,25 @@ public class Duck extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Media backgroundMusic = new Media(getClass().getResource("/music/windbgm1.mp3").toExternalForm());
-
-        ImageView bgpView = new ImageView(backgroundImage);
-        MediaPlayer backgroundMusicPlayer = new MediaPlayer(backgroundMusic);
-        backgroundMusicPlayer.setAutoPlay(true);
-        backgroundMusicPlayer.setVolume(0.9);
-        //***************** loop (repeat) the music  ******************
-        backgroundMusicPlayer.setOnEndOfMedia(new Runnable() {
-            public void run() {
-                backgroundMusicPlayer.seek(Duration.ZERO);
-            }
-        });
-        MediaView bgmView = new MediaView(backgroundMusicPlayer);
-        bgpView.setOpacity(0.2);
+        ImageView bgpView = getBackgroundImage();
+        MediaView bgmView = getBackgroundMusic();
         //Step 1. Setting up required components
-
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
-
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
         Font font = new Font("Courier", 14);
         userInput = new TextField();
         userInput.setFont(font);
 
-        sendButton = new Button("Send");
-
+        Button sendButton = new Button("Send");
         AnchorPane mainLayout = new AnchorPane();
         AnchorPane subLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
         subLayout.getChildren().addAll(bgpView, bgmView);
 
         Parent root = new StackPane(mainLayout, subLayout);
-        scene = new Scene(root);
+        Scene scene = new Scene(root);
 
         stage.setScene(scene);
         stage.show();
@@ -122,6 +105,31 @@ public class Duck extends Application {
         userInput.setOnAction((event) -> {
             handleUserInput();
         });
+    }
+
+    private ImageView getBackgroundImage() {
+        Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/bgp.png"));
+        ImageView bgpView = new ImageView(backgroundImage);
+        bgpView.setOpacity(0.2);
+        return bgpView;
+    }
+
+    private MediaView getBackgroundMusic() {
+        Media backgroundMusic = new Media(getClass().getResource("/music/windbgm1.mp3").toExternalForm());
+        MediaPlayer backgroundMusicPlayer = new MediaPlayer(backgroundMusic);
+        setBackgroundMusic(backgroundMusicPlayer);
+        //***************** loop (repeat) the music  ******************
+        backgroundMusicPlayer.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                backgroundMusicPlayer.seek(Duration.ZERO);
+            }
+        });
+        return new MediaView(backgroundMusicPlayer);
+    }
+
+    private void setBackgroundMusic(MediaPlayer backgroundMusicPlayer) {
+        backgroundMusicPlayer.setAutoPlay(true);
+        backgroundMusicPlayer.setVolume(0.9);
     }
 
     /**
