@@ -22,19 +22,14 @@ import static javafx.scene.layout.BorderStroke.MEDIUM;
 
 public class DialogBox extends HBox {
 
-    private Label text;
-    private ImageView displayPicture;
-
     public DialogBox(Label l, ImageView iv) {
-        text = l;
-        displayPicture = iv;
 
-        text.setWrapText(true);
-        displayPicture.setFitWidth(100.0);
-        displayPicture.setFitHeight(100.0);
+        l.setWrapText(true);
+        iv.setFitWidth(100.0);
+        iv.setFitHeight(100.0);
 
         this.setAlignment(Pos.TOP_RIGHT);
-        this.getChildren().addAll(text, displayPicture);
+        this.getChildren().addAll(l, iv);
     }
 
     /**
@@ -48,23 +43,24 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(Label l, ImageView iv) {
-        customLabel(l);
+        customLabelAndImageView(l, iv);
         return new DialogBox(l, iv);
     }
 
     public static DialogBox getDukeDialog(Label l, ImageView iv) {
-        customLabel(l);
+        customLabelAndImageView(l, iv);
         var db = new DialogBox(l, iv);
         db.flip();
         return db;
     }
 
-    private static void customLabel(Label l) {
+    private static void customLabelAndImageView(Label l, ImageView iv) {
         Font font = new Font("Courier", 14);
         l.setFont(font);
         l.setMaxWidth(375);
         l.setMinHeight(50);
         l.setBorder(new Border(new BorderStroke(Color.web("#4141B2"), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, MEDIUM)));
         l.setBackground(new Background(new BackgroundFill(Color.web("#9ED49E"), CornerRadii.EMPTY, Insets.EMPTY)));
+        iv.setPreserveRatio(true);
     }
 }

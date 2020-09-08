@@ -30,8 +30,8 @@ public class MainStage {
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/original.gif"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/tenor.gif"));
 
 
     public MainStage(){
