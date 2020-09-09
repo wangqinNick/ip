@@ -1,11 +1,12 @@
 package seedu.duck.system;
 
 import seedu.duck.task.Task;
-
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class TaskManager {
     private static ArrayList<Task> taskList;
+    private static Stream<Task> taskStream= taskList.stream();
     /**
      *  Initiates an empty Task list
      */
@@ -15,10 +16,10 @@ public class TaskManager {
 
     /**
      *  Set the entire Task List to a new list
-     * @param taskList
+     * @param assignedTaskList assigned taskList
      */
-    public static void setTaskList(ArrayList<Task> taskList) {
-        taskList = taskList;
+    public static void setTaskList(ArrayList<Task> assignedTaskList) {
+        taskList = assignedTaskList;
     }
 
     /**
@@ -31,12 +32,7 @@ public class TaskManager {
     }
 
     private static boolean contains(String description) {
-        for (Task task : taskList) {
-            if (task.isSameTask(description)) {
-                return true;
-            }
-        }
-        return false;
+        return taskStream.anyMatch(task -> task.isSameTask(description));
     }
 
     public static void add(Task toAdd) {
