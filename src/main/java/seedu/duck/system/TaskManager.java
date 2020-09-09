@@ -51,7 +51,7 @@ public class TaskManager {
         return taskList.get(index);
     }
 
-    public static void removeTask(int index){
-        taskList.remove(index);
+    public static void removeTask(Task toRemove){
+        taskList.remove(toRemove);
     }
 }
