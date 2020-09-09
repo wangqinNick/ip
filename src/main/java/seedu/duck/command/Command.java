@@ -6,7 +6,6 @@ import seedu.duck.task.Task;
 import seedu.duck.ui.TextUi;
 
 public abstract class Command {
-    public String COMMAND_WORD;
     protected TaskManager taskManager;
     private int targetIndex = -1;
 
@@ -17,10 +16,6 @@ public abstract class Command {
      * @param targetIndex last visible listing index of the target person
      */
     public Command(int targetIndex) {
-        this.setTargetIndex(targetIndex);
-    }
-
-    public void setTargetIndex(int targetIndex) {
         this.targetIndex = targetIndex;
     }
 

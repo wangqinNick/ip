@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 public class TaskManager {
     private static ArrayList<Task> taskList;
+    //private static Stream<Task> taskStream = taskList.stream();
     /**
      *  Initiates an empty Task list
      */
@@ -48,5 +49,9 @@ public class TaskManager {
 
     public static Task get(int index){
         return taskList.get(index);
+    }
+
+    public static void removeTask(int index){
+        taskList.remove(index);
     }
 }

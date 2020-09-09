@@ -1,6 +1,7 @@
 package seedu.duck.parser;
 
 import seedu.duck.command.Command;
+import seedu.duck.command.DeleteCommand;
 import seedu.duck.command.DoneCommand;
 import seedu.duck.command.ExitCommand;
 import seedu.duck.command.IncorrectCommand;
@@ -48,6 +49,7 @@ public class Parser {
      */
     private static Command getCommand(String commandWord, String commandType, String commandArgs) {
         switch (commandType){
+        //Delete
         //Add to-do
         case AddTodoCommand.COMMAND_WORD:
             return prepareAddTodoTask(commandArgs);
