@@ -1,7 +1,5 @@
 package seedu.duck.command;
 
-import static seedu.duck.ui.TextUi.printAlert;
-
 public class IncorrectCommand extends Command {
     public final String feedbackToUser;
 
@@ -11,7 +9,6 @@ public class IncorrectCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        printAlert();
         return new CommandResult(feedbackToUser);
     }
 }

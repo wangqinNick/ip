@@ -1,10 +1,7 @@
 package seedu.duck.command;
 
 import seedu.duck.system.TaskManager;
-import seedu.duck.ui.TextUi;
-import seedu.duck.util.Message;
-
-import static seedu.duck.ui.TextUi.printAllTasks;
+import static seedu.duck.ui.TextUi.getAppendedAllTasks;
 import static seedu.duck.util.Message.MESSAGE_EMPTY_LIST;
 
 public class ListCommand extends Command {
@@ -22,7 +19,7 @@ public class ListCommand extends Command {
      */
     public CommandResult execute() {
         if (TaskManager.getTaskList().size()>0){
-            String listMessage = printAllTasks(TaskManager.getTaskList());
+            String listMessage = getAppendedAllTasks();
             return new CommandResult((listMessage));
         } else {
             return new CommandResult(MESSAGE_EMPTY_LIST);

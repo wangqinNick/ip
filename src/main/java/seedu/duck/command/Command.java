@@ -6,7 +6,6 @@ import seedu.duck.task.Task;
 import seedu.duck.ui.TextUi;
 
 public abstract class Command {
-    public String COMMAND_WORD;
     protected TaskManager taskManager;
     private int targetIndex = -1;
 
@@ -17,10 +16,6 @@ public abstract class Command {
      * @param targetIndex last visible listing index of the target person
      */
     public Command(int targetIndex) {
-        this.setTargetIndex(targetIndex);
-    }
-
-    public void setTargetIndex(int targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -37,7 +32,7 @@ public abstract class Command {
      * @throws IndexOutOfBoundsException if the target index is out of bounds of the last viewed listing
      */
     protected Task getTargetTask() throws IndexOutOfBoundsException {
-        return taskManager.getTaskList().get(getTargetIndex() - TextUi.DISPLAYED_INDEX_OFFSET);
+        return TaskManager.getTaskList().get(getTargetIndex() - TextUi.DISPLAYED_INDEX_OFFSET);
     }
 
     /**

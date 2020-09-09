@@ -4,14 +4,16 @@ import seedu.duck.ui.TextUi;
 
 /** Display the execute result, by constructing a CommandResult object **/
 public class CommandResult {
-    public final String feedbackToUser;
+    private final String feedbackToUser;
 
     /**
-     * @parameter: Execute feedback to user
+     * @parameter: feedbackToUser Execute feedback to user
      */
     public CommandResult(String feedbackToUser) {
         this.feedbackToUser = feedbackToUser;
-        if (feedbackToUser!= null)
-            TextUi.showResult(this.feedbackToUser);
+    }
+
+    public String getFeedbackToUser() {
+        return feedbackToUser;
     }
 }
