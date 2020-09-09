@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 public class TaskManager {
     private static ArrayList<Task> taskList;
-    private static Stream<Task> taskStream= taskList.stream();
     /**
      *  Initiates an empty Task list
      */
@@ -32,7 +31,7 @@ public class TaskManager {
     }
 
     private static boolean contains(String description) {
-        return taskStream.anyMatch(task -> task.isSameTask(description));
+        return taskList.stream().anyMatch(task -> task.isSameTask(description));
     }
 
     public static void add(Task toAdd) {
