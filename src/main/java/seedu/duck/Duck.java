@@ -34,17 +34,25 @@ public class Duck extends Application {
     String checkUser, checkPw;
 
     public Duck() {
+
+    }
+
+    @Override
+    public void init(){
         taskManager = new TaskManager();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        MediaView bgmView = getBackgroundMusic();
-        primaryStage.setTitle("Duck 2 Login");
-
+        //MediaView bgmView = getBackgroundMusic();
+        primaryStage.setTitle("Duck Login");
         BorderPane bp = new BorderPane();
         bp.setPadding(new Insets(10, 50, 50, 50));
-
+        //bp.getChildren().add(bgmView);
         //Adding HBox
         HBox hb = new HBox();
         hb.setPadding(new Insets(20, 20, 20, 30));
@@ -52,8 +60,8 @@ public class Duck extends Application {
         //Adding GridPane
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(20, 20, 20, 20));
-        gridPane.setHgap(5);
-        gridPane.setVgap(5);
+        gridPane.setHgap(6);
+        gridPane.setVgap(6);
 
         //Implementing Nodes for GridPane
         Label lblUserName = new Label("Username");
@@ -70,7 +78,7 @@ public class Duck extends Application {
         gridPane.add(pf, 1, 1);
         gridPane.add(btnLogin, 2, 1);
         gridPane.add(lblMessage, 1, 2);
-        gridPane.getChildren().add(bgmView);
+
 
         //Reflection for gridPane
         Reflection r = new Reflection();
@@ -88,7 +96,7 @@ public class Duck extends Application {
         text.setEffect(dropShadow);
 
         //Adding text to HBox
-        hb.getChildren().add(text);
+        hb.getChildren().addAll(text);
 
         //Add ID's to Nodes
         bp.setId("bp");

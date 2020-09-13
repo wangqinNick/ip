@@ -2,15 +2,20 @@ plugins {
     id 'java'
     id 'application'
     //id 'checkstyle'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
 repositories {
     mavenCentral()
 }
+javafx {
+    version = "14"
+    modules = [ 'javafx.controls','javafx.media'  ]
+}
+
 
 dependencies {
-    compile 'com.jfoenix:jfoenix:9.0.10'
     implementation 'org.fusesource.jansi:jansi:1.18'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
@@ -28,6 +33,7 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
+
 }
 
 test {
@@ -45,7 +51,21 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duck.Duck"
+    mainClassName = "seedu.duck.Launcher"
+}
+
+
+task fatJar(type: Jar) {
+    baseName = project.name + '-all'
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+                'Implementation-Version': 0.1,
+                'Main-Class': 'seedu.duck.Launcher'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it :
+            zipTree(it) }
+    }
+    with jar
 }
 
 shadowJar {
