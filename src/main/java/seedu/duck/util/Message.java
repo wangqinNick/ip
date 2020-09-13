@@ -1,5 +1,7 @@
 package seedu.duck.util;
 
+import java.io.File;
+
 public class Message {
 
     public static final String LOGO = " ____        _        \n"
@@ -20,6 +22,8 @@ public class Message {
     public static final String MESSAGE_EVENT_SUCCESS = "Got it. I've added this task: [ID:%d][%c][%c] %s (%s)";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid duck.command format!";
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The duck.task index provided is invalid";
+    public static final String JSON_FILE_PATH = "src"+ File.pathSeparator+"main"+File.pathSeparator+"data"+File.pathSeparator+"taskManager.json";
+    public static final String MESSAGE_FILE_OPERATION_IO_ERROR = "Error writing to file: %s";
     public static String messageAddTaskSuccess(String description) {
         return String.format("SUCCESS!! Task %s has been added.\n", description);
     }
