@@ -6,7 +6,6 @@ import seedu.duck.command.DoneCommand;
 import seedu.duck.command.ExitCommand;
 import seedu.duck.command.IncorrectCommand;
 import seedu.duck.command.ListCommand;
-import seedu.duck.command.add.AddCommand;
 import seedu.duck.command.add.AddDeadlineCommand;
 import seedu.duck.command.add.AddEventCommand;
 import seedu.duck.command.add.AddTodoCommand;
@@ -29,6 +28,7 @@ public class Parser {
     public static final String DATE_SPLITTER = "/";
     public static final String COMMAND_SPLITTER = " ";
     public static final int DONE_INDEX = 5;
+    public static final int DELETE_INDEX = 7;
     public static final int DESCRIPTION_INDEX = 0;
     public static final int TIME_INDEX = 1;
     public static final int COMMAND_WORD_INDEX = 0;
@@ -38,7 +38,7 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         final String []commandTypeAndParams = userInput.split(COMMAND_SPLITTER);
-        final String commandType = commandTypeAndParams[COMMAND_WORD_INDEX];
+        String commandType = commandTypeAndParams[COMMAND_WORD_INDEX];
         final String commandArgs = userInput.substring(commandTypeAndParams[COMMAND_WORD_INDEX].length()).trim();
         return getCommand(userInput, commandType, commandArgs);
     }
@@ -50,6 +50,8 @@ public class Parser {
     private static Command getCommand(String commandWord, String commandType, String commandArgs) {
         switch (commandType){
         //Delete
+        case DeleteCommand.COMMAND_WORD:
+            return prepareDelete(commandWord);
         //Add to-do
         case AddTodoCommand.COMMAND_WORD:
             return prepareAddTodoTask(commandArgs);
@@ -73,6 +75,8 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
+
+
 
     private static Command prepareAddTodoTask(String commandArgs) {
         if (!isValid(commandArgs)) {
@@ -106,9 +110,26 @@ public class Parser {
         return new AddEventCommand(new EventTask(taskDescriptionAndTime[DESCRIPTION_INDEX],taskDescriptionAndTime[TIME_INDEX]));
     }
 
+    /**
+     * Parses arguments in the context of the delete person command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private static Command prepareDelete(String args) {
+        try {
+            final int targetIndex = parseArgsAsDisplayedIndex(args, DELETE_INDEX);
+            return new DeleteCommand(targetIndex);
+        } catch (ParseException | NumberFormatException pe) {
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        } catch (StringIndexOutOfBoundsException se) {
+            return new IncorrectCommand(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+    }
+
     private static Command prepareDone (String args) {
         try {
-            final int targetIndex = parseArgsAsDisplayedIndex(args);
+            final int targetIndex = parseArgsAsDisplayedIndex(args, DONE_INDEX);
             return new DoneCommand(targetIndex);
         } catch (ParseException pe) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
@@ -117,16 +138,17 @@ public class Parser {
         }
     }
 
-    public static int parseArgsAsDisplayedIndex(String args) throws ParseException, NumberFormatException,
-                                                                    StringIndexOutOfBoundsException{
+    public static int parseArgsAsDisplayedIndex(String args, int indexOfIndex) throws ParseException,
+                                                                                      NumberFormatException,
+                                                                                      StringIndexOutOfBoundsException{
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-        if (args.length() < Parser.DONE_INDEX) {
+        if (args.length() < indexOfIndex) {
             throw new StringIndexOutOfBoundsException(MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        return Integer.parseInt(args.substring(Parser.DONE_INDEX));
+        return Integer.parseInt(args.substring(indexOfIndex));
     }
 
     private static Boolean isValid(String str) {
