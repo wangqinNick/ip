@@ -4,12 +4,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import seedu.duck.exception.StorageOperationException;
 import seedu.duck.system.TaskManager;
-import seedu.duck.util.Message;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import static seedu.duck.util.Constant.PATH_TO_DATA_FILE;
+import static seedu.duck.util.Constant.PATH_TO_DATA_FOLDER;
 
 public class IOManager {
 
@@ -21,8 +25,8 @@ public class IOManager {
      * default constructor (if the user does not specified file location
      */
     public IOManager() throws StorageOperationException {
-        this(Message.JSON_FILE_PATH);
-        filePath = Paths.get(Message.JSON_FILE_PATH);
+        this(PATH_TO_DATA_FILE.toString());
+        filePath = Paths.get(PATH_TO_DATA_FILE.toString());
     }
 
     /**
@@ -35,7 +39,7 @@ public class IOManager {
     public IOManager(String filePath) throws StorageOperationException {
         IOManager.filePath = Paths.get(filePath);
         if (!isValidPath(IOManager.filePath)) {
-            throw new StorageOperationException("Storage file should end with '.txt'");
+            throw new StorageOperationException("Storage file should end with '.json'");
         }
     }
 
@@ -51,10 +55,23 @@ public class IOManager {
 
     public static void saveAsJson() throws IOException {
         Gson gson = new GsonBuilder().create();
-        FileWriter fw = new FileWriter(Message.JSON_FILE_PATH);
-        String json = gson.toJson(TaskManager.getTaskList());
-        fw.write(json);
-        fw.flush();
-        fw.close();
+        if (Files.exists(PATH_TO_DATA_FOLDER)){
+            FileWriter fw = new FileWriter(new File(PATH_TO_DATA_FILE.toString()));
+            String json = gson.toJson(TaskManager.getTaskList());
+            fw.write(json);
+            fw.flush();
+            fw.close();
+        } else {
+            createDefaultDataFolder();
+        }
+
+    }
+
+    private static void createDefaultDataFolder() {
+        try {
+            Files.createDirectory(PATH_TO_DATA_FOLDER);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
