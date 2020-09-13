@@ -12,12 +12,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import seedu.duck.Executor;
 import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
@@ -37,7 +33,6 @@ public class MainStage {
     public MainStage(){
         Stage stage = new Stage();
         ImageView bgpView = getBackgroundImage();
-        MediaView bgmView = getBackgroundMusic();
         //Step 1. Setting up required components
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
@@ -106,25 +101,6 @@ public class MainStage {
         ImageView bgpView = new ImageView(backgroundImage);
         bgpView.setOpacity(0.2);
         return bgpView;
-    }
-
-    private MediaView getBackgroundMusic() {
-        //Media backgroundMusic = new Media(getClass().getResource("/music/windbgm1.mp3").toExternalForm());
-        Media backgroundMusic = new Media(getClass().getResource("/music/canon.mp4").toExternalForm());
-        MediaPlayer backgroundMusicPlayer = new MediaPlayer(backgroundMusic);
-        setBackgroundMusic(backgroundMusicPlayer);
-        //***************** loop (repeat) the music  ******************
-        backgroundMusicPlayer.setOnEndOfMedia(new Runnable() {
-            public void run() {
-                backgroundMusicPlayer.seek(Duration.ZERO);
-            }
-        });
-        return new MediaView(backgroundMusicPlayer);
-    }
-
-    private void setBackgroundMusic(MediaPlayer backgroundMusicPlayer) {
-        backgroundMusicPlayer.setAutoPlay(true);
-        backgroundMusicPlayer.setVolume(0.9);
     }
 
     /**

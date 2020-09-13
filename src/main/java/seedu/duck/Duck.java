@@ -25,6 +25,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import seedu.duck.gui.MainStage;
+import seedu.duck.gui.MusicStage;
 import seedu.duck.system.TaskManager;
 
 public class Duck extends Application {
@@ -48,7 +49,7 @@ public class Duck extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //MediaView bgmView = getBackgroundMusic();
+        Stage musicStage = new MusicStage();
         primaryStage.setTitle("Duck Login");
         BorderPane bp = new BorderPane();
         bp.setPadding(new Insets(10, 50, 50, 50));
@@ -144,23 +145,5 @@ public class Duck extends Application {
         }
         txtUserName.setText("");
         pf.setText("");
-    }
-
-    private MediaView getBackgroundMusic() {
-        Media backgroundMusic = new Media(getClass().getResource("/music/canon.mp4").toExternalForm());
-        MediaPlayer backgroundMusicPlayer = new MediaPlayer(backgroundMusic);
-        setBackgroundMusic(backgroundMusicPlayer);
-        //***************** loop (repeat) the music  ******************
-        backgroundMusicPlayer.setOnEndOfMedia(new Runnable() {
-            public void run() {
-                backgroundMusicPlayer.seek(Duration.ZERO);
-            }
-        });
-        return new MediaView(backgroundMusicPlayer);
-    }
-
-    private void setBackgroundMusic(MediaPlayer backgroundMusicPlayer) {
-        backgroundMusicPlayer.setAutoPlay(true);
-        backgroundMusicPlayer.setVolume(0.9);
     }
 }
