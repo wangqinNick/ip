@@ -25,7 +25,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import seedu.duck.gui.MainStage;
-import seedu.duck.gui.MusicStage;
+//import seedu.duck.gui.MusicStage;
 import seedu.duck.system.TaskManager;
 
 public class Duck extends Application {
@@ -49,7 +49,7 @@ public class Duck extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Stage musicStage = new MusicStage();
+        //Stage musicStage = new MusicStage();
         primaryStage.setTitle("Duck Login");
         BorderPane bp = new BorderPane();
         bp.setPadding(new Insets(10, 50, 50, 50));
