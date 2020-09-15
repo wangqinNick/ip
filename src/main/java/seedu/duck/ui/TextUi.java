@@ -9,6 +9,9 @@ import seedu.duck.task.TodoTask;
 import seedu.duck.util.Message;
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
+
+import java.util.ArrayList;
+
 import static org.fusesource.jansi.Ansi.ansi;
 import static seedu.duck.util.Message.*;
 
@@ -16,22 +19,21 @@ public class TextUi {
     public static final int DISPLAYED_INDEX_OFFSET = 1;
     public static final int INDEX_OFF_SET = -1;
     public static final int LIST_INDEX_OFFSET = 1;
-    private static StringBuilder allTasksMessages;
-
+    private static StringBuilder tasksMessages;
     /**
      * Print all tasks in the duck.task list
      */
-    public static String getAppendedAllTasks(){
-        getTaskListMessage();
-        return allTasksMessages.toString();
+    public static String getAppendedTasksMessage(ArrayList<Task> taskListToPrint){
+        getTaskListMessage(taskListToPrint);
+        return tasksMessages.toString();
     }
     /**
      * get taskList message
      */
-    private static void getTaskListMessage() {
-        allTasksMessages = new StringBuilder();
-        for (int index = LIST_INDEX_OFFSET; index <= TaskManager.size() ; index++) {
-            Task task = TaskManager.get(index+ INDEX_OFF_SET);
+    private static void getTaskListMessage(ArrayList<Task> taskListToPrint) {
+        tasksMessages = new StringBuilder();
+        for (int index = LIST_INDEX_OFFSET; index <= taskListToPrint.size() ; index++) {
+            Task task = taskListToPrint.get(index+ INDEX_OFF_SET);
             appendAllTaskMessage(index, task);
         }
     }
@@ -48,7 +50,7 @@ public class TextUi {
 
 
     public static void appendTodoTask(TodoTask todoTask, int index){
-        allTasksMessages.append(
+        tasksMessages.append(
                 String.format(
                     MESSAGE_LIST_RESPOND_FORMAT,
                     String.format(
@@ -67,7 +69,7 @@ public class TextUi {
      * @param index index of deadline task
      */
     public static void appendDeadlineTask(DeadlineTask deadlineTask, int index){
-        allTasksMessages.append(
+        tasksMessages.append(
                 String.format(
                     MESSAGE_LIST_RESPOND_FORMAT,
                     String.format(
@@ -86,7 +88,7 @@ public class TextUi {
      * @param index index of event task
      */
     public static void appendEventTask(EventTask eventTask, int index){
-        allTasksMessages.append(
+        tasksMessages.append(
                 String.format(MESSAGE_LIST_RESPOND_FORMAT,
                     String.format(
                         MESSAGE_EVENT_LIST,

@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 public class TaskManager {
     private static ArrayList<Task> taskList;
+    private static ArrayList<Task> filteredTaskList;
     //private static Stream<Task> taskStream = taskList.stream();
     /**
      *  Initiates an empty Task list
@@ -38,6 +39,7 @@ public class TaskManager {
     public static void add(Task toAdd) {
         if (contains(toAdd.getDescription())) {
             //throw new DuplicateTaskException();
+            taskList.add(toAdd);
         } else {
             taskList.add(toAdd);
         }
@@ -53,5 +55,24 @@ public class TaskManager {
 
     public static void removeTask(Task toRemove){
         taskList.remove(toRemove);
+    }
+
+
+    public static ArrayList<Task> getFilteredTaskList() {
+        return filteredTaskList;
+    }
+
+    /**
+     * Search a key word int the whole list
+     */
+    public static ArrayList<Task> searchTask(String toSearch) {
+        filteredTaskList = new ArrayList<>();
+        for (Task task:taskList
+        ) {
+            if (task.getDescription().contains(toSearch)){
+                filteredTaskList.add(task);
+            }
+        }
+        return filteredTaskList;
     }
 }
