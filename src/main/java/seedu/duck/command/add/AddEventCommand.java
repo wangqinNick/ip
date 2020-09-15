@@ -28,12 +28,13 @@ public class AddEventCommand extends AddCommand {
             return new CommandResult("Invalid Command Format");
         }
         TaskManager.add(eventTask);
-        return new CommandResult(String.format(
-                MESSAGE_EVENT_SUCCESS,
-                eventTask.getIndex() + LIST_INDEX_OFFSET,
-                COMMAND_TYPE,
-                eventTask.getChar(),
-                eventTask.getDescription(),
-                eventTask.getTime()));
+        return new CommandResult(
+                String.format(
+                    MESSAGE_EVENT_SUCCESS,
+                    eventTask.getIndex() + LIST_INDEX_OFFSET,
+                    COMMAND_TYPE,
+                    eventTask.getChar(),
+                    eventTask.getDescription(),
+                    eventTask.getTime()));
     }
 }

@@ -16,6 +16,7 @@ public class TextUi {
     public static final int DISPLAYED_INDEX_OFFSET = 1;
     public static final int INDEX_OFF_SET = -1;
     public static final int LIST_INDEX_OFFSET = 1;
+    private static StringBuilder allTasksMessages;
 
     /**
      * Print all tasks in the duck.task list
@@ -24,7 +25,6 @@ public class TextUi {
         getTaskListMessage();
         return allTasksMessages.toString();
     }
-    private static StringBuilder allTasksMessages;
     /**
      * get taskList message
      */
@@ -68,13 +68,15 @@ public class TextUi {
      */
     public static void appendDeadlineTask(DeadlineTask deadlineTask, int index){
         allTasksMessages.append(
-                String.format(MESSAGE_LIST_RESPOND_FORMAT, String.format(
-                    MESSAGE_DEADLINE_LIST,
-                    index,
-                    deadlineTask.getType(),
-                    deadlineTask.getChar(),
-                    deadlineTask.getDescription(),
-                    deadlineTask.getTaskDeadline()))
+                String.format(
+                    MESSAGE_LIST_RESPOND_FORMAT,
+                    String.format(
+                        MESSAGE_DEADLINE_LIST,
+                        index,
+                        deadlineTask.getType(),
+                        deadlineTask.getChar(),
+                        deadlineTask.getDescription(),
+                        deadlineTask.getTaskDeadline()))
         ).append("\n");
     }
 
@@ -85,13 +87,14 @@ public class TextUi {
      */
     public static void appendEventTask(EventTask eventTask, int index){
         allTasksMessages.append(
-                String.format(MESSAGE_LIST_RESPOND_FORMAT, String.format(
-                    MESSAGE_EVENT_LIST,
-                    index,
-                    eventTask.getType(),
-                    eventTask.getChar(),
-                    eventTask.getDescription(),
-                    eventTask.getTime()))
+                String.format(MESSAGE_LIST_RESPOND_FORMAT,
+                    String.format(
+                        MESSAGE_EVENT_LIST,
+                        index,
+                        eventTask.getType(),
+                        eventTask.getChar(),
+                        eventTask.getDescription(),
+                        eventTask.getTime()))
         ).append("\n");
     }
 }
