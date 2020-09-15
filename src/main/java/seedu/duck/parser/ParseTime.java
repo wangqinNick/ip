@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import static seedu.duck.util.Message.MESSAGE__NOT_STANDARD_TIME_FORMAT;
 
-
+/** default Time Parser using the default DateTime class*/
 public class ParseTime {
     public static final String REGEX = "-";
     private static final int BY_INDEX = 3;
