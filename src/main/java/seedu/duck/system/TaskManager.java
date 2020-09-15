@@ -4,6 +4,7 @@ import seedu.duck.task.Task;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
+/** The task manager*/
 public class TaskManager {
     private static ArrayList<Task> taskList;
     //private static Stream<Task> taskStream = taskList.stream();
