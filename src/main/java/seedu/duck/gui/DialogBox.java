@@ -55,7 +55,7 @@ public class DialogBox extends HBox {
     }
 
     private static void customLabelAndImageView(Label l, ImageView iv) {
-        Font font = new Font("Courier", 14);
+        Font font = new Font("Comic Sans MS", 14);
         l.setFont(font);
         l.setMaxWidth(375);
         l.setMinHeight(50);

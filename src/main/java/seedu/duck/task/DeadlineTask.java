@@ -1,34 +1,41 @@
 package seedu.duck.task;
 
 import seedu.duck.parser.ParseTime;
+import seedu.duck.util.DateTime;
+import seedu.duck.util.DateTimeFormat;
 import seedu.duck.util.Month;
 
 import java.time.LocalDate;
 
-public class DeadlineTask extends Task implements Timeliness{
-    protected String taskInformation;
+public class DeadlineTask extends Task{
+
     public DeadlineTask() {
+    }
+
+    public DeadlineTask(String taskDescription, DateTime taskDeadline) {
+        super(taskDescription, TaskType.D);
+        //taskDeadlineDate = ParseTime.parseStringToLocalTime(this.taskTime);
     }
 
     public DeadlineTask(String taskDescription, String taskDeadline) {
         super(taskDescription, TaskType.D);
-        this.taskTime = taskDeadline;
-        taskDeadlineDate = ParseTime.parseStringToLocalTime(this.taskTime);
+        this.taskDateInString = taskDeadline;
     }
 
-    public String getTaskDeadline() {
-        return taskTime;
+    public String getTaskDeadlineInString() {
+        return taskDateInString;
     }
 
+    public DateTime getTaskDeadline() {
+        return taskDate;
+    }
     /*
      *  returns a string taskInformation contains all essential information for the deadline task
      */
     public String getTaskInformation() {
-        if (taskDeadlineDate!=null){
-            String timeString = String.format("%s %s %s",
-                    Month.valueOf(taskDeadlineDate.getMonthValue()),
-                    taskDeadlineDate.getDayOfMonth(),
-                    taskDeadlineDate.getYear());
+        String taskInformation;
+        if (taskDate!=null){
+            String timeString = taskDate.getDate();
             taskInformation = String.format("[%c][%c] %s (%s)",
                     getType(),
                     getChar(),
@@ -40,13 +47,8 @@ public class DeadlineTask extends Task implements Timeliness{
                     getType(),
                     getChar(),
                     description,
-                    getTaskDeadline());
+                    taskDateInString);
         }
         return taskInformation;
-    }
-
-    @Override
-    public String getTime() {
-        return getTaskDeadline();
     }
 }

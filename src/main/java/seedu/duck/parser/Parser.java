@@ -14,6 +14,8 @@ import seedu.duck.exception.ParseException;
 import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.EventTask;
 import seedu.duck.task.TodoTask;
+import seedu.duck.util.DateTime;
+import seedu.duck.util.DateTimeFormat;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -102,7 +104,12 @@ public class Parser {
         if (!isValid(taskDescriptionAndTime[TIME_INDEX])){
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        return new AddDeadlineCommand(new DeadlineTask(taskDescriptionAndTime[DESCRIPTION_INDEX],taskDescriptionAndTime[TIME_INDEX]));
+        try {
+            DateTime dateTime = DateTimeFormat.stringToDateTime(taskDescriptionAndTime[TIME_INDEX]);
+            return new AddDeadlineCommand(new DeadlineTask(taskDescriptionAndTime[DESCRIPTION_INDEX],dateTime));
+        } catch (DateTimeFormat.InvalidDateTimeException e) {
+            return new AddDeadlineCommand(new DeadlineTask(taskDescriptionAndTime[DESCRIPTION_INDEX],taskDescriptionAndTime[TIME_INDEX]));
+        }
     }
 
     private static Command prepareAddEventTask(String commandDescription) {
@@ -111,8 +118,12 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         taskDescriptionAndTime = commandDescription.split(DATE_SPLITTER);
-        return new AddEventCommand(new EventTask(taskDescriptionAndTime[DESCRIPTION_INDEX],taskDescriptionAndTime[TIME_INDEX]));
-    }
+        try {
+            DateTime dateTime = DateTimeFormat.stringToDateTime(taskDescriptionAndTime[TIME_INDEX]);
+            return new AddEventCommand(new EventTask(taskDescriptionAndTime[DESCRIPTION_INDEX],dateTime));
+        } catch (DateTimeFormat.InvalidDateTimeException e) {
+            return new AddEventCommand(new EventTask(taskDescriptionAndTime[DESCRIPTION_INDEX],taskDescriptionAndTime[TIME_INDEX]));
+        }    }
 
     /**
      * Parses arguments in the context of the delete person command.

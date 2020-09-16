@@ -38,7 +38,7 @@ public class MainStage {
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
-        Font font = new Font("Courier", 14);
+        Font font = new Font("Comic Sans MS", 14);
         userInput = new TextField();
         userInput.setFont(font);
 

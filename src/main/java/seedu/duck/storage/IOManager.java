@@ -103,12 +103,18 @@ public class IOManager {
                             new TodoTask(task.getDescription()));
                     break;
                 case 'D':
-                    taskList.add(
-                            new DeadlineTask(task.getDescription(), task.getTime()));
+                    if (task.getTaskDate()==null){
+                        taskList.add(new DeadlineTask(task.getDescription(), task.getTaskDateInString()));
+                    }else {
+                        taskList.add(new DeadlineTask(task.getDescription(), task.getTaskDate()));
+                    }
                     break;
                 case 'E':
-                    taskList.add(
-                            new EventTask(task.getDescription(), task.getTime()));
+                    if (task.getTaskDate()==null){
+                        taskList.add(new EventTask(task.getDescription(), task.getTaskDateInString()));
+                    }else {
+                        taskList.add(new EventTask(task.getDescription(), task.getTaskDate()));
+                    }
                     break;
                 default:
                 }

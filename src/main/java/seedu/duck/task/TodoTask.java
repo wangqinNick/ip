@@ -7,16 +7,10 @@ public class TodoTask extends Task {
         super(description, TaskType.T);
     }
 
-    @Override
     public String getTaskInformation() {
         return String.format("[%c][%c] %s",
                 getType(),
                 getChar(),
                 description);
-    }
-
-    @Override
-    public String getTime() {
-        return null;
     }
 }

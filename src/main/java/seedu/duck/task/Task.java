@@ -1,6 +1,7 @@
 package seedu.duck.task;
 
 import seedu.duck.system.TaskManager;
+import seedu.duck.util.DateTime;
 import seedu.duck.util.Message;
 
 import java.time.LocalDate;
@@ -13,9 +14,9 @@ public class Task {
     protected boolean isDone;
     protected TaskType type;
     /** deadline and event task attributes*/
-    protected String taskTime;
+    protected String taskDateInString;
     /** deadline task attributes*/
-    protected LocalDate taskDeadlineDate;
+    protected DateTime taskDate;
 
     public Task() {
     }
@@ -35,8 +36,8 @@ public class Task {
         this.description = taskDescription;
         this.type = taskType;
         this.isDone = false;
-        this.taskTime = DEFAULT_TASK_TIME;
-        this.taskDeadlineDate = LocalDate.MAX;
+        this.taskDateInString = DEFAULT_TASK_TIME;
+        this.taskDate = null;
     }
 
     public void setDone(boolean done) {
@@ -72,23 +73,15 @@ public class Task {
         return index;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getTaskDateInString() {
+        return taskDateInString;
     }
 
-    public  String getTaskInformation(){
-        return null;
+    public DateTime getTaskDate() {
+        return taskDate;
     }
-    public  String getTime() {
-        return null;
-    }
-
 }

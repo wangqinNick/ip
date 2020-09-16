@@ -74,11 +74,7 @@ public class TextUi {
                     MESSAGE_LIST_RESPOND_FORMAT,
                     String.format(
                         MESSAGE_DEADLINE_LIST,
-                        index,
-                        deadlineTask.getType(),
-                        deadlineTask.getChar(),
-                        deadlineTask.getDescription(),
-                        deadlineTask.getTaskDeadline()))
+                        index, deadlineTask.getTaskInformation()))
         ).append("\n");
     }
 
@@ -92,11 +88,7 @@ public class TextUi {
                 String.format(MESSAGE_LIST_RESPOND_FORMAT,
                     String.format(
                         MESSAGE_EVENT_LIST,
-                        index,
-                        eventTask.getType(),
-                        eventTask.getChar(),
-                        eventTask.getDescription(),
-                        eventTask.getTime()))
+                        index, eventTask.getTaskInformation()))
         ).append("\n");
     }
 }
