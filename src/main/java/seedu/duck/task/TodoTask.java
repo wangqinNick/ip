@@ -14,4 +14,9 @@ public class TodoTask extends Task {
                 getChar(),
                 description);
     }
+
+    @Override
+    public String getTime() {
+        return null;
+    }
 }

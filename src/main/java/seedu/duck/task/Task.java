@@ -5,7 +5,7 @@ import seedu.duck.util.Message;
 
 import java.time.LocalDate;
 
-public abstract class Task {
+public class Task {
 
     public static final String DEFAULT_TASK_TIME = "-1";
     protected int index;
@@ -84,5 +84,11 @@ public abstract class Task {
         this.description = description;
     }
 
-    public abstract String getTaskInformation();
+    public  String getTaskInformation(){
+        return null;
+    }
+    public  String getTime() {
+        return null;
+    }
+
 }

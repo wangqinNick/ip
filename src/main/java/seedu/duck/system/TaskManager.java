@@ -1,6 +1,9 @@
 package seedu.duck.system;
 
+import seedu.duck.storage.IOManager;
 import seedu.duck.task.Task;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
@@ -14,6 +17,7 @@ public class TaskManager {
      */
     public TaskManager() {
         taskList = new ArrayList<>();
+        IOManager.readDom(taskList);
     }
 
     /**

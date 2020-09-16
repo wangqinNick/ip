@@ -3,14 +3,23 @@ package seedu.duck.storage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import seedu.duck.exception.StorageOperationException;
+import seedu.duck.system.Data;
 import seedu.duck.system.TaskManager;
+import seedu.duck.task.DeadlineTask;
+import seedu.duck.task.EventTask;
+import seedu.duck.task.Task;
+import seedu.duck.task.TodoTask;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import static seedu.duck.util.Constant.PATH_TO_DATA_FILE;
 import static seedu.duck.util.Constant.PATH_TO_DATA_FOLDER;
@@ -74,4 +83,37 @@ public class IOManager {
             e.printStackTrace();
         }
     }
+
+    public static void readDom(ArrayList<Task> taskList)  {
+
+        File file = new File(String.valueOf(PATH_TO_DATA_FILE));
+        if (file.exists()) {
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new FileReader(String.valueOf(PATH_TO_DATA_FILE)));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            assert reader != null;
+            Task[] readList = new Gson().fromJson(reader, Task[].class);
+            for (Task task : readList) {
+                switch (task.getType()) {
+                case 'T':
+                    taskList.add(
+                            new TodoTask(task.getDescription()));
+                    break;
+                case 'D':
+                    taskList.add(
+                            new DeadlineTask(task.getDescription(), task.getTime()));
+                    break;
+                case 'E':
+                    taskList.add(
+                            new EventTask(task.getDescription(), task.getTime()));
+                    break;
+                default:
+                }
+            }
+        }
+    }
 }
+
