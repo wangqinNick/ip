@@ -27,13 +27,23 @@ public class AddDeadlineCommand extends AddCommand {
         }
         TaskManager.add(deadlineTask);
         //according to the data format
+        if (deadlineTask.getTaskDate()!=null){
+            return new CommandResult(
+                    String.format(
+                            MESSAGE_DEADLINE_SUCCESS ,
+                            deadlineTask.getIndex() + LIST_INDEX_OFFSET,
+                            COMMAND_TYPE,
+                            deadlineTask.getChar(),
+                            deadlineTask.getDescription(),
+                            deadlineTask.getTaskDate().getDate()));
+        }
         return new CommandResult(
                 String.format(
-                    MESSAGE_DEADLINE_SUCCESS ,
-                    deadlineTask.getIndex() + LIST_INDEX_OFFSET,
-                    COMMAND_TYPE,
-                    deadlineTask.getChar(),
-                    deadlineTask.getDescription(),
-                    deadlineTask.getTaskDeadline()));
+                        MESSAGE_DEADLINE_SUCCESS ,
+                        deadlineTask.getIndex() + LIST_INDEX_OFFSET,
+                        COMMAND_TYPE,
+                        deadlineTask.getChar(),
+                        deadlineTask.getDescription(),
+                        deadlineTask.getTaskDeadlineInString()));
     }
 }

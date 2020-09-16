@@ -6,6 +6,7 @@ import seedu.duck.task.EventTask;
 import seedu.duck.task.Task;
 
 import static seedu.duck.ui.TextUi.LIST_INDEX_OFFSET;
+import static seedu.duck.util.Message.MESSAGE_DEADLINE_SUCCESS;
 import static seedu.duck.util.Message.MESSAGE_EVENT_SUCCESS;
 
 public class AddEventCommand extends AddCommand {
@@ -28,6 +29,16 @@ public class AddEventCommand extends AddCommand {
             return new CommandResult("Invalid Command Format");
         }
         TaskManager.add(eventTask);
+        if (eventTask.getTaskDate()!=null){
+            return new CommandResult(
+                    String.format(
+                            MESSAGE_DEADLINE_SUCCESS ,
+                            eventTask.getIndex() + LIST_INDEX_OFFSET,
+                            COMMAND_TYPE,
+                            eventTask.getChar(),
+                            eventTask.getDescription(),
+                            eventTask.getTaskDate().getDate()));
+        }
         return new CommandResult(
                 String.format(
                     MESSAGE_EVENT_SUCCESS,
