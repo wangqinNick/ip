@@ -10,6 +10,12 @@ import java.io.IOException;
 import static seedu.duck.Duck.taskManager;
 
 public class Executor {
+    /**
+     * Executes command.
+     *
+     * @param parsedCommand The input from the user to be executed as a command
+     * @return commandResult that contains the execute output information
+     */
     public static CommandResult executeCommand(Command parsedCommand) {
         try{
             parsedCommand.setData(taskManager);

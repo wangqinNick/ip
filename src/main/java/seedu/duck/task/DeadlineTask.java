@@ -1,11 +1,6 @@
 package seedu.duck.task;
 
-import seedu.duck.parser.ParseTime;
 import seedu.duck.util.DateTime;
-import seedu.duck.util.DateTimeFormat;
-import seedu.duck.util.Month;
-
-import java.time.LocalDate;
 
 public class DeadlineTask extends Task{
 
@@ -26,11 +21,9 @@ public class DeadlineTask extends Task{
         return taskDateInString;
     }
 
-    public DateTime getTaskDeadline() {
-        return taskDate;
-    }
-    /*
-     *  returns a string taskInformation contains all essential information for the deadline task
+    /**
+     * get the task information in a String
+     * @return a string taskInformation contains all essential information for the deadline task
      */
     public String getTaskInformation() {
         String taskInformation;

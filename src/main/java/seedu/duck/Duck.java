@@ -15,23 +15,21 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import seedu.duck.gui.MainStage;
-//import seedu.duck.gui.MusicStage;
 import seedu.duck.system.TaskManager;
+
+import static seedu.duck.util.Constant.DEFAULT_PASSWORD;
+import static seedu.duck.util.Constant.DEFAULT_USERNAME;
 
 public class Duck extends Application {
     public static TaskManager taskManager;
-    String user = "duck";
-    String pw = "123";
+    String user = DEFAULT_USERNAME;
+    String pw = DEFAULT_PASSWORD;
     String checkUser, checkPw;
 
     public Duck() {

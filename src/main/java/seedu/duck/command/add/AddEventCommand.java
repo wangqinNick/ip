@@ -5,7 +5,7 @@ import seedu.duck.system.TaskManager;
 import seedu.duck.task.EventTask;
 import seedu.duck.task.Task;
 
-import static seedu.duck.ui.TextUi.LIST_INDEX_OFFSET;
+import static seedu.duck.util.Constant.LIST_INDEX_OFFSET;
 import static seedu.duck.util.Message.MESSAGE_DEADLINE_SUCCESS;
 import static seedu.duck.util.Message.MESSAGE_EVENT_SUCCESS;
 

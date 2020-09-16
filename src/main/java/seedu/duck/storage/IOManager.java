@@ -3,7 +3,6 @@ package seedu.duck.storage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import seedu.duck.exception.StorageOperationException;
-import seedu.duck.system.Data;
 import seedu.duck.system.TaskManager;
 import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.EventTask;
@@ -76,6 +75,9 @@ public class IOManager {
 
     }
 
+    /**
+     * create data folder at default path
+     */
     private static void createDefaultDataFolder() {
         try {
             Files.createDirectory(PATH_TO_DATA_FOLDER);
@@ -84,6 +86,10 @@ public class IOManager {
         }
     }
 
+    /**
+     * read the Json file in the data folder into the task list
+     * @param taskList the task list to receive information
+     */
     public static void readDom(ArrayList<Task> taskList)  {
 
         File file = new File(String.valueOf(PATH_TO_DATA_FILE));

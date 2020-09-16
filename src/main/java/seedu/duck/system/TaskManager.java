@@ -54,10 +54,6 @@ public class TaskManager {
         return taskList.size();
     }
 
-    public static Task get(int index){
-        return taskList.get(index);
-    }
-
     public static void removeTask(Task toRemove){
         taskList.remove(toRemove);
     }

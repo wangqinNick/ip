@@ -4,6 +4,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Constant {
+    public static final String DEFAULT_TASK_TIME = "-1";
+    public static final String DEFAULT_USERNAME = "duck";
+    public static final String DEFAULT_PASSWORD = "123";
+    public static final String NEWLINE = "\n";
+    public static final int INDEX_OFF_SET = -1;
+    public static final int LIST_INDEX_OFFSET = 1;
     public static final String PROJECT_ROOT = System.getProperty("user.dir");
     public static final String DATA_FOLDER = "data";
     public static final String DATA_FILE = "duke.json";

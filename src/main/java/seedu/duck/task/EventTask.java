@@ -4,13 +4,11 @@ import seedu.duck.util.DateTime;
 
 public class EventTask extends Task {
 
-    private DateTime taskStartTime;
     public EventTask() {
     }
 
     public EventTask(String taskDescription, DateTime taskStartTime) {
         super(taskDescription, TaskType.E);
-        this.taskStartTime = taskStartTime;
         //taskDeadlineDate = ParseTime.parseStringToLocalTime(this.taskTime);
     }
 
@@ -19,15 +17,9 @@ public class EventTask extends Task {
         this.taskDateInString = taskDeadline;
     }
 
-    public String getTimeInString() {
-        return taskDateInString;
-    }
-    public DateTime getTimeInDateTime() {
-        return taskStartTime;
-    }
-
-    /*
-     *  returns a string taskInformation contains all essential information for the deadline task
+    /**
+     * get the task information
+     * @return a string taskInformation contains all essential information for the deadline task
      */
     public String getTaskInformation() {
         String taskInformation;

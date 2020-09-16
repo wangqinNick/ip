@@ -5,6 +5,8 @@ import seedu.duck.system.TaskManager;
 import seedu.duck.task.Task;
 import seedu.duck.ui.TextUi;
 
+import static seedu.duck.util.Constant.INDEX_OFF_SET;
+
 public abstract class Command {
     protected TaskManager taskManager;
     private int targetIndex = -1;
@@ -32,7 +34,7 @@ public abstract class Command {
      * @throws IndexOutOfBoundsException if the target index is out of bounds of the last viewed listing
      */
     protected Task getTargetTask() throws IndexOutOfBoundsException {
-        return TaskManager.getTaskList().get(getTargetIndex() - TextUi.DISPLAYED_INDEX_OFFSET);
+        return TaskManager.getTaskList().get(getTargetIndex() - INDEX_OFF_SET);
     }
 
     /**
