@@ -4,6 +4,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Constant {
+    public static final String DEFAULT_DIALOG_COLOR = "#9ED49E";
+    public static final String WARNING_DIALOG_COLOR = "#e07b39";
+    public static final String DEFAULT_DIALOG_BORDER_COLOR = "#4141B2";
+    public static final String DEFAULT_DIALOG_FONT = "Comic Sans MS";
+    public static final int DEFAULT_DIALOG_SIZE = 14;
     public static final String DEFAULT_TASK_TIME = "-1";
     public static final String DEFAULT_USERNAME = "duck";
     public static final String DEFAULT_PASSWORD = "123";

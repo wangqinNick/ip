@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import seedu.duck.Executor;
 import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
+import seedu.duck.command.IncorrectCommand;
 import seedu.duck.parser.Parser;
 
 public class MainStage {
@@ -28,9 +29,10 @@ public class MainStage {
     private TextField userInput;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/original.gif"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/tenor.gif"));
-
+    private boolean isValidCommand = true;
 
     public MainStage(){
+
         Stage stage = new Stage();
         ImageView bgpView = getBackgroundImage();
         //Step 1. Setting up required components
@@ -126,9 +128,9 @@ public class MainStage {
         Label dukeText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(user)),
-                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
-        );
+                DialogBox.getDukeDialog(dukeText, new ImageView(duke), isValidCommand));
         userInput.clear();
+        resetValidation();
     }
 
     /**
@@ -137,7 +139,14 @@ public class MainStage {
      */
     private String getResponse(String userInput) {
         Command parsedCommand = Parser.parseCommand(userInput);
+        if (parsedCommand instanceof IncorrectCommand){
+            isValidCommand = false;
+        }
         CommandResult commandResult = Executor.executeCommand(parsedCommand);
         return commandResult.getFeedbackToUser();
+    }
+
+    private void resetValidation(){
+        this.isValidCommand = true;
     }
 }
