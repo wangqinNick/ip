@@ -28,7 +28,8 @@ import static seedu.duck.util.Message.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
  */
 public class Parser {
     public static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
-    public static final String DATE_SPLITTER = "/";
+    public static final String DEADLINE_DATE_SPLITTER = "/by";
+    public static final String EVENT_DATE_SPLITTER = "/at";
     public static final String COMMAND_SPLITTER = " ";
     public static final int DONE_INDEX = 5;
     public static final int DELETE_INDEX = 7;
@@ -96,8 +97,7 @@ public class Parser {
         if (!isValid(commandArgs)) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        taskDescriptionAndTime = commandArgs.split(DATE_SPLITTER);
-
+        taskDescriptionAndTime = commandArgs.split(DEADLINE_DATE_SPLITTER);
         if (!isValid(taskDescriptionAndTime[DESCRIPTION_INDEX])){
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
@@ -117,7 +117,7 @@ public class Parser {
         if (!isValid(commandDescription)) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        taskDescriptionAndTime = commandDescription.split(DATE_SPLITTER);
+        taskDescriptionAndTime = commandDescription.split(EVENT_DATE_SPLITTER);
         try {
             DateTime dateTime = DateTimeFormat.stringToDateTime(taskDescriptionAndTime[TIME_INDEX]);
             return new AddEventCommand(new EventTask(taskDescriptionAndTime[DESCRIPTION_INDEX], dateTime));
