@@ -9,6 +9,7 @@ public class Message {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
+    public static final String WELCOME_TEXT = "Welcome to Duck Syetem";
     public static final char DONE = 'D';
     public static final char NOT_DONE = 'N';
     public static final String MESSAGE_EMPTY_LIST = "There is no current duck.task in the list!";

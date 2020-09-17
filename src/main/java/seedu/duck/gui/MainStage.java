@@ -24,6 +24,7 @@ import seedu.duck.parser.Parser;
 
 import static seedu.duck.util.Constant.DEFAULT_DIALOG_FONT;
 import static seedu.duck.util.Constant.DEFAULT_DIALOG_SIZE;
+import static seedu.duck.util.Message.WELCOME_TEXT;
 
 public class MainStage {
 
@@ -34,7 +35,7 @@ public class MainStage {
     private TextField userInput;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/original.gif"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/tenor.gif"));
-    private PromptType promptType;
+    private PromptType promptType = PromptType.INFORMATIVE;
 
     public MainStage(){
 
@@ -76,7 +77,6 @@ public class MainStage {
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
 
-        // You will need to import `javafx.scene.layout.Region` for this.
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
         userInput.setPrefWidth(STAGE_WIDTH-75);
 
@@ -92,7 +92,8 @@ public class MainStage {
 
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(new Label(WELCOME_TEXT), new ImageView(duke), promptType));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(new Label(HelpCommand.getFeedbackToUser()), new ImageView(duke), promptType));
         //Part 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
@@ -111,19 +112,6 @@ public class MainStage {
     }
 
     /**
-     * Iteration 1:
-     * Creates a label with the specified text and adds it to the dialog container.
-     * @param text String containing text to add
-     * @return a label with the specified text that has word wrap enabled.
-     */
-    private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-        return textToAdd;
-    }
-
-    /**
      * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
@@ -138,8 +126,9 @@ public class MainStage {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * a function to generate a response to user input.
+     * @param userInput userInput
+     * @return the response
      */
     private String getResponse(String userInput) {
         Command parsedCommand = Parser.parseCommand(userInput);
