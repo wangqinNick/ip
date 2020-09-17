@@ -9,6 +9,7 @@ public class EventTask extends Task {
 
     public EventTask(String taskDescription, DateTime taskStartTime) {
         super(taskDescription, TaskType.E);
+        this.taskDate = taskStartTime;
         //taskDeadlineDate = ParseTime.parseStringToLocalTime(this.taskTime);
     }
 

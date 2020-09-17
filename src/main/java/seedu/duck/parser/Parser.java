@@ -120,7 +120,7 @@ public class Parser {
         taskDescriptionAndTime = commandDescription.split(DATE_SPLITTER);
         try {
             DateTime dateTime = DateTimeFormat.stringToDateTime(taskDescriptionAndTime[TIME_INDEX]);
-            return new AddEventCommand(new EventTask(taskDescriptionAndTime[DESCRIPTION_INDEX],dateTime));
+            return new AddEventCommand(new EventTask(taskDescriptionAndTime[DESCRIPTION_INDEX], dateTime));
         } catch (DateTimeFormat.InvalidDateTimeException e) {
             return new AddEventCommand(new EventTask(taskDescriptionAndTime[DESCRIPTION_INDEX],taskDescriptionAndTime[TIME_INDEX]));
         }    }
