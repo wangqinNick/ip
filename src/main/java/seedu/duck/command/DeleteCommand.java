@@ -11,7 +11,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
     public DeleteCommand(int toDeleteIndex) {
-        super(toDeleteIndex);
+        super(toDeleteIndex-2);
     }
 
     @Override

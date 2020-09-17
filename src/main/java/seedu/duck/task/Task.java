@@ -24,13 +24,13 @@ public class Task {
      * @param description Task description
      */
     public Task(String description) {
-        this.index = TaskManager.size();
+        this.index = TaskManager.getNextIndex();
         this.description = description;
         this.isDone = false;
     }
 
     public Task(String taskDescription, TaskType taskType) {
-        this.index = TaskManager.size();
+        this.index = TaskManager.getNextIndex();
         this.description = taskDescription;
         this.type = taskType;
         this.isDone = false;

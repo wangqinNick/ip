@@ -9,14 +9,14 @@ import java.util.stream.Stream;
 
 /** The task manager*/
 public class TaskManager {
-    private static ArrayList<Task> taskList;
+    private static ArrayList<Task> taskList = new ArrayList<>();
     private static ArrayList<Task> filteredTaskList;
     //private static Stream<Task> taskStream = taskList.stream();
     /**
      *  Initiates an empty Task list
      */
     public TaskManager() {
-        taskList = new ArrayList<>();
+        //taskList = new ArrayList<>();
         IOManager.readDom(taskList);
     }
 
@@ -75,5 +75,9 @@ public class TaskManager {
             }
         }
         return filteredTaskList;
+    }
+
+    public static int getNextIndex(){
+        return taskList.size();
     }
 }
