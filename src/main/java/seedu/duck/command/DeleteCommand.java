@@ -7,11 +7,16 @@ import seedu.duck.util.Message;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Delete a task in the DUCK system.\n"
+            + "      Example: "
+            + "delete 1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
     public DeleteCommand(int toDeleteIndex) {
         super(toDeleteIndex-2);
+        this.promptType = PromptType.NONE;
     }
 
     @Override

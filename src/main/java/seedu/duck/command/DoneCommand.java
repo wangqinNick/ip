@@ -9,6 +9,7 @@ public class DoneCommand extends Command {
     public static final String MESSAGE_DONE = "  Nice! I've marked this duck.task as done:  [D] %s";
     public DoneCommand(int toDoneIndex) {
         super(toDoneIndex);
+        this.promptType = PromptType.NONE;
     }
     @Override
     public CommandResult execute() {

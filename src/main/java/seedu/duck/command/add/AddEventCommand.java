@@ -13,8 +13,10 @@ public class AddEventCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "event";
     public static final char COMMAND_TYPE = 'E';
-    public static final String MESSAGE_USAGE_1 = COMMAND_WORD + ": Add a Event task to the DUKE system.";
-    public static final String MESSAGE_USAGE_2 = "    Example: " + COMMAND_WORD+ " read a book";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Add a event task to the DUCK system.\n"
+            + "      Example: "
+            + "event return book /at 2/12/2019 1800";
 
 
     private final EventTask eventTask;

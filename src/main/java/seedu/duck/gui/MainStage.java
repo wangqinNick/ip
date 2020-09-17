@@ -17,8 +17,13 @@ import javafx.stage.Stage;
 import seedu.duck.Executor;
 import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
+import seedu.duck.command.HelpCommand;
 import seedu.duck.command.IncorrectCommand;
+import seedu.duck.command.PromptType;
 import seedu.duck.parser.Parser;
+
+import static seedu.duck.util.Constant.DEFAULT_DIALOG_FONT;
+import static seedu.duck.util.Constant.DEFAULT_DIALOG_SIZE;
 
 public class MainStage {
 
@@ -29,7 +34,7 @@ public class MainStage {
     private TextField userInput;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/original.gif"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/tenor.gif"));
-    private boolean isValidCommand = true;
+    private PromptType promptType;
 
     public MainStage(){
 
@@ -40,7 +45,7 @@ public class MainStage {
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
-        Font font = new Font("Comic Sans MS", 14);
+        Font font = new Font(DEFAULT_DIALOG_FONT, DEFAULT_DIALOG_SIZE);
         userInput = new TextField();
         userInput.setFont(font);
 
@@ -128,9 +133,8 @@ public class MainStage {
         Label dukeText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(user)),
-                DialogBox.getDukeDialog(dukeText, new ImageView(duke), isValidCommand));
+                DialogBox.getDukeDialog(dukeText, new ImageView(duke), promptType));
         userInput.clear();
-        resetValidation();
     }
 
     /**
@@ -139,14 +143,8 @@ public class MainStage {
      */
     private String getResponse(String userInput) {
         Command parsedCommand = Parser.parseCommand(userInput);
-        if (parsedCommand instanceof IncorrectCommand){
-            isValidCommand = false;
-        }
+        promptType = parsedCommand.getPromptType();
         CommandResult commandResult = Executor.executeCommand(parsedCommand);
         return commandResult.getFeedbackToUser();
-    }
-
-    private void resetValidation(){
-        this.isValidCommand = true;
     }
 }

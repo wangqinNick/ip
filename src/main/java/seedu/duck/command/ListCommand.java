@@ -6,10 +6,11 @@ import static seedu.duck.util.Message.MESSAGE_EMPTY_LIST;
 
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
-    private static final String MESSAGE_USAGE = COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all tasks in the system.\n"
+            + "    Example: " + COMMAND_WORD;
 
     public ListCommand() {
-
+        this.promptType = PromptType.NONE;
     }
 
     @Override

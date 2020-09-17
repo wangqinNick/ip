@@ -5,6 +5,7 @@ public class IncorrectCommand extends Command {
 
     public IncorrectCommand(String commandWord) {
         this.feedbackToUser = commandWord;
+        this.promptType = PromptType.WARNING;
     }
 
     @Override

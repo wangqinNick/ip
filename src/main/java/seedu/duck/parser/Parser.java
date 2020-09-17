@@ -5,6 +5,7 @@ import seedu.duck.command.DeleteCommand;
 import seedu.duck.command.DoneCommand;
 import seedu.duck.command.ExitCommand;
 import seedu.duck.command.FindCommand;
+import seedu.duck.command.HelpCommand;
 import seedu.duck.command.IncorrectCommand;
 import seedu.duck.command.ListCommand;
 import seedu.duck.command.add.AddDeadlineCommand;
@@ -53,6 +54,9 @@ public class Parser {
      */
     private static Command getCommand(String commandWord, String commandType, String commandArgs) {
         switch (commandType){
+        //Help
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
         //Find
         case FindCommand.COMMAND_WORD:
             return new FindCommand(commandArgs);

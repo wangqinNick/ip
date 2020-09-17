@@ -12,8 +12,10 @@ public class AddDeadlineCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "deadline";
     public static final char COMMAND_TYPE = 'D';
-    public static final String MESSAGE_USAGE_1 = COMMAND_WORD + ": Add a Deadline task to the DUKE system.";
-    public static final String MESSAGE_USAGE_2 = "      Example: " + COMMAND_WORD+ " read a book";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+                                                + ": Add a Deadline task to the DUCK system.\n"
+                                                + "      Example: "
+                                                + "deadline return book /by 2/12/2019 1800";
     private final DeadlineTask deadlineTask;
 
     public AddDeadlineCommand(Task deadlineTask) {

@@ -5,10 +5,12 @@ import seedu.duck.system.TaskManager;
 import seedu.duck.task.Task;
 import seedu.duck.ui.TextUi;
 
+import static seedu.duck.command.PromptType.NONE;
 import static seedu.duck.util.Constant.INDEX_OFF_SET;
 
 public abstract class Command {
     protected TaskManager taskManager;
+    protected PromptType promptType = NONE;
     private int targetIndex = -1;
 
     public Command() {
@@ -43,6 +45,14 @@ public abstract class Command {
      */
     public int getTargetIndex() {
         return targetIndex;
+    }
+
+    public PromptType getPromptType() {
+        return promptType;
+    }
+
+    public void setPromptType(PromptType promptType) {
+        this.promptType = promptType;
     }
 
     public abstract CommandResult execute () ;

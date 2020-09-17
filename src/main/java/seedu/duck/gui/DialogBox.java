@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import seedu.duck.command.PromptType;
 
 import static javafx.scene.layout.BorderStroke.MEDIUM;
 import static seedu.duck.util.Constant.*;
@@ -48,11 +49,17 @@ public class DialogBox extends HBox {
         return new DialogBox(l, iv);
     }
 
-    public static DialogBox getDukeDialog(Label l, ImageView iv, boolean isValidCommand) {
-        if (isValidCommand) {
-            customLabelAndImageView(l, iv, Color.web(DEFAULT_DIALOG_COLOR));
-        } else {
+    public static DialogBox getDukeDialog(Label l, ImageView iv, PromptType promptType) {
+        switch (promptType){
+        case WARNING:
             customLabelAndImageView(l, iv, Color.web(WARNING_DIALOG_COLOR));
+            break;
+        case INFORMATIVE:
+            customLabelAndImageView(l, iv, Color.web(INFORMATIVE_DIALOG_COLOR));
+            break;
+        case NONE:
+        default:
+            customLabelAndImageView(l, iv, Color.web(DEFAULT_DIALOG_COLOR));
         }
         var db = new DialogBox(l, iv);
         db.flip();
