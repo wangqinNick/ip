@@ -23,10 +23,12 @@ import javafx.stage.Stage;
 import seedu.duck.gui.MainStage;
 import seedu.duck.system.TaskManager;
 
-import static seedu.duck.util.Constant.DEFAULT_PASSWORD;
-import static seedu.duck.util.Constant.DEFAULT_USERNAME;
+import static seedu.duck.util.Constant.*;
+import static seedu.duck.util.Message.DUCK_LOGIN;
+import static seedu.duck.util.Message.INCORRECT_USER_OR_PW;
 
 public class Duck extends Application {
+
     public static TaskManager taskManager;
     String user = DEFAULT_USERNAME;
     String pw = DEFAULT_PASSWORD;
@@ -48,7 +50,7 @@ public class Duck extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         //Stage musicStage = new MusicStage();
-        primaryStage.setTitle("Duck Login");
+        primaryStage.setTitle(DUCK_LOGIN);
         BorderPane bp = new BorderPane();
         bp.setPadding(new Insets(10, 50, 50, 50));
         //bp.getChildren().add(bgmView);
@@ -90,8 +92,8 @@ public class Duck extends Application {
         dropShadow.setOffsetY(5);
 
         //Adding text and DropShadow effect to it
-        Text text = new Text("Duck login");
-        text.setFont(Font.font("Courier New", FontWeight.BOLD, 28));
+        Text text = new Text(DUCK_LOGIN);
+        text.setFont(Font.font(DEFAULT_DIALOG_FONT, FontWeight.BOLD, DEFAULT_DIALOG_SIZE * 2));
         text.setEffect(dropShadow);
 
         //Adding text to HBox
@@ -138,7 +140,7 @@ public class Duck extends Application {
             new MainStage();
             primaryStage.hide();
         } else {
-            lblMessage.setText("Incorrect user or pw.");
+            lblMessage.setText(INCORRECT_USER_OR_PW);
             lblMessage.setTextFill(Color.RED);
         }
         txtUserName.setText("");

@@ -9,6 +9,8 @@ public class Message {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
+    public static final String DUCK_LOGIN = "Duck login";
+    public static final String INCORRECT_USER_OR_PW = "Incorrect user or pw.";
     public static final String WELCOME_TEXT = "Welcome to Duck Syetem";
     public static final char DONE = 'D';
     public static final char NOT_DONE = 'N';
