@@ -166,7 +166,7 @@ public class DateTime {
      * @return The string representation of <b>Date Time</b>
      */
     public String toShow() {
-        String toShow = dateToString() + " " + timeToString();
+        var toShow = dateToString() + " " + timeToString();
         return (isDue()) ? toShow + " [OVER!!]" : toShow;
     }
 

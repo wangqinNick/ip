@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute() {
         try {
-            final Task toDelete = getTargetTask();
+            final var toDelete = getTargetTask();
             TaskManager.removeTask(toDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, toDelete.getDescription()));
         } catch (IndexOutOfBoundsException ie) {

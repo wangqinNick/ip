@@ -62,10 +62,10 @@ public class IOManager {
     }
 
     public static void saveAsJson() throws IOException {
-        Gson gson = new GsonBuilder().create();
+        var gson = new GsonBuilder().create();
         if (Files.exists(PATH_TO_DATA_FOLDER)){
             FileWriter fw = new FileWriter(new File(PATH_TO_DATA_FILE.toString()));
-            String json = gson.toJson(TaskManager.getTaskList());
+            var json = gson.toJson(TaskManager.getTaskList());
             fw.write(json);
             fw.flush();
             fw.close();

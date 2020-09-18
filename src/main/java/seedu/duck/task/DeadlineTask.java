@@ -27,22 +27,21 @@ public class DeadlineTask extends Task{
      * @return a string taskInformation contains all essential information for the deadline task
      */
     public String getTaskInformation() {
-        String taskInformation;
+
         if (taskDate!=null){
-            String timeString = taskDate.getDate();
-            taskInformation = String.format("[%c][%c] %s (%s)",
+            var timeString = taskDate.getDate();
+            return String.format("[%c][%c] %s (%s)",
                     getType(),
                     getChar(),
                     description,
                     timeString);
         } else {
-            taskInformation = String.format(
+            return String.format(
                     "[%c][%c] %s (%s)",
                     getType(),
                     getChar(),
                     description,
                     taskDateInString);
         }
-        return taskInformation;
     }
 }

@@ -16,7 +16,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute() {
         if (TaskManager.getTaskList().size()>0){
-            String listMessage = getAppendedTasksMessage(TaskManager.getTaskList());
+            var listMessage = getAppendedTasksMessage(TaskManager.getTaskList());
             return new CommandResult((listMessage));
         } else {
             return new CommandResult(MESSAGE_EMPTY_LIST);

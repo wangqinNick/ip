@@ -56,12 +56,12 @@ public class DateTimeFormat {
         String[] dateTimeData = datetime.split("\\s+");
 
         if (dateTimeData.length == 1) {
-            LocalDate date = LocalDate.now();
-            String time = dateTimeData[0].trim().toUpperCase();
+            var date = LocalDate.now();
+            var time = dateTimeData[0].trim().toUpperCase();
             return new DateTime(date, stringToTime(time));
         } else if (dateTimeData.length == 2) {
-            String date = dateTimeData[0].trim();
-            String time = dateTimeData[1].trim().toUpperCase();
+            var date = dateTimeData[0].trim();
+            var time = dateTimeData[1].trim().toUpperCase();
             return new DateTime(stringToDate(date), stringToTime(time));
         } else {
             throw new InvalidDateTimeException();
@@ -108,7 +108,7 @@ public class DateTimeFormat {
         default:
             for (String formatPattern : ALL_DATE_FORMATS) {
                 try {
-                    DateTimeFormatter format = new DateTimeFormatterBuilder()
+                    var format = new DateTimeFormatterBuilder()
                             .appendPattern(formatPattern)
                             .parseDefaulting(ChronoField.YEAR_OF_ERA, CURRENT_YEAR)
                             .toFormatter();

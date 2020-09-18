@@ -43,8 +43,8 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         final String []commandTypeAndParams = userInput.split(COMMAND_SPLITTER);
-        String commandType = commandTypeAndParams[COMMAND_WORD_INDEX];
-        final String commandArgs = userInput.substring(commandTypeAndParams[COMMAND_WORD_INDEX].length()).trim();
+        var commandType = commandTypeAndParams[COMMAND_WORD_INDEX];
+        final var commandArgs = userInput.substring(commandTypeAndParams[COMMAND_WORD_INDEX].length()).trim();
         return getCommand(userInput, commandType, commandArgs);
     }
 
