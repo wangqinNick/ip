@@ -5,6 +5,7 @@ import seedu.duck.task.Task;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /** The task manager*/
@@ -68,12 +69,9 @@ public class TaskManager {
      */
     public static ArrayList<Task> searchTask(String toSearch) {
         filteredTaskList = new ArrayList<>();
-        for (Task task:taskList
-        ) {
-            if (task.getDescription().contains(toSearch)){
-                filteredTaskList.add(task);
-            }
-        }
+        filteredTaskList = (ArrayList<Task>)taskList.stream()
+                .filter((s) -> s.getDescription().contains(toSearch))
+                .collect(Collectors.toList());
         return filteredTaskList;
     }
 
