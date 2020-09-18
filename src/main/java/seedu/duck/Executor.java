@@ -7,7 +7,7 @@ import seedu.duck.util.Message;
 
 import java.io.IOException;
 
-import static seedu.duck.Duck.taskManager;
+import static seedu.duck.DuckApp.taskManager;
 
 public class Executor {
     /**

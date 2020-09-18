@@ -6,9 +6,11 @@ import seedu.duck.command.add.AddTodoCommand;
 
 public class HelpCommand extends Command{
     public static final String COMMAND_WORD = "help";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Shows program usage instructions.\n"
             + "    Example: " + COMMAND_WORD;
-    private static final String feedbackToUser = AddTodoCommand.MESSAGE_USAGE + "\n" + "  "+ AddDeadlineCommand.MESSAGE_USAGE
+    private static final String feedbackToUser = AddTodoCommand.MESSAGE_USAGE
+            + "\n" + "  "+ AddDeadlineCommand.MESSAGE_USAGE
             + "\n" + "  "+ AddEventCommand.MESSAGE_USAGE
             + "\n" + "  "+ DeleteCommand.MESSAGE_USAGE
             + "\n" + "  "+ FindCommand.MESSAGE_USAGE

@@ -16,8 +16,8 @@ public class FindCommand extends Command {
             + "      Example: "
             + "find book";
 
-    public static final String MESSAGE_EMPTY_LIST = "Can not find any task description " +
-            "contains this keyword";
+    public static final String MESSAGE_EMPTY_LIST = "Can not find any task description "
+            +"contains this keyword";
 
     protected String toSearch;
     protected ArrayList<Task> filteredTaskList;
