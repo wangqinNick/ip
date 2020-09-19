@@ -2,7 +2,7 @@ package seedu.duck;
 
 import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
-import seedu.duck.data.TaskManager;
+import seedu.duck.data.StateManager;
 import seedu.duck.storage.IOManager;
 import seedu.duck.util.Message;
 
@@ -19,6 +19,7 @@ public class Executor {
         try{
             CommandResult commandResult = parsedCommand.execute();
             IOManager.saveAsJson();
+            StateManager.saveState();
             return commandResult;
         } catch (IOException ie){
             return new CommandResult(String.format(Message.MESSAGE_FILE_OPERATION_IO_ERROR, Message.JSON_FILE_PATH));
