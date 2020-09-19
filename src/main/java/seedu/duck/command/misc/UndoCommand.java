@@ -2,6 +2,7 @@ package seedu.duck.command.misc;
 
 import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
+import seedu.duck.command.PromptType;
 import seedu.duck.data.StateManager;
 
 import java.io.IOException;
@@ -16,6 +17,10 @@ public class UndoCommand extends Command {
             "%s - Undo the recent change made to the list\n"
                     + "Format: %s\n",
             COMMAND_WORD, FORMAT);
+
+    public UndoCommand() {
+        this.promptType = PromptType.INFORMATIVE;
+    }
 
     @Override
     public CommandResult execute() {

@@ -58,6 +58,7 @@ public class DialogBox extends HBox {
             customLabelAndImageView(l, iv, Color.web(INFORMATIVE_DIALOG_COLOR));
             break;
         case NONE:
+        case EDIT:
         default:
             customLabelAndImageView(l, iv, Color.web(DEFAULT_DIALOG_COLOR));
         }

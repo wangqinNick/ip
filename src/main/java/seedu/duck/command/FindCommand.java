@@ -21,10 +21,6 @@ public class FindCommand extends Command {
     protected String toSearch;
     protected ArrayList<Task> filteredTaskList;
 
-    public FindCommand() {
-
-    }
-
     public FindCommand(String commandDescription) {
         this.toSearch = commandDescription;
         this.promptType = PromptType.NONE;

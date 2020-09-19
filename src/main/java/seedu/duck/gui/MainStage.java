@@ -22,7 +22,6 @@ import seedu.duck.Executor;
 import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
 import seedu.duck.command.HelpCommand;
-import seedu.duck.command.IncorrectCommand;
 import seedu.duck.command.PromptType;
 import seedu.duck.parser.Parser;
 

@@ -2,6 +2,7 @@ package seedu.duck;
 
 import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
+import seedu.duck.command.PromptType;
 import seedu.duck.data.StateManager;
 import seedu.duck.storage.IOManager;
 import seedu.duck.util.Message;
@@ -18,8 +19,10 @@ public class Executor {
     public static CommandResult executeCommand(Command parsedCommand) {
         try{
             CommandResult commandResult = parsedCommand.execute();
+            if (parsedCommand.getPromptType() == PromptType.EDIT){
+                StateManager.saveState();
+            }
             IOManager.saveAsJson();
-            StateManager.saveState();
             return commandResult;
         } catch (IOException ie){
             return new CommandResult(String.format(Message.MESSAGE_FILE_OPERATION_IO_ERROR, Message.JSON_FILE_PATH));
