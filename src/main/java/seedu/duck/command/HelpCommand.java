@@ -3,6 +3,7 @@ package seedu.duck.command;
 import seedu.duck.command.add.AddDeadlineCommand;
 import seedu.duck.command.add.AddEventCommand;
 import seedu.duck.command.add.AddTodoCommand;
+import seedu.duck.command.misc.UndoCommand;
 
 public class HelpCommand extends Command{
     public static final String COMMAND_WORD = "help";
@@ -16,6 +17,7 @@ public class HelpCommand extends Command{
             + "\n" + "  "+ FindCommand.MESSAGE_USAGE
             + "\n" + "  "+ ListCommand.MESSAGE_USAGE
             + "\n" + "  "+ HelpCommand.MESSAGE_USAGE
+            + "\n" + "  "+ UndoCommand.MESSAGE_USAGE
             + "\n" + "  "+ ExitCommand.MESSAGE_USAGE;
     public HelpCommand() {
         this.promptType = PromptType.INFORMATIVE;
