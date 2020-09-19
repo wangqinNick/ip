@@ -8,7 +8,6 @@ import seedu.duck.util.DateTime;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-
 import static seedu.duck.ui.TextUi.getAppendedTasksMessage;
 import static seedu.duck.util.Message.MESSAGE_EMPTY_LIST;
 
@@ -49,7 +48,7 @@ public class DueCommand extends Command{
 
     @Override
     public CommandResult execute() {
-        ArrayList<Task> filteredTasks = filterDate();
+        var filteredTasks = filterDate();
         if (filteredTasks.isEmpty()) {
             return new CommandResult(MESSAGE_EMPTY_LIST);
         }

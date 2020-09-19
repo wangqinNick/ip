@@ -4,8 +4,6 @@ package seedu.duck.command;
 import seedu.duck.data.TaskManager;
 import seedu.duck.task.Task;
 
-import java.util.ArrayList;
-
 import static seedu.duck.command.PromptType.NONE;
 import static seedu.duck.util.Constant.INDEX_OFF_SET;
 

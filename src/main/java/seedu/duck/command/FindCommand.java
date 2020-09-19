@@ -30,7 +30,7 @@ public class FindCommand extends Command {
     public CommandResult execute() {
         filteredTaskList = TaskManager.searchTask(toSearch);
         if (filteredTaskList.isEmpty()) return new CommandResult(MESSAGE_EMPTY_LIST);
-        String taskListMessage = getAppendedTasksMessage(filteredTaskList);
+        var taskListMessage = getAppendedTasksMessage(filteredTaskList);
         return new CommandResult(taskListMessage);
     }
 }

@@ -8,7 +8,6 @@ import seedu.duck.task.Task;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.EmptyStackException;
 import java.util.Stack;
@@ -22,8 +21,8 @@ public class StateManager {
      */
     public static void initialise() {
         var gson = new GsonBuilder().create();
-        String encodedSavedList = gson.toJson(TaskManager.getTaskList());
-        State screenShot = new State(encodedSavedList);
+        var encodedSavedList = gson.toJson(TaskManager.getTaskList());
+        var screenShot = new State(encodedSavedList);
         assert undoStack.isEmpty() : "Undo stack should be empty!";
         assert redoStack.isEmpty() : "Redo stack should be empty!";
         undoStack.push(screenShot);
@@ -34,7 +33,7 @@ public class StateManager {
         if (undoStack.size() < 2) {
             throw new EmptyStackException();
         }
-        State currentState = undoStack.pop();
+        var currentState = undoStack.pop();
         redoStack.push(currentState);
         return undoStack.peek();
     }
@@ -50,10 +49,10 @@ public class StateManager {
      * @throws EmptyStackException exception is thrown when user trying to undo at the initial state.
      */
     public static void undo() throws IOException, EmptyStackException {
-        State previousState = popPreviousScreenShot();
-        String encodedSavedList = previousState.getEncodedSavedList();
-        InputStream stream = new ByteArrayInputStream(encodedSavedList.getBytes());
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
+        var previousState = popPreviousScreenShot();
+        var encodedSavedList = previousState.getEncodedSavedList();
+        var stream = new ByteArrayInputStream(encodedSavedList.getBytes());
+        var bufferedReader = new BufferedReader(new InputStreamReader(stream));
         Task[] readList = new Gson().fromJson(bufferedReader, Task[].class);
         TaskManager.setTaskList(IOManager.getDecodedTaskList(readList));
         bufferedReader.close();
@@ -64,14 +63,14 @@ public class StateManager {
      */
     public static void saveState() {
         var gson = new GsonBuilder().create();
-        String encodedSavedList = gson.toJson(TaskManager.getTaskList());
-        State screenShot = new State(encodedSavedList);
+        var encodedSavedList = gson.toJson(TaskManager.getTaskList());
+        var screenShot = new State(encodedSavedList);
         if (getUndoStackSize() == 0) {
             undoStack.push(screenShot);
             return;
         }
-        State previousScreenShot = peekPreviousScreenShot();
-        String previousEncodedSavedList = previousScreenShot.getEncodedSavedList();
+        var previousScreenShot = peekPreviousScreenShot();
+        var previousEncodedSavedList = previousScreenShot.getEncodedSavedList();
         if (!previousEncodedSavedList.equals(encodedSavedList)) {
             undoStack.push(screenShot);
             if (!redoStack.isEmpty()) {

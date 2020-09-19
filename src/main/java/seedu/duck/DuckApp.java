@@ -48,24 +48,24 @@ public class DuckApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle(DUCK_LOGIN);
-        BorderPane bp = new BorderPane();
+        var bp = new BorderPane();
         bp.setPadding(new Insets(10, 50, 50, 50));
-        HBox hb = new HBox();
+        var hb = new HBox();
         hb.setPadding(new Insets(20, 20, 20, 30));
 
         //Adding GridPane
-        GridPane gridPane = new GridPane();
+        var gridPane = new GridPane();
         gridPane.setPadding(new Insets(20, 20, 20, 20));
         gridPane.setHgap(6);
         gridPane.setVgap(6);
 
         //Implementing Nodes for GridPane
-        Label lblUserName = new Label("Username");
-        final TextField txtUserName = new TextField();
-        Label lblPassword = new Label("Password");
-        final PasswordField pf = new PasswordField();
-        Button btnLogin = new Button("Login");
-        final Label lblMessage = new Label();
+        var lblUserName = new Label("Username");
+        final var txtUserName = new TextField();
+        var lblPassword = new Label("Password");
+        final var pf = new PasswordField();
+        var btnLogin = new Button("Login");
+        final var lblMessage = new Label();
 
         //Adding Nodes to GridPane layout
         gridPane.add(lblUserName, 0, 0);
@@ -77,17 +77,17 @@ public class DuckApp extends Application {
 
 
         //Reflection for gridPane
-        Reflection r = new Reflection();
+        var r = new Reflection();
         r.setFraction(0.7f);
         gridPane.setEffect(r);
 
         //DropShadow effect
-        DropShadow dropShadow = new DropShadow();
+        var dropShadow = new DropShadow();
         dropShadow.setOffsetX(5);
         dropShadow.setOffsetY(5);
 
         //Adding text and DropShadow effect to it
-        Text text = new Text(DUCK_LOGIN);
+        var text = new Text(DUCK_LOGIN);
         text.setFont(Font.font(DEFAULT_DIALOG_FONT, FontWeight.BOLD, DEFAULT_DIALOG_SIZE * 2));
         text.setEffect(dropShadow);
 
@@ -116,7 +116,7 @@ public class DuckApp extends Application {
         bp.setCenter(gridPane);
 
         //Adding BorderPane to the scene and loading CSS
-        Scene scene = new Scene(bp);
+        var scene = new Scene(bp);
         scene.getStylesheets().add(getClass().getClassLoader().getResource("login.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.titleProperty().bind(
