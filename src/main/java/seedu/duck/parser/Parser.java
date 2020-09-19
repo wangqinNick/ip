@@ -167,7 +167,7 @@ public class Parser {
         if (args.length() < indexOfIndex) {
             throw new StringIndexOutOfBoundsException(MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        return Integer.parseInt(args.substring(indexOfIndex));
+        return Integer.parseInt(args.substring(indexOfIndex)) - 2;
     }
 
     private static Boolean isValid(String str) {
