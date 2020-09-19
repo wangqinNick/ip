@@ -1,6 +1,7 @@
 package seedu.duck.command;
 
 import seedu.duck.setting.SystemSetting;
+import seedu.duck.util.Language;
 
 import static seedu.duck.util.Constant.DEFAULT_SYSTEM_LANGUAGE;
 import static seedu.duck.util.Constant.SECONDARY_SYSTEM_LANGUAGE;
@@ -30,11 +31,11 @@ public class ChangeLanguageCommand extends Command {
     public CommandResult executeInEnglish() {
         switch (language.toUpperCase()){
         case SECONDARY_SYSTEM_LANGUAGE:
-            SystemSetting.setSystemLanguage(SECONDARY_SYSTEM_LANGUAGE);
+            SystemSetting.setSystemLanguage(Language.CHINESE);
             return new CommandResult("系统语言已转换为中文");
         default:
         case DEFAULT_SYSTEM_LANGUAGE:
-            SystemSetting.setSystemLanguage(SECONDARY_SYSTEM_LANGUAGE);
+            SystemSetting.setSystemLanguage(Language.ENGLISH);
             return new CommandResult("System Language has been changed to English");
         }
     }
@@ -43,11 +44,11 @@ public class ChangeLanguageCommand extends Command {
     public CommandResult executeInChinese() {
         switch (language.toUpperCase()){
         case SECONDARY_SYSTEM_LANGUAGE:
-            SystemSetting.setSystemLanguage("Chinese");
+            SystemSetting.setSystemLanguage(Language.CHINESE);
             return new CommandResult("系统语言已转换为中文");
         default:
         case DEFAULT_SYSTEM_LANGUAGE:
-            SystemSetting.setSystemLanguage("English");
+            SystemSetting.setSystemLanguage(Language.ENGLISH);
             return new CommandResult("System Language has been changed to English");
         }
     }

@@ -7,10 +7,8 @@ import seedu.duck.data.StateManager;
 import seedu.duck.setting.SystemSetting;
 import seedu.duck.storage.IOManager;
 import seedu.duck.util.Message;
-import java.io.IOException;
 
-import static seedu.duck.util.Constant.DEFAULT_SYSTEM_LANGUAGE;
-import static seedu.duck.util.Constant.SECONDARY_SYSTEM_LANGUAGE;
+import java.io.IOException;
 
 public class Executor {
 
@@ -21,8 +19,8 @@ public class Executor {
      * @return commandResult that contains the execute output information
      */
     public static CommandResult executeCommand(Command parsedCommand) {
-        switch (SystemSetting.getSystemLanguage().toUpperCase()){
-        case SECONDARY_SYSTEM_LANGUAGE:
+        switch (SystemSetting.getSystemLanguage()){
+        case CHINESE:
         try{
             var commandResult = parsedCommand.executeInChinese();
             if (parsedCommand.getPromptType() == PromptType.EDIT){
@@ -31,10 +29,10 @@ public class Executor {
             IOManager.saveAsJson();
             return commandResult;
         } catch (IOException ie){
-            return new CommandResult(String.format(Message.MESSAGE_FILE_OPERATION_IO_ERROR_IN_ENGLISH, Message.JSON_FILE_PATH));
+            return new CommandResult(String.format(Message.MESSAGE_FILE_OPERATION_IO_ERROR_IN_CHINESE, Message.JSON_FILE_PATH));
         }
 
-        case DEFAULT_SYSTEM_LANGUAGE:
+        case ENGLISH:
         default:
             try{
                 var commandResult = parsedCommand.executeInEnglish();
@@ -44,7 +42,7 @@ public class Executor {
                 IOManager.saveAsJson();
                 return commandResult;
             } catch (IOException ie){
-                return new CommandResult(String.format(Message.MESSAGE_FILE_OPERATION_IO_ERROR_IN_CHINESE, Message.JSON_FILE_PATH));
+                return new CommandResult(String.format(Message.MESSAGE_FILE_OPERATION_IO_ERROR_IN_ENGLISH, Message.JSON_FILE_PATH));
             }
         }
     }

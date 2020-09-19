@@ -1,20 +1,19 @@
 package seedu.duck.setting;
 
-import static seedu.duck.util.Constant.DEFAULT_SYSTEM_LANGUAGE;
+import seedu.duck.util.Language;
 
 public class SystemSetting {
-    private static String systemLanguage;
-
+    private static Language systemLanguage;
 
     public static void initialise(){
-        systemLanguage = DEFAULT_SYSTEM_LANGUAGE;
+        systemLanguage = Language.ENGLISH;
     }
 
-    public static String getSystemLanguage() {
+    public static Language getSystemLanguage() {
         return systemLanguage;
     }
 
-    public static void setSystemLanguage(String language) {
+    public static void setSystemLanguage(Language language) {
         systemLanguage = language;
     }
 }

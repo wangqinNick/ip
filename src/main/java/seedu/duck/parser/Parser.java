@@ -27,9 +27,8 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.duck.util.Constant.DEFAULT_SYSTEM_LANGUAGE;
-import static seedu.duck.util.Constant.SECONDARY_SYSTEM_LANGUAGE;
 import static seedu.duck.util.Message.*;
+
 
 /**
  *  Parser the String to a Command object
@@ -114,7 +113,13 @@ public class Parser {
 
     private static Command prepareClearCommand(){
         if (TaskManager.isEmpty()){
-            return new IncorrectCommand(MESSAGE_EMPTY_LIST);
+            switch (SystemSetting.getSystemLanguage()) {
+            case CHINESE:
+                return new IncorrectCommand(MESSAGE_EMPTY_LIST_IN_CHINESE);
+            case ENGLISH:
+            default:
+                return new IncorrectCommand(MESSAGE_EMPTY_LIST_IN_ENGLISH);
+            }
         } else {
             return new ClearCommand();
         }
@@ -174,10 +179,10 @@ public class Parser {
     }
 
     private static Command getIncorrectCommand() {
-        switch (SystemSetting.getSystemLanguage().toUpperCase()) {
-        case SECONDARY_SYSTEM_LANGUAGE:
+        switch (SystemSetting.getSystemLanguage()) {
+        case CHINESE:
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT_IN_CHINESE);
-        case DEFAULT_SYSTEM_LANGUAGE:
+        case ENGLISH:
         default:
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH);
         }
@@ -237,10 +242,10 @@ public class Parser {
     }
 
     private static Command getIncorrectCommandAccordingToSystemLanguage() {
-        switch (SystemSetting.getSystemLanguage().toUpperCase()) {
-        case SECONDARY_SYSTEM_LANGUAGE:
+        switch (SystemSetting.getSystemLanguage()) {
+        case CHINESE:
             return new IncorrectCommand(MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_CHINESE);
-        case DEFAULT_SYSTEM_LANGUAGE:
+        case ENGLISH:
         default:
             return new IncorrectCommand(MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_ENGLISH);
         }
@@ -261,19 +266,19 @@ public class Parser {
                                                                                       StringIndexOutOfBoundsException{
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            switch (SystemSetting.getSystemLanguage().toUpperCase()) {
-            case SECONDARY_SYSTEM_LANGUAGE:
+            switch (SystemSetting.getSystemLanguage()) {
+            case CHINESE:
                 throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_CHINESE);
-            case DEFAULT_SYSTEM_LANGUAGE:
+            case ENGLISH:
             default:
                 throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_ENGLISH);
             }
         }
         if (args.length() < indexOfIndex) {
-            switch (SystemSetting.getSystemLanguage().toUpperCase()) {
-            case SECONDARY_SYSTEM_LANGUAGE:
+            switch (SystemSetting.getSystemLanguage()) {
+            case CHINESE:
                 throw new StringIndexOutOfBoundsException(MESSAGE_INVALID_COMMAND_FORMAT_IN_CHINESE);
-            case DEFAULT_SYSTEM_LANGUAGE:
+            case ENGLISH:
             default:
                 throw new StringIndexOutOfBoundsException(MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH);
             }

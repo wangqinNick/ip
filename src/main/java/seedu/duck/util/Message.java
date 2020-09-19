@@ -9,7 +9,7 @@ public class Message {
     public static final String WELCOME_TEXT = "Welcome to Duck System";
     public static final char DONE = '✓';
     public static final char NOT_DONE = '✕';
-    public static final String MESSAGE_EMPTY_LIST = "There is no task in the list!";
+    public static final String MESSAGE_EMPTY_LIST_IN_ENGLISH = "There is no task in the list!";
     public static final String MESSAGE_EMPTY_LIST_IN_CHINESE = "程序中没有任务!";
     public static final String MESSAGE_LIST_RESPOND_FORMAT = "%s";
     public static final String MESSAGE_TODO_LIST = "%d. [%c][%c] %s";
