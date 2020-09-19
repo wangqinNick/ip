@@ -2,7 +2,6 @@ package seedu.duck.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import seedu.duck.exception.StorageOperationException;
 import seedu.duck.data.TaskManager;
 import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.EventTask;
@@ -17,9 +16,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Objects;
 
 import static seedu.duck.util.Constant.PATH_TO_DATA_FILE;
 import static seedu.duck.util.Constant.PATH_TO_DATA_FOLDER;
@@ -85,29 +82,35 @@ public class IOManager {
             }
             assert reader != null;
             Task[] readList = new Gson().fromJson(reader, Task[].class);
-            for (Task task : readList) {
-                switch (task.getType()) {
-                case 'T':
-                    TaskManager.getTaskList().add(new TodoTask(task.getDescription(), task.getIsDone()));
-                    break;
-                case 'D':
-                    if (task.getTaskDate()==null){
-                        TaskManager.getTaskList().add(new DeadlineTask(task.getDescription(), task.getTaskDateInString(), task.getIsDone()));
-                    }else {
-                        TaskManager.getTaskList().add(new DeadlineTask(task.getDescription(), task.getTaskDate(), task.getIsDone()));
-                    }
-                    break;
-                case 'E':
-                    if (task.getTaskDate()==null){
-                        TaskManager.getTaskList().add(new EventTask(task.getDescription(), task.getTaskDateInString(), task.getIsDone()));
-                    }else {
-                        TaskManager.getTaskList().add(new EventTask(task.getDescription(), task.getTaskDate(), task.getIsDone()));
-                    }
-                    break;
-                default:
+            TaskManager.setTaskList(getDecodedTaskList(readList));
+        }
+    }
+
+    public static ArrayList<Task> getDecodedTaskList(Task[] readList) {
+        ArrayList<Task> tempTaskList = new ArrayList<>();
+        for (Task task : readList) {
+            switch (task.getType()) {
+            case 'T':
+                tempTaskList.add(new TodoTask(task.getDescription(), task.getIsDone()));
+                break;
+            case 'D':
+                if (task.getTaskDate()==null){
+                    tempTaskList.add(new DeadlineTask(task.getDescription(), task.getTaskDateInString(), task.getIsDone()));
+                }else {
+                    tempTaskList.add(new DeadlineTask(task.getDescription(), task.getTaskDate(), task.getIsDone()));
                 }
+                break;
+            case 'E':
+                if (task.getTaskDate()==null){
+                    tempTaskList.add(new EventTask(task.getDescription(), task.getTaskDateInString(), task.getIsDone()));
+                }else {
+                    tempTaskList.add(new EventTask(task.getDescription(), task.getTaskDate(), task.getIsDone()));
+                }
+                break;
+            default:
             }
         }
+        return tempTaskList;
     }
 }
 

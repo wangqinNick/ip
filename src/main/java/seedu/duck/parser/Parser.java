@@ -11,6 +11,7 @@ import seedu.duck.command.ListCommand;
 import seedu.duck.command.add.AddDeadlineCommand;
 import seedu.duck.command.add.AddEventCommand;
 import seedu.duck.command.add.AddTodoCommand;
+import seedu.duck.command.misc.UndoCommand;
 import seedu.duck.exception.ParseException;
 import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.EventTask;
@@ -54,6 +55,9 @@ public class Parser {
      */
     private static Command getCommand(String commandWord, String commandType, String commandArgs) {
         switch (commandType){
+        //Undo
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
         //Help
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();

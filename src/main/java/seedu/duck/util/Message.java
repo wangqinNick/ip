@@ -28,6 +28,9 @@ public class Message {
     public static final String JSON_FILE_PATH = "src"+ File.pathSeparator+"main"+File.pathSeparator+"data"+File.pathSeparator+"taskManager.json";
     public static final String MESSAGE_FILE_OPERATION_IO_ERROR = "Error writing to file: %s";
     public static final String MESSAGE__NOT_STANDARD_TIME_FORMAT = "Warning: The input date can not be understood!";
+    public static final String MESSAGE_UNDO_SUCCESS = "Undo successfully!";
+    public static final String MESSAGE_UNDO_UNSUCCESSFUL = "Sorry, there was an IO error when undoing the state.\n";
+    public static final String MESSAGE_UNDO_AT_BEGINNING = "You are already at the initial state!\n";
     public static String messageAddTaskSuccess(String description) {
         return String.format("SUCCESS!! Task %s has been added.\n", description);
     }

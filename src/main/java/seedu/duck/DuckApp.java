@@ -20,6 +20,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import seedu.duck.data.StateManager;
 import seedu.duck.gui.MainStage;
 import seedu.duck.data.TaskManager;
 import seedu.duck.storage.IOManager;
@@ -41,6 +42,7 @@ public class DuckApp extends Application {
         TaskManager.initialise();
         IOManager.initialise();
         IOManager.loadList();
+        StateManager.initialise();
     }
 
     @Override
