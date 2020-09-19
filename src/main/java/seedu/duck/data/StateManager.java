@@ -28,6 +28,12 @@ public class StateManager {
         undoStack.push(screenShot);
     }
 
+    /**
+     * Returns and pops the top state
+     *
+     * @return the last state
+     * @throws EmptyStackException stack is empty
+     */
     private static State popPreviousScreenShot() throws EmptyStackException {
         // There should be at least 2 screen shots to allow undo
         if (undoStack.size() < 2) {
@@ -38,12 +44,17 @@ public class StateManager {
         return undoStack.peek();
     }
 
+    /**
+     * Returns the last state without pop it
+     *
+     * @return the last state
+     */
     private static State peekPreviousScreenShot() {
         return undoStack.peek();
     }
 
     /**
-     * Revert to the previous changed state of the list.
+     * Reverts to the previous changed state of the list.
      *
      * @throws IOException exception is thrown when error occurred during IO operation.
      * @throws EmptyStackException exception is thrown when user trying to undo at the initial state.
@@ -59,7 +70,7 @@ public class StateManager {
     }
 
     /**
-     * Save the moduleList as a string if it was changed.
+     * Saves the moduleList as a string if it was changed.
      */
     public static void saveState() {
         var gson = new GsonBuilder().create();
@@ -79,6 +90,11 @@ public class StateManager {
         }
     }
 
+    /**
+     * Return the number of states store in th stack
+     *
+     * @return the stack size
+     */
     private static int getUndoStackSize() {
         return undoStack.size();
     }
