@@ -9,7 +9,12 @@ public class IncorrectCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public CommandResult executeInEnglish() {
+        return new CommandResult(feedbackToUser);
+    }
+
+    @Override
+    public CommandResult executeInChinese() {
         return new CommandResult(feedbackToUser);
     }
 }

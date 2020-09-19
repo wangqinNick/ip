@@ -99,7 +99,7 @@ public class MainStage {
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(new Label(WELCOME_TEXT), new ImageView(duke), promptType));
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(new Label(HelpCommand.getFeedbackToUser()), new ImageView(duke), promptType));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(new Label(HelpCommand.getFeedbackToUserInEnglish()), new ImageView(duke), promptType));
         //Part 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
@@ -140,7 +140,8 @@ public class MainStage {
     private String getResponse(String userInput) {
         Command parsedCommand = Parser.parseCommand(userInput);
         promptType = parsedCommand.getPromptType();
-        CommandResult commandResult = Executor.executeCommand(parsedCommand);
+        CommandResult commandResult;
+        commandResult = Executor.executeCommand(parsedCommand);
         return commandResult.getFeedbackToUser();
     }
 

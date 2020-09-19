@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import seedu.duck.data.StateManager;
 import seedu.duck.gui.MainStage;
 import seedu.duck.data.TaskManager;
+import seedu.duck.setting.SystemSetting;
 import seedu.duck.storage.IOManager;
 import static seedu.duck.util.Constant.*;
 import static seedu.duck.util.Message.DUCK_LOGIN;
@@ -36,9 +37,9 @@ import static seedu.duck.util.Message.INCORRECT_USER_OR_PW;
  * Runs the application.
  */
 public class DuckApp extends Application {
-    String user = DEFAULT_USERNAME;
-    String pw = DEFAULT_PASSWORD;
-    String checkUser, checkPw;
+    private String user = DEFAULT_USERNAME;
+    private String pw = DEFAULT_PASSWORD;
+    private String checkUser, checkPw;
 
     public DuckApp() {
 
@@ -50,6 +51,7 @@ public class DuckApp extends Application {
      */
     @Override
     public void init() {
+        SystemSetting.initialise();
         TaskManager.initialise();
         IOManager.initialise();
         IOManager.loadList();

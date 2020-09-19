@@ -46,5 +46,7 @@ public abstract class Command {
         this.promptType = promptType;
     }
 
-    public abstract CommandResult execute () ;
+    public abstract CommandResult executeInEnglish () ;
+
+    public abstract CommandResult executeInChinese () ;
 }

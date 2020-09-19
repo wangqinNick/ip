@@ -10,14 +10,21 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import static seedu.duck.ui.TextUi.getAppendedTasksMessage;
 import static seedu.duck.util.Message.MESSAGE_EMPTY_LIST;
+import static seedu.duck.util.Message.MESSAGE_EMPTY_LIST_IN_CHINESE;
 
 public class DueCommand extends Command{
 
     public static final String COMMAND_WORD = "due";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE_IN_ENGLISH = COMMAND_WORD
             + ": Find tasks on a specific date.\n"
             + "      Example: "
             + "due 2-12-2019";
+
+    public static final String MESSAGE_USAGE_IN_CHINESE = COMMAND_WORD
+            + ": 找出指定日期的所有任务.\n"
+            + "      例子: "
+            + "due 2-12-2019";
+
     private LocalDate searchDate;
 
     /**
@@ -57,10 +64,20 @@ public class DueCommand extends Command{
      * @return the command result
      */
     @Override
-    public CommandResult execute() {
+    public CommandResult executeInEnglish() {
         var filteredTasks = filterDate();
         if (filteredTasks.isEmpty()) {
             return new CommandResult(MESSAGE_EMPTY_LIST);
+        }
+        var listMessage = getAppendedTasksMessage(filteredTasks);
+        return new CommandResult((listMessage));
+    }
+
+    @Override
+    public CommandResult executeInChinese() {
+        var filteredTasks = filterDate();
+        if (filteredTasks.isEmpty()) {
+            return new CommandResult(MESSAGE_EMPTY_LIST_IN_CHINESE);
         }
         var listMessage = getAppendedTasksMessage(filteredTasks);
         return new CommandResult((listMessage));

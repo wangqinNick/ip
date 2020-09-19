@@ -4,6 +4,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Constant {
+    public static final String SECONDARY_SYSTEM_LANGUAGE = "CHINESE";
+    public static final String DEFAULT_SYSTEM_LANGUAGE = "ENGLISH";
     public static final String USER_DIALOG_COLOR = "#a1f7f7";
     public static final String DEFAULT_DIALOG_COLOR = "#e5f59d";
     public static final String WARNING_DIALOG_COLOR = "#e5b6fa";

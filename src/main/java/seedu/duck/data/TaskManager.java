@@ -102,4 +102,20 @@ public class TaskManager {
     public static int getNextIndex(){
         return taskList.size();
     }
+
+    /**
+     * Clears all task in the task list
+     */
+    public static void clear(){
+        taskList.clear();
+    }
+
+    /**
+     * Returns true if the task list is empty
+     *
+     * @return the task list status
+     */
+    public static boolean isEmpty(){
+        return taskList.isEmpty();
+    }
 }

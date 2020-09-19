@@ -5,9 +5,14 @@ public class ExitCommand extends Command {
 
     }
     public static final String COMMAND_WORD = "bye";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE_IN_ENGLISH = COMMAND_WORD
             + ": Exit.\n"
             + "      Example: "
+            + "bye";
+
+    public static final String MESSAGE_USAGE_IN_CHINESE = COMMAND_WORD
+            + ": 退出程序.\n"
+            + "      例子: "
             + "bye";
 
     /**
@@ -17,7 +22,13 @@ public class ExitCommand extends Command {
      * @return the command result
      */
     @Override
-    public CommandResult execute() {
+    public CommandResult executeInEnglish() {
+        exitProgram();
+        return null;
+    }
+
+    @Override
+    public CommandResult executeInChinese() {
         exitProgram();
         return null;
     }

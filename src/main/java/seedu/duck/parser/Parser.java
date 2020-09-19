@@ -1,5 +1,7 @@
 package seedu.duck.parser;
 
+import seedu.duck.command.ChangeLanguageCommand;
+import seedu.duck.command.ClearCommand;
 import seedu.duck.command.Command;
 import seedu.duck.command.DeleteCommand;
 import seedu.duck.command.DoneCommand;
@@ -13,7 +15,9 @@ import seedu.duck.command.add.AddDeadlineCommand;
 import seedu.duck.command.add.AddEventCommand;
 import seedu.duck.command.add.AddTodoCommand;
 import seedu.duck.command.misc.UndoCommand;
+import seedu.duck.data.TaskManager;
 import seedu.duck.exception.ParseException;
+import seedu.duck.setting.SystemSetting;
 import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.EventTask;
 import seedu.duck.task.TodoTask;
@@ -23,8 +27,9 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.duck.util.Message.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.duck.util.Message.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
+import static seedu.duck.util.Constant.DEFAULT_SYSTEM_LANGUAGE;
+import static seedu.duck.util.Constant.SECONDARY_SYSTEM_LANGUAGE;
+import static seedu.duck.util.Message.*;
 
 /**
  *  Parser the String to a Command object
@@ -42,7 +47,7 @@ public class Parser {
 
     public static Command parseCommand(String userInput) {
         if (userInput == null){
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return getIncorrectCommand();
         }
         final String []commandTypeAndParams = userInput.split(COMMAND_SPLITTER);
         var commandType = commandTypeAndParams[COMMAND_WORD_INDEX];
@@ -58,6 +63,12 @@ public class Parser {
      */
     private static Command getCommand(String commandWord, String commandType, String commandArgs) {
         switch (commandType){
+        //Change Language
+        case ChangeLanguageCommand.COMMAND_WORD:
+            return prepareChangeLanguageCommand(commandArgs);
+        //Clear
+        case ClearCommand.COMMAND_WORD:
+            return prepareClearCommand();
         //Due
         case DueCommand.COMMAND_WORD:
             return prepareDueCommand(commandArgs);
@@ -93,10 +104,21 @@ public class Parser {
             return new ExitCommand();
         //Incorrect
         default:
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return getIncorrectCommand();
         }
     }
 
+    private static Command prepareChangeLanguageCommand(String commandArgs){
+        return new ChangeLanguageCommand(commandArgs.trim());
+    }
+
+    private static Command prepareClearCommand(){
+        if (TaskManager.isEmpty()){
+            return new IncorrectCommand(MESSAGE_EMPTY_LIST);
+        } else {
+            return new ClearCommand();
+        }
+    }
 
     /**
      * Return the command parsed from user input argument
@@ -120,7 +142,7 @@ public class Parser {
      */
     private static Command prepareAddTodoTask(String commandArgs) {
         if (isEmpty(commandArgs)) {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return getIncorrectCommand();
         }
         return new AddTodoCommand(new TodoTask(commandArgs));
     }
@@ -134,20 +156,30 @@ public class Parser {
     private static Command prepareAddDeadlineTask(String commandArgs) {
         String [] taskDescriptionAndTime;
         if (isEmpty(commandArgs)) {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return getIncorrectCommand();
         }
         taskDescriptionAndTime = commandArgs.split(DEADLINE_DATE_SPLITTER);
         if (isEmpty(taskDescriptionAndTime[DESCRIPTION_INDEX])){
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return getIncorrectCommand();
         }
         if (isEmpty(taskDescriptionAndTime[TIME_INDEX])){
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return getIncorrectCommand();
         }
         try {
             LocalDate localDate = DateTimeFormat.stringToDate(taskDescriptionAndTime[TIME_INDEX].trim());
             return new AddDeadlineCommand(new DeadlineTask(taskDescriptionAndTime[DESCRIPTION_INDEX],localDate));
         } catch (DateTimeFormat.InvalidDateTimeException e) {
             return new AddDeadlineCommand(new DeadlineTask(taskDescriptionAndTime[DESCRIPTION_INDEX],taskDescriptionAndTime[TIME_INDEX]));
+        }
+    }
+
+    private static Command getIncorrectCommand() {
+        switch (SystemSetting.getSystemLanguage().toUpperCase()) {
+        case SECONDARY_SYSTEM_LANGUAGE:
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT_IN_CHINESE);
+        case DEFAULT_SYSTEM_LANGUAGE:
+        default:
+            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH);
         }
     }
 
@@ -160,7 +192,7 @@ public class Parser {
     private static Command prepareAddEventTask(String commandDescription) {
         String [] taskDescriptionAndTime;
         if (isEmpty(commandDescription)) {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return getIncorrectCommand();
         }
         taskDescriptionAndTime = commandDescription.split(EVENT_DATE_SPLITTER);
         try {
@@ -181,9 +213,9 @@ public class Parser {
             final int targetIndex = parseArgsAsDisplayedIndex(args, DELETE_INDEX);
             return new DeleteCommand(targetIndex);
         } catch (ParseException | NumberFormatException pe) {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return getIncorrectCommand();
         } catch (StringIndexOutOfBoundsException se) {
-            return new IncorrectCommand(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            return getIncorrectCommandAccordingToSystemLanguage();
         }
     }
 
@@ -198,9 +230,19 @@ public class Parser {
             final int targetIndex = parseArgsAsDisplayedIndex(args, DONE_INDEX);
             return new DoneCommand(targetIndex);
         } catch (ParseException pe) {
-            return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return getIncorrectCommand();
         } catch (NumberFormatException | StringIndexOutOfBoundsException nfe) {
-            return new IncorrectCommand(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            return getIncorrectCommandAccordingToSystemLanguage();
+        }
+    }
+
+    private static Command getIncorrectCommandAccordingToSystemLanguage() {
+        switch (SystemSetting.getSystemLanguage().toUpperCase()) {
+        case SECONDARY_SYSTEM_LANGUAGE:
+            return new IncorrectCommand(MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_CHINESE);
+        case DEFAULT_SYSTEM_LANGUAGE:
+        default:
+            return new IncorrectCommand(MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_ENGLISH);
         }
     }
 
@@ -219,10 +261,22 @@ public class Parser {
                                                                                       StringIndexOutOfBoundsException{
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            switch (SystemSetting.getSystemLanguage().toUpperCase()) {
+            case SECONDARY_SYSTEM_LANGUAGE:
+                throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_CHINESE);
+            case DEFAULT_SYSTEM_LANGUAGE:
+            default:
+                throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_ENGLISH);
+            }
         }
         if (args.length() < indexOfIndex) {
-            throw new StringIndexOutOfBoundsException(MESSAGE_INVALID_COMMAND_FORMAT);
+            switch (SystemSetting.getSystemLanguage().toUpperCase()) {
+            case SECONDARY_SYSTEM_LANGUAGE:
+                throw new StringIndexOutOfBoundsException(MESSAGE_INVALID_COMMAND_FORMAT_IN_CHINESE);
+            case DEFAULT_SYSTEM_LANGUAGE:
+            default:
+                throw new StringIndexOutOfBoundsException(MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH);
+            }
         }
         return Integer.parseInt(args.substring(indexOfIndex)) - 2;
     }
