@@ -10,6 +10,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Reflection;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -57,10 +59,12 @@ public class DuckApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle(DUCK_LOGIN);
+        ImageView duckView = getImageView();
         var bp = new BorderPane();
         bp.setPadding(new Insets(10, 50, 50, 50));
         var hb = new HBox();
         hb.setPadding(new Insets(20, 20, 20, 30));
+        hb.getChildren().add(duckView);
 
         //Adding GridPane
         var gridPane = new GridPane();
@@ -135,6 +139,20 @@ public class DuckApp extends Application {
         //primaryStage.setResizable(false);
         primaryStage.show();
 
+    }
+
+    /**
+     * Configures and Returns the imageView
+     * @return the imageView
+     */
+    private ImageView getImageView() {
+        var duck = new Image(this.getClass().getResourceAsStream("/images/duck.jpg"));
+        var duckView = new ImageView(duck);
+        duckView.setPreserveRatio(true);
+        duckView.setFitHeight(400);
+        duckView.setFitWidth(200);
+        duckView.setOpacity(0.2);
+        return duckView;
     }
 
     /**
