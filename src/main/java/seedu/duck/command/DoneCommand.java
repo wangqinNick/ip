@@ -1,6 +1,5 @@
 package seedu.duck.command;
 
-import seedu.duck.task.Task;
 import seedu.duck.util.Message;
 
 public class DoneCommand extends Command {

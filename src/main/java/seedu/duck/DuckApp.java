@@ -21,7 +21,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.duck.gui.MainStage;
-import seedu.duck.gui.MusicStage;
 import seedu.duck.data.TaskManager;
 import seedu.duck.storage.IOManager;
 import static seedu.duck.util.Constant.*;
@@ -132,7 +131,6 @@ public class DuckApp extends Application {
         checkPw = pf.getText().toString();
         if (checkUser.equals(user) && checkPw.equals(pw)) {
             new MainStage();
-            new MusicStage().hide();
             primaryStage.hide();
         } else {
             lblMessage.setText(INCORRECT_USER_OR_PW);
