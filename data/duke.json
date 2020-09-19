@@ -1,1 +1,1 @@
-[{"index":0,"description":"123","isDone":false,"type":"T","taskDateInString":"-1"},{"index":1,"description":"read a book","isDone":false,"type":"T","taskDateInString":"-1"},{"index":2,"description":"rrrr","isDone":false,"type":"T","taskDateInString":"-1"}]
+[{"index":0,"description":"123","isDone":true,"type":"T","taskDateInString":"-1"},{"index":1,"description":"read a book","isDone":false,"type":"T","taskDateInString":"-1"},{"index":2,"description":"rrrr","isDone":false,"type":"T","taskDateInString":"-1"}]

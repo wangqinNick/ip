@@ -45,6 +45,10 @@ public class Task {
         isDone = true;
     }
 
+    public boolean getIsDone() {
+        return isDone;
+    }
+
     /**
      * get the status of the task: Done, not Done
      * @return the status of the task

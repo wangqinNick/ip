@@ -88,20 +88,20 @@ public class IOManager {
             for (Task task : readList) {
                 switch (task.getType()) {
                 case 'T':
-                    TaskManager.getTaskList().add(new TodoTask(task.getDescription()));
+                    TaskManager.getTaskList().add(new TodoTask(task.getDescription(), task.getIsDone()));
                     break;
                 case 'D':
                     if (task.getTaskDate()==null){
-                        TaskManager.getTaskList().add(new DeadlineTask(task.getDescription(), task.getTaskDateInString()));
+                        TaskManager.getTaskList().add(new DeadlineTask(task.getDescription(), task.getTaskDateInString(), task.getIsDone()));
                     }else {
-                        TaskManager.getTaskList().add(new DeadlineTask(task.getDescription(), task.getTaskDate()));
+                        TaskManager.getTaskList().add(new DeadlineTask(task.getDescription(), task.getTaskDate(), task.getIsDone()));
                     }
                     break;
                 case 'E':
                     if (task.getTaskDate()==null){
-                        TaskManager.getTaskList().add(new EventTask(task.getDescription(), task.getTaskDateInString()));
+                        TaskManager.getTaskList().add(new EventTask(task.getDescription(), task.getTaskDateInString(), task.getIsDone()));
                     }else {
-                        TaskManager.getTaskList().add(new EventTask(task.getDescription(), task.getTaskDate()));
+                        TaskManager.getTaskList().add(new EventTask(task.getDescription(), task.getTaskDate(), task.getIsDone()));
                     }
                     break;
                 default:
