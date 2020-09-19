@@ -8,13 +8,20 @@ public class DeadlineTask extends Task{
     }
 
     public DeadlineTask(String taskDescription, DateTime taskDeadline) {
-        super(taskDescription, TaskType.D);
+        this(taskDescription, taskDeadline, false);
+    }
+
+    public DeadlineTask(String taskDescription, DateTime taskDeadline, boolean isDone) {
+        super(taskDescription, TaskType.D, isDone);
         this.taskDate = taskDeadline;
-        //taskDeadlineDate = ParseTime.parseStringToLocalTime(this.taskTime);
     }
 
     public DeadlineTask(String taskDescription, String taskDeadline) {
-        super(taskDescription, TaskType.D);
+        this(taskDescription, taskDeadline, false);
+    }
+
+    public DeadlineTask(String taskDescription, String taskDeadline, boolean isDone) {
+        super(taskDescription, TaskType.D, isDone);
         this.taskDateInString = taskDeadline;
     }
 

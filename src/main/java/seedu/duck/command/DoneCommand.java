@@ -15,7 +15,7 @@ public class DoneCommand extends Command {
     public CommandResult execute() {
         try {
             final var toDone = getTargetTask();
-            toDone.setDone(true);
+            toDone.setDone();
             return new CommandResult(String.format(MESSAGE_DONE, toDone.getDescription()));
         } catch (IndexOutOfBoundsException ie) {
             return new CommandResult(Message.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);

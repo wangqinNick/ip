@@ -44,10 +44,6 @@ public class DuckApp extends Application {
         IOManager.loadList();
     }
 
-    public static void main(String[] args) {
-    }
-
-
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle(DUCK_LOGIN);

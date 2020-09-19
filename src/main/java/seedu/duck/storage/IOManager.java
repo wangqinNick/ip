@@ -26,8 +26,6 @@ import static seedu.duck.util.Constant.PATH_TO_DATA_FOLDER;
 
 public class IOManager {
 
-    /** Default file path used if the user doesn't provide the file name. */
-    //private static String jsonFilePath = Message.JSON_FILE_PATH;
     private static Path filePath;
     /**
      * Initialises the TaskManager class.
@@ -37,7 +35,6 @@ public class IOManager {
         filePath = PATH_TO_DATA_FILE;
     }
 
-
     /**
      * Parses user input into command for execution.
      *
@@ -45,7 +42,7 @@ public class IOManager {
      * @return (boolean) if the filePath is valid, return true
      */
     private static boolean isValidPath(Path filePath) {
-        return filePath.toString().endsWith(".txt");
+        return filePath.toString().endsWith(".json");
     }
 
     public static void saveAsJson() throws IOException {
@@ -91,8 +88,7 @@ public class IOManager {
             for (Task task : readList) {
                 switch (task.getType()) {
                 case 'T':
-                    TaskManager.getTaskList().add(
-                            new TodoTask(task.getDescription()));
+                    TaskManager.getTaskList().add(new TodoTask(task.getDescription()));
                     break;
                 case 'D':
                     if (task.getTaskDate()==null){

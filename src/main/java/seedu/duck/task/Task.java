@@ -29,21 +29,20 @@ public class Task {
         this.isDone = false;
     }
 
-    public Task(String taskDescription, TaskType taskType) {
+    public Task(String taskDescription, TaskType taskType, boolean isDone) {
         this.index = TaskManager.getNextIndex();
         this.description = taskDescription;
         this.type = taskType;
-        this.isDone = false;
+        this.isDone = isDone;
         this.taskDateInString = DEFAULT_TASK_TIME;
         this.taskDate = null;
     }
 
     /**
      * set the task status to Done
-     * @param done done
      */
-    public void setDone(boolean done) {
-        isDone = done;
+    public void setDone() {
+        isDone = true;
     }
 
     /**
