@@ -1,20 +1,193 @@
-# User Guide
 
-## Features 
+# Duck - User Guide
+By: `Wang Qin` Since: `Sep 2020`
 
-### Feature 1 
-Description of feature.
 
-## Usage
+* [1. Introduction](#introduction)
+* [2. Quick Start](#quick-start)
+* [3. Features](#features)
+    + [3.1. Add a task:](#addtask) `add`
+    + [3.2. List all tasks:](#list) `list`
+    + [3.3. Find a task by keywords:](#find) `find`
+    + [3.4. Delete a task:](#delete) `delete`
+    + [3.5. Delete all tasks in the task list](#clear) `clear`
+    + [3.6. Complete a task:](#complete) `done`
+    + [3.7. Show all possible functions:](#help) `help`
+    + [3.8. Undo:](#save_json) `undo`
+    + [3.9. Exiting the program:](#exit) `bye`
+* [4. FAQ](#faq)
+* [5. Command Summary](#command-summary)
 
-### `Keyword` - Describe action
 
-Describe action and its outcome.
+<a name="introduction"></a>
 
-Example of usage: 
 
-`keyword (optional arguments)`
+##  1. Introduction
 
-Expected outcome:
 
-`outcome`
+<a name="quick-start"></a>
+
+## 2. Quick Start
+
+*    Ensure that `Java 11` or above is installed in your Computer.
+*    Download the latest `Duck.jar` [_here_](https://github.com/JosephLimWeiJie/duke/releases/download/v0.2.0/duke.jar).
+*    Double click the jar file
+
+## 3. Features
+
+
+<a name="addtask"></a>
+
+### 3.1 Add a task: `add`
+
+Adds a task into Duck
+
+* **Format**: 
+    * `todo TASK_DESCRIPTION`
+    * `deadline TASK_DESCRIPTION /by DATE_TIME`
+    * `event TASK_DESCRIPTION /at START_DATE_TIME`
+
+* **Examples**:
+    * `todo return book`
+    * `deadline Thesis submission /by 12-12-2019`
+    * `event Wedding Ceremony /at 12-12-2019`
+
+<a name="list"></a>
+
+### 3.2. List all tasks: `list`
+
+Shows a list of all the tasks in Duke.
+
+**Format**: `list`
+
+
+<a name="find"></a>
+
+### 3.3 Find a task: `find`
+
+Finds tasks that contain a given keyword.
+
+**Format** : `find KEYWORD`
+
+**Example**: `find book`
+
+<a name="delete"></a>
+
+### 3.4 Delete a task: `delete`
+Deletes a specified task from Duke.
+
+**Format**: `delete INDEX`
+
+* **Examples**:
+    * delete 1
+    * delete 2
+
+```javascript
+    * Deletes the task at the specified INDEX.
+    * The index refers to the index number shown on the displayed task list.
+    * The index must be a positive number 1,2,3,...
+```
+
+<a name="clear"></a>
+
+### 3.5 Delete all tasks in the task list: `clear`
+Filters tasks based on a given DATE.
+
+**Format**: `clear`
+
+**Example**: `clear`
+
+<a name="complete"></a>
+
+### 3.6 Complete a task: `done`
+
+Marks a task as completed at the specified INDEX.
+
+**Format**: `done INDEX`
+
+* **Examples**:
+    * done 1
+    * done 2
+
+```javascript
+* The index refers to the index number shown on the displayed task list.
+* The index must be a positive number 1,2,3,..
+```
+
+<a name="help"></a>
+
+### 3.7. Show all possible functions: `help`
+
+List all help functions, their usages and their examples.
+An interesting fact is not only `help` can make `Kuri` list all possible functions, but also all unrecognized commands. 
+
+**Format**: `help`
+
+<p align="center">
+  <img src="https://github.com/wangqinNick/duke/blob/master/src/main/resources/images/list%20of%20help.png">
+</p>
+
+
+<a name="save_json"></a>
+
+### 3.9. Undo a command: `save_json`
+
+The undo command is only for those "data-changing" operations. For example, adding a task, deleting a task, or marking a task as done.
+
+**Format**: `undo`
+
+* **Example**:
+    * undo
+
+<p align="center">
+  <img src="https://github.com/wangqinNick/duke/blob/master/src/main/resources/images/data%20saved.png">
+</p>
+
+<a name="exit"></a>
+
+### 3.10 Exiting the program: `bye`
+
+Exits the program.
+
+**Format**: `bye`
+
+
+<a name="faq"></a>
+
+## 4. FAQ
+
+*Q1:* Why the jar file is much larger (about 100 mb) compared to others?
+
+*A:* Due to the mass use of external libraries, the `Duck.jar` contains not only the executable program, but also all of the 
+    libraries as well as output file (.json). So that, users do not need to copy the data file (.json) when he wants to use Kuri on another
+    computer. Only one `Duck.jar` is needed. 
+
+
+<a name="command-summary"></a>
+
+## 5. Command Summary
+* Add 
+    * Format: 
+        * `todo TASK_DESCRIPTION`
+        * `deadline TASK_DESCRIPTION /by DATE_TIME`
+        * `event TASK_DESCRIPTION /on START_DATE_TIME to END_DATE_TIME`
+    * Examples:
+        * `todo return book`
+        * `deadline Thesis submission /by 12-12-2019`
+        * `event Wedding Ceremony /at 12-12-2019`
+* List: `list`
+* Find: `find KEYWORD`
+    * Examples:
+        * `find book`
+* Delete: `delete INDEX`
+   * Examples:
+        * `delete 2`
+* Complete: `done INDEX`
+    * Examples:
+        * `done 1`
+* Clear/Delete all tasks: `clear`
+* Help: `help`
+* Undo: `undo`
+* Exit: `bye`
+
+
