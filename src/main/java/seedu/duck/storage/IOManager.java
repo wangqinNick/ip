@@ -3,7 +3,7 @@ package seedu.duck.storage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import seedu.duck.exception.StorageOperationException;
-import seedu.duck.system.TaskManager;
+import seedu.duck.data.TaskManager;
 import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.EventTask;
 import seedu.duck.task.Task;
@@ -88,9 +88,8 @@ public class IOManager {
 
     /**
      * read the Json file in the data folder into the task list
-     * @param taskList the task list to receive information
      */
-    public static void readDom(ArrayList<Task> taskList)  {
+    public static void loadList()  {
 
         File file = new File(String.valueOf(PATH_TO_DATA_FILE));
         if (file.exists()) {
@@ -105,21 +104,21 @@ public class IOManager {
             for (Task task : readList) {
                 switch (task.getType()) {
                 case 'T':
-                    taskList.add(
+                    TaskManager.getTaskList().add(
                             new TodoTask(task.getDescription()));
                     break;
                 case 'D':
                     if (task.getTaskDate()==null){
-                        taskList.add(new DeadlineTask(task.getDescription(), task.getTaskDateInString()));
+                        TaskManager.getTaskList().add(new DeadlineTask(task.getDescription(), task.getTaskDateInString()));
                     }else {
-                        taskList.add(new DeadlineTask(task.getDescription(), task.getTaskDate()));
+                        TaskManager.getTaskList().add(new DeadlineTask(task.getDescription(), task.getTaskDate()));
                     }
                     break;
                 case 'E':
                     if (task.getTaskDate()==null){
-                        taskList.add(new EventTask(task.getDescription(), task.getTaskDateInString()));
+                        TaskManager.getTaskList().add(new EventTask(task.getDescription(), task.getTaskDateInString()));
                     }else {
-                        taskList.add(new EventTask(task.getDescription(), task.getTaskDate()));
+                        TaskManager.getTaskList().add(new EventTask(task.getDescription(), task.getTaskDate()));
                     }
                     break;
                 default:

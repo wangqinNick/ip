@@ -1,6 +1,6 @@
 package seedu.duck.command;
 
-import seedu.duck.system.TaskManager;
+import seedu.duck.data.TaskManager;
 import static seedu.duck.ui.TextUi.getAppendedTasksMessage;
 import static seedu.duck.util.Message.MESSAGE_EMPTY_LIST;
 

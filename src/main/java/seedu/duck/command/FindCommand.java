@@ -1,10 +1,9 @@
 package seedu.duck.command;
 
-import seedu.duck.system.TaskManager;
+import seedu.duck.data.TaskManager;
 import seedu.duck.task.Task;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static seedu.duck.ui.TextUi.*;
 

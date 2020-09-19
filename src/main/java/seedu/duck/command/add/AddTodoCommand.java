@@ -1,7 +1,7 @@
 package seedu.duck.command.add;
 
 import seedu.duck.command.CommandResult;
-import seedu.duck.system.TaskManager;
+import seedu.duck.data.TaskManager;
 import seedu.duck.task.Task;
 
 import static seedu.duck.util.Constant.LIST_INDEX_OFFSET;

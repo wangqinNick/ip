@@ -1,6 +1,6 @@
 package seedu.duck.task;
 
-import seedu.duck.system.TaskManager;
+import seedu.duck.data.TaskManager;
 import seedu.duck.util.DateTime;
 import seedu.duck.util.Message;
 import static seedu.duck.util.Constant.DEFAULT_TASK_TIME;

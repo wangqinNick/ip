@@ -1,7 +1,6 @@
 package seedu.duck.command;
 
-import seedu.duck.system.TaskManager;
-import seedu.duck.task.Task;
+import seedu.duck.data.TaskManager;
 import seedu.duck.util.Message;
 
 public class DeleteCommand extends Command {

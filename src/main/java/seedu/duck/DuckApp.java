@@ -22,7 +22,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.duck.gui.MainStage;
 import seedu.duck.gui.MusicStage;
-import seedu.duck.system.TaskManager;
+import seedu.duck.data.TaskManager;
+import seedu.duck.storage.IOManager;
 
 import static seedu.duck.util.Constant.*;
 import static seedu.duck.util.Message.DUCK_LOGIN;
@@ -41,7 +42,8 @@ public class DuckApp extends Application {
 
     @Override
     public void init(){
-        taskManager = new TaskManager();
+        TaskManager.initialise();
+        IOManager.loadList();
     }
 
 //    public static void main(String[] args) {

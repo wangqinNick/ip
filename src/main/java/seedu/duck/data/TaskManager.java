@@ -1,25 +1,34 @@
-package seedu.duck.system;
+package seedu.duck.data;
 
 import seedu.duck.storage.IOManager;
 import seedu.duck.task.Task;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /** The task manager*/
 public class TaskManager {
     private static ArrayList<Task> taskList = new ArrayList<>();
     private static ArrayList<Task> filteredTaskList;
-    //private static Stream<Task> taskStream = taskList.stream();
+
     /**
-     *  Initiates an empty Task list
+     * Initialises the TaskManager class.
+     *
+     * @param taskList
+     *  The hash map containing NUS provided modules
      */
-    public TaskManager() {
-        //taskList = new ArrayList<>();
-        IOManager.readDom(taskList);
+    public static void initialise(ArrayList<Task> taskList) {
+        TaskManager.taskList = Objects.requireNonNullElseGet(taskList, ArrayList::new);
+        filteredTaskList = new ArrayList<>();
     }
+
+    public static void initialise() {
+        TaskManager.initialise(null);
+    }
+
+
 
     /**
      *  Set the entire Task List to a new list
