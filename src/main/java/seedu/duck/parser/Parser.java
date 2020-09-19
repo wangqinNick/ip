@@ -234,6 +234,6 @@ public class Parser {
      * @return true if the user input is empty
      */
     private static Boolean isEmpty(String str) {
-        return str.length() > 0;
+        return str.length() == 0;
     }
 }

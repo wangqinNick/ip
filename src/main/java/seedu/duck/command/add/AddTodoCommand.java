@@ -1,6 +1,7 @@
 package seedu.duck.command.add;
 
 import seedu.duck.command.CommandResult;
+import seedu.duck.command.PromptType;
 import seedu.duck.data.TaskManager;
 import seedu.duck.task.Task;
 
@@ -17,6 +18,7 @@ public class AddTodoCommand extends AddCommand {
             + "todo return a book";
     public AddTodoCommand(Task toAdd) {
         super(toAdd);
+        this.promptType = PromptType.EDIT;
     }
 
     /**

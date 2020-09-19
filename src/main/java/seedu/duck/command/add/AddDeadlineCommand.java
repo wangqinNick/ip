@@ -1,6 +1,7 @@
 package seedu.duck.command.add;
 
 import seedu.duck.command.CommandResult;
+import seedu.duck.command.PromptType;
 import seedu.duck.data.TaskManager;
 import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.Task;
@@ -20,6 +21,7 @@ public class AddDeadlineCommand extends AddCommand {
 
     public AddDeadlineCommand(Task deadlineTask) {
         this.deadlineTask = (DeadlineTask) deadlineTask;
+        this.promptType = PromptType.EDIT;
     }
 
     /**

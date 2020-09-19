@@ -1,6 +1,7 @@
 package seedu.duck.command.add;
 
 import seedu.duck.command.CommandResult;
+import seedu.duck.command.PromptType;
 import seedu.duck.data.TaskManager;
 import seedu.duck.task.EventTask;
 import seedu.duck.task.Task;
@@ -23,6 +24,7 @@ public class AddEventCommand extends AddCommand {
 
     public AddEventCommand(Task eventTask) {
         this.eventTask = (EventTask) eventTask;
+        this.promptType = PromptType.EDIT;
     }
 
     /**

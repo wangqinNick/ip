@@ -57,7 +57,7 @@ public class DialogBox extends HBox {
      * @return the user dialog box contains the label and imageView
      */
     public static DialogBox getUserDialog(Label l, ImageView iv) {
-        customLabelAndImageView(l, iv, Color.web(DEFAULT_DIALOG_COLOR));
+        customLabelAndImageView(l, iv, Color.web(USER_DIALOG_COLOR));
         return new DialogBox(l, iv);
     }
 
