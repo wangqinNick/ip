@@ -13,15 +13,21 @@ public class AddDeadlineCommand extends AddCommand {
     public static final String COMMAND_WORD = "deadline";
     public static final char COMMAND_TYPE = 'D';
     public static final String MESSAGE_USAGE = COMMAND_WORD
-                                                + ": Add a Deadline task to the DUCK system.\n"
-                                                + "      Example: "
-                                                + "deadline return book /by 2/12/2019 1800";
+            + ": Add a Deadline task to the DUCK system.\n"
+            + "      Example: "
+            + "deadline return book /by 2-12-2019";
     private final DeadlineTask deadlineTask;
 
     public AddDeadlineCommand(Task deadlineTask) {
         this.deadlineTask = (DeadlineTask) deadlineTask;
     }
 
+    /**
+     * Executes the command
+     * Returns the command result
+     *
+     * @return the command result
+     */
     @Override
     public CommandResult execute() {
         if (deadlineTask == null) {

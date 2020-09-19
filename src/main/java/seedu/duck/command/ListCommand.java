@@ -7,12 +7,19 @@ import static seedu.duck.util.Message.MESSAGE_EMPTY_LIST;
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all tasks in the system.\n"
-            + "    Example: " + COMMAND_WORD;
+            + "      Example: "
+            + COMMAND_WORD;
 
     public ListCommand() {
         this.promptType = PromptType.NONE;
     }
 
+    /**
+     * Executes the command
+     * Returns the command result
+     *
+     * @return the command result
+     */
     @Override
     public CommandResult execute() {
         if (TaskManager.getTaskList().size()>0){

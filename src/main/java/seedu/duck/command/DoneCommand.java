@@ -5,12 +5,22 @@ import seedu.duck.util.Message;
 public class DoneCommand extends Command {
 
     public static final String COMMAND_WORD = "done";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Mark a task as done.\n"
+            + "      Example: "
+            + "done 1";
     public static final String MESSAGE_DONE = "  Nice! I've marked this duck.task as done:  [D] %s";
     public DoneCommand(int toDoneIndex) {
         super(toDoneIndex);
         this.promptType = PromptType.EDIT;
     }
 
+    /**
+     * Executes the command
+     * Returns the command result
+     *
+     * @return the command result
+     */
     @Override
     public CommandResult execute() {
         try {

@@ -16,7 +16,7 @@ public class AddEventCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add a event task to the DUCK system.\n"
             + "      Example: "
-            + "event return book /at 2/12/2019 1800";
+            + "event return book /at 2-12-2019";
 
 
     private final EventTask eventTask;
@@ -25,6 +25,12 @@ public class AddEventCommand extends AddCommand {
         this.eventTask = (EventTask) eventTask;
     }
 
+    /**
+     * Executes the command
+     * Returns the command result
+     *
+     * @return the command result
+     */
     @Override
     public CommandResult execute() {
         if (eventTask == null) {

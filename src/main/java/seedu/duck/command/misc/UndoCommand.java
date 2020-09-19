@@ -12,16 +12,21 @@ import static seedu.duck.util.Message.*;
 
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
-    public static final String FORMAT = COMMAND_WORD;
-    public static final String MESSAGE_USAGE = String.format(
-            "%s - Undo the recent change made to the list\n"
-                    + "Format: %s\n",
-            COMMAND_WORD, FORMAT);
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Undo the last command.\n"
+            + "      Example: "
+            + "undo";
 
     public UndoCommand() {
         this.promptType = PromptType.INFORMATIVE;
     }
 
+    /**
+     * Executes the command
+     * Returns the command result
+     *
+     * @return the command result
+     */
     @Override
     public CommandResult execute() {
         try {

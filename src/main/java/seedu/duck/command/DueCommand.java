@@ -14,6 +14,10 @@ import static seedu.duck.util.Message.MESSAGE_EMPTY_LIST;
 public class DueCommand extends Command{
 
     public static final String COMMAND_WORD = "due";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Find tasks on a specific date.\n"
+            + "      Example: "
+            + "due 2-12-2019";
     private LocalDate searchDate;
 
     /**
@@ -46,6 +50,12 @@ public class DueCommand extends Command{
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Executes the command
+     * Returns the command result
+     *
+     * @return the command result
+     */
     @Override
     public CommandResult execute() {
         var filteredTasks = filterDate();

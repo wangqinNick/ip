@@ -9,6 +9,7 @@ import seedu.duck.util.Message;
 import java.io.IOException;
 
 public class Executor {
+
     /**
      * Returns the command result after the command is executed
      *

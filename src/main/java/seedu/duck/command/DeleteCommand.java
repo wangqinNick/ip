@@ -18,6 +18,12 @@ public class DeleteCommand extends Command {
         this.promptType = PromptType.EDIT;
     }
 
+    /**
+     * Executes the command
+     * Returns the command result
+     *
+     * @return the command result
+     */
     @Override
     public CommandResult execute() {
         try {

@@ -6,15 +6,24 @@ public class ExitCommand extends Command {
     }
     public static final String COMMAND_WORD = "bye";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Exit the program.";
+            + ": Exit.\n"
+            + "      Example: "
+            + "bye";
 
+    /**
+     * Executes the command
+     * Returns the command result
+     *
+     * @return the command result
+     */
     @Override
     public CommandResult execute() {
         exitProgram();
         return null;
     }
+
     /**
-     * Displays the goodbye message and exits the runtime.
+     * Exits the runtime.
      */
     private static void exitProgram() {
         System.exit(0);

@@ -11,11 +11,20 @@ public class AddTodoCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "todo";
     public static final char COMMAND_TYPE = 'T';
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a Todo task to the DUKE system.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Add a todo task to the DUCK system.\n"
+            + "      Example: "
+            + "todo return a book";
     public AddTodoCommand(Task toAdd) {
         super(toAdd);
     }
 
+    /**
+     * Executes the command
+     * Returns the command result
+     *
+     * @return the command result
+     */
     @Override
     public CommandResult execute() {
         TaskManager.add(toAdd);

@@ -26,6 +26,12 @@ public class FindCommand extends Command {
         this.promptType = PromptType.NONE;
     }
 
+    /**
+     * Executes the command
+     * Returns the command result
+     *
+     * @return the command result
+     */
     @Override
     public CommandResult execute() {
         filteredTaskList = TaskManager.searchTask(toSearch);
