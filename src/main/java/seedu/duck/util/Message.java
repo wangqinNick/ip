@@ -38,4 +38,7 @@ public class Message {
     public static final String MESSAGE_UNDO_AT_BEGINNING_IN_CHINESE = "无法完成撤销：你已经在最初态";
     public static final String MESSAGE_CLEAR_SUCCESS_IN_ENGLISH = "The system has been cleared!";
     public static final String MESSAGE_CLEAR_SUCCESS_IN_CHINESE = "所有任务都已被删除!";
+    public static final String MESSAGE_INVALID_DATE_IN_ENGLISH = "Invalid date!";
+    public static final String MESSAGE_INVALID_DATE_IN_CHINESE = "Invalid date!";
+
 }

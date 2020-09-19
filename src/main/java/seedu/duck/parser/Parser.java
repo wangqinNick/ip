@@ -22,11 +22,9 @@ import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.EventTask;
 import seedu.duck.task.TodoTask;
 import seedu.duck.util.DateTimeFormat;
-
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import static seedu.duck.util.Message.*;
 
 
@@ -135,7 +133,13 @@ public class Parser {
         try {
             return new DueCommand(DateTimeFormat.stringToDate(commandArgs));
         } catch (DateTimeFormat.InvalidDateTimeException e) {
-            return new IncorrectCommand("Invalid Date!");
+            switch (SystemSetting.getSystemLanguage()){
+            case CHINESE:
+                return new IncorrectCommand(MESSAGE_INVALID_DATE_IN_CHINESE);
+            case ENGLISH:
+            default:
+                return new IncorrectCommand(MESSAGE_INVALID_DATE_IN_ENGLISH);
+            }
         }
     }
 
