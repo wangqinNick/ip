@@ -7,6 +7,7 @@ import seedu.duck.util.DateTime;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import static seedu.duck.ui.TextUi.getAppendedTasksMessage;
 import static seedu.duck.util.Message.MESSAGE_EMPTY_LIST;
@@ -36,16 +37,14 @@ public class DueCommand extends Command{
      *  The <code>ArrayList</code> of filtered tasks
      */
     private ArrayList<Task> filterDate() {
-        ArrayList<Task> filteredTasks = new ArrayList<>();
-        for (Task task : TaskManager.getTaskList()) {
-            if (task instanceof Timeliness){
-                DateTime dateTime = new DateTime(((Timeliness) task).getDate());
-                if (dateTime.getDate() != null && dateTime.isOn(searchDate)) {
-                    filteredTasks.add(task);
-                }
-            }
-        }
-        return filteredTasks;
+        return (ArrayList<Task>) TaskManager.getTaskList().stream()
+                .filter((t) -> t instanceof Timeliness)
+                .filter((t) -> {
+                    new DateTime(((Timeliness) t).getDate());
+                    return true;
+                })
+                .filter((t) -> new DateTime(((Timeliness) t).getDate()).isOn(searchDate))
+                .collect(Collectors.toList());
     }
 
     @Override
