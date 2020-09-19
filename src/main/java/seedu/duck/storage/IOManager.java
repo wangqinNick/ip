@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static seedu.duck.util.Constant.PATH_TO_DATA_FILE;
 import static seedu.duck.util.Constant.PATH_TO_DATA_FOLDER;
@@ -28,28 +29,14 @@ public class IOManager {
     /** Default file path used if the user doesn't provide the file name. */
     //private static String jsonFilePath = Message.JSON_FILE_PATH;
     private static Path filePath;
-
     /**
-     * default constructor (if the user does not specified file location
+     * Initialises the TaskManager class.
+     *  The hash map containing NUS provided modules
      */
-    public IOManager() throws StorageOperationException {
-        this(PATH_TO_DATA_FILE.toString());
-        filePath = Paths.get(PATH_TO_DATA_FILE.toString());
+    public static void initialise() {
+        filePath = PATH_TO_DATA_FILE;
     }
 
-    /**
-     * Parses user input into command for execution.
-     *
-     * @param filePath filePath to write
-     * @throws StorageOperationException IO exception
-     * @return parsed storage file object
-     */
-    public IOManager(String filePath) throws StorageOperationException {
-        IOManager.filePath = Paths.get(filePath);
-        if (!isValidPath(IOManager.filePath)) {
-            throw new StorageOperationException("Storage file should end with '.json'");
-        }
-    }
 
     /**
      * Parses user input into command for execution.
@@ -64,7 +51,7 @@ public class IOManager {
     public static void saveAsJson() throws IOException {
         var gson = new GsonBuilder().create();
         if (Files.exists(PATH_TO_DATA_FOLDER)){
-            FileWriter fw = new FileWriter(new File(PATH_TO_DATA_FILE.toString()));
+            FileWriter fw = new FileWriter(new File(filePath.toString()));
             var json = gson.toJson(TaskManager.getTaskList());
             fw.write(json);
             fw.flush();
@@ -91,11 +78,11 @@ public class IOManager {
      */
     public static void loadList()  {
 
-        File file = new File(String.valueOf(PATH_TO_DATA_FILE));
+        File file = new File(String.valueOf(filePath));
         if (file.exists()) {
             BufferedReader reader = null;
             try {
-                reader = new BufferedReader(new FileReader(String.valueOf(PATH_TO_DATA_FILE)));
+                reader = new BufferedReader(new FileReader(String.valueOf(filePath)));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

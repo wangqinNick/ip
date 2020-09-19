@@ -24,14 +24,11 @@ import seedu.duck.gui.MainStage;
 import seedu.duck.gui.MusicStage;
 import seedu.duck.data.TaskManager;
 import seedu.duck.storage.IOManager;
-
 import static seedu.duck.util.Constant.*;
 import static seedu.duck.util.Message.DUCK_LOGIN;
 import static seedu.duck.util.Message.INCORRECT_USER_OR_PW;
 
 public class DuckApp extends Application {
-
-    public static TaskManager taskManager;
     String user = DEFAULT_USERNAME;
     String pw = DEFAULT_PASSWORD;
     String checkUser, checkPw;
@@ -41,26 +38,21 @@ public class DuckApp extends Application {
     }
 
     @Override
-    public void init(){
+    public void init() {
         TaskManager.initialise();
+        IOManager.initialise();
         IOManager.loadList();
     }
 
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
     public static void main(String[] args) {
     }
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        //Stage musicStage = new MusicStage();
+    public void start(Stage primaryStage) {
         primaryStage.setTitle(DUCK_LOGIN);
         BorderPane bp = new BorderPane();
         bp.setPadding(new Insets(10, 50, 50, 50));
-        //bp.getChildren().add(bgmView);
-        //Adding HBox
         HBox hb = new HBox();
         hb.setPadding(new Insets(20, 20, 20, 30));
 
