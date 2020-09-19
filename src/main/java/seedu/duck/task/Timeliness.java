@@ -1,5 +1,6 @@
 package seedu.duck.task;
+import java.time.LocalDate;
 
 public interface Timeliness {
-    String getTime();
+    LocalDate getDate();
 }

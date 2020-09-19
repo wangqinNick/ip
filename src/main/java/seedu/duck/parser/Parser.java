@@ -3,6 +3,7 @@ package seedu.duck.parser;
 import seedu.duck.command.Command;
 import seedu.duck.command.DeleteCommand;
 import seedu.duck.command.DoneCommand;
+import seedu.duck.command.DueCommand;
 import seedu.duck.command.ExitCommand;
 import seedu.duck.command.FindCommand;
 import seedu.duck.command.HelpCommand;
@@ -16,9 +17,9 @@ import seedu.duck.exception.ParseException;
 import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.EventTask;
 import seedu.duck.task.TodoTask;
-import seedu.duck.util.DateTime;
 import seedu.duck.util.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,6 +56,9 @@ public class Parser {
      */
     private static Command getCommand(String commandWord, String commandType, String commandArgs) {
         switch (commandType){
+        //Due
+        case DueCommand.COMMAND_WORD:
+            return prepareDueCommand(commandArgs);
         //Undo
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
@@ -91,7 +95,13 @@ public class Parser {
         }
     }
 
-
+    private static Command prepareDueCommand(String commandArgs){
+        try {
+            return new DueCommand(DateTimeFormat.stringToDate(commandArgs));
+        } catch (DateTimeFormat.InvalidDateTimeException e) {
+            return new IncorrectCommand("Invalid Date!");
+        }
+    }
 
     private static Command prepareAddTodoTask(String commandArgs) {
         if (!isValid(commandArgs)) {
@@ -113,8 +123,8 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         try {
-            DateTime dateTime = DateTimeFormat.stringToDateTime(taskDescriptionAndTime[TIME_INDEX]);
-            return new AddDeadlineCommand(new DeadlineTask(taskDescriptionAndTime[DESCRIPTION_INDEX],dateTime));
+            LocalDate localDate = DateTimeFormat.stringToDate(taskDescriptionAndTime[TIME_INDEX].trim());
+            return new AddDeadlineCommand(new DeadlineTask(taskDescriptionAndTime[DESCRIPTION_INDEX],localDate));
         } catch (DateTimeFormat.InvalidDateTimeException e) {
             return new AddDeadlineCommand(new DeadlineTask(taskDescriptionAndTime[DESCRIPTION_INDEX],taskDescriptionAndTime[TIME_INDEX]));
         }
@@ -127,8 +137,8 @@ public class Parser {
         }
         taskDescriptionAndTime = commandDescription.split(EVENT_DATE_SPLITTER);
         try {
-            DateTime dateTime = DateTimeFormat.stringToDateTime(taskDescriptionAndTime[TIME_INDEX]);
-            return new AddEventCommand(new EventTask(taskDescriptionAndTime[DESCRIPTION_INDEX], dateTime));
+            LocalDate localDate = DateTimeFormat.stringToDate(taskDescriptionAndTime[TIME_INDEX].trim());
+            return new AddEventCommand(new EventTask(taskDescriptionAndTime[DESCRIPTION_INDEX], localDate));
         } catch (DateTimeFormat.InvalidDateTimeException e) {
             return new AddEventCommand(new EventTask(taskDescriptionAndTime[DESCRIPTION_INDEX],taskDescriptionAndTime[TIME_INDEX]));
         }    }

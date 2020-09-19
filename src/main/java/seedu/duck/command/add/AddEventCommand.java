@@ -39,7 +39,7 @@ public class AddEventCommand extends AddCommand {
                             COMMAND_TYPE,
                             eventTask.getChar(),
                             eventTask.getDescription(),
-                            eventTask.getTaskDate().getDate()));
+                            eventTask.getTaskDate().toString()));
         }
         return new CommandResult(
                 String.format(

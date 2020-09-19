@@ -1,17 +1,17 @@
 package seedu.duck.task;
 
-import seedu.duck.util.DateTime;
+import java.time.LocalDate;
 
-public class EventTask extends Task {
+public class EventTask extends Task implements Timeliness{
 
     public EventTask() {
     }
 
-    public EventTask(String taskDescription, DateTime taskStartTime) {
+    public EventTask(String taskDescription, LocalDate taskStartTime) {
         this(taskDescription, taskStartTime, false);
     }
 
-    public EventTask(String taskDescription, DateTime taskStartTime, boolean isDone) {
+    public EventTask(String taskDescription, LocalDate taskStartTime, boolean isDone) {
         super(taskDescription, TaskType.E, isDone);
         this.taskDate = taskStartTime;
     }
@@ -31,7 +31,7 @@ public class EventTask extends Task {
      */
     public String getTaskInformation() {
         if (taskDate!=null){
-            var timeString = taskDate.getDate();
+            var timeString = taskDate.toString();
             return String.format("[%c][%c] %s (%s)",
                     getType(),
                     getChar(),
@@ -45,6 +45,15 @@ public class EventTask extends Task {
                     getChar(),
                     description,
                     taskDateInString);
+        }
+    }
+
+    @Override
+    public LocalDate getDate() {
+        if (taskDate!=null){
+            return taskDate;
+        } else {
+            return null;
         }
     }
 }

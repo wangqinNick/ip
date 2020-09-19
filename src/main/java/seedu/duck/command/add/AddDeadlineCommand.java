@@ -37,7 +37,7 @@ public class AddDeadlineCommand extends AddCommand {
                             COMMAND_TYPE,
                             deadlineTask.getChar(),
                             deadlineTask.getDescription(),
-                            deadlineTask.getTaskDate().getDate()));
+                            deadlineTask.getTaskDate().toString()));
         }
         return new CommandResult(
                 String.format(

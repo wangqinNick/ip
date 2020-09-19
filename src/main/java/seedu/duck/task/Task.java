@@ -1,8 +1,10 @@
 package seedu.duck.task;
 
 import seedu.duck.data.TaskManager;
-import seedu.duck.util.DateTime;
 import seedu.duck.util.Message;
+
+import java.time.LocalDate;
+
 import static seedu.duck.util.Constant.DEFAULT_TASK_TIME;
 
 public class Task {
@@ -14,7 +16,7 @@ public class Task {
     /** deadline and event task attributes*/
     protected String taskDateInString;
     /** deadline task attributes*/
-    protected DateTime taskDate;
+    protected LocalDate taskDate;
 
     public Task() {
     }
@@ -115,7 +117,8 @@ public class Task {
      * get the date in DateTime
      * @return the date in DateTime
      */
-    public DateTime getTaskDate() {
+    public LocalDate getTaskDate() {
         return taskDate;
     }
+
 }

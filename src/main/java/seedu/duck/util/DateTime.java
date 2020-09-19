@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  * information of the task's deadline.
  */
 public class DateTime {
-    public static final String FORMAT = "<date dd/mm/yyyy> <time hh:mma>";
+    public static final String FORMAT = "dd/mm/yyyy hh:mma";
     public static final String DATE_FORMAT = "dd/MM/yyyy"; // Date format to be displayed
     public static final String TIME_FORMAT = "hh:mma"; // Time format to be displayed
 
@@ -26,12 +26,54 @@ public class DateTime {
         this.time = time;
     }
 
+    public DateTime(LocalTime time) {
+        this.date = LocalDate.now();
+        this.time = time;
+    }
+
+    public DateTime(LocalDate date) {
+        this.date = date;
+        this.time = LocalTime.of(23, 59);
+    }
+
+    public DateTime() {
+        this(null, null);
+    }
+
+    /**
+     * Checks if datetime values are <b>NOT</b> <code>NULL</code>.
+     *
+     * @return
+     *  <code>TRUE</code> if datetime is <b>NOT</b> <code>NULL</code> and <code>FALSE</code> otherwise.
+     */
+    public boolean isPresent() {
+        return hasDate() && hasTime();
+    }
+
+    /**
+     * Returns the <code>date</code>.
+     *
+     * @return The <code>date</code>
+     */
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /**
+     * Returns the <code>time</code>.
+     *
+     * @return The <code>time</code>
+     */
+    public LocalTime getTime() {
+        return time;
+    }
+
     /**
      * Returns the <code>date</code> as a string with the format {@value DATE_FORMAT}.
      *
      * @return The <code>date</code> in a string format
      */
-    public String getDate() {
+    public String getDateString() {
         return date.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
 
@@ -40,7 +82,7 @@ public class DateTime {
      *
      * @return The <code>time</code> in a string format
      */
-    public String getTime() {
+    public String getTimeString() {
         return time.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
     }
 
@@ -50,8 +92,8 @@ public class DateTime {
      *
      * @return The <code>date</code> in a string format
      */
-    public String getDateInSortFormat() {
-        return date.format(DateTimeFormatter.ofPattern(DATE_SORT_FORMAT));
+    private String getDateInSortFormat() {
+        return hasDate() ? date.format(DateTimeFormatter.ofPattern(DATE_SORT_FORMAT)) : "_";
     }
 
     /**
@@ -60,8 +102,12 @@ public class DateTime {
      *
      * @return The <code>date</code> in a string format
      */
-    public String getTimeInSortFormat() {
-        return time.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT));
+    private String getTimeInSortFormat() {
+        return hasTime() ? time.format(DateTimeFormatter.ofPattern(TIME_SORT_FORMAT)) : "_";
+    }
+
+    public String getDateTimeInSortFormat() {
+        return getDateInSortFormat() + getTimeInSortFormat();
     }
 
     /**
@@ -104,6 +150,15 @@ public class DateTime {
     }
 
     /**
+     * Checks if the <code>date</code> attribute is <b>not</b> <code>NULL</code>.
+     *
+     * @return <code>TRUE</code> if <code>date</code> is not <code>NULL</code>, and <code>FALSE</code> otherwise.
+     */
+    private boolean hasDate() {
+        return date != null;
+    }
+
+    /**
      * Checks if the <code>date</code> is the same as the current day's <i>date</i>.
      *
      * @return <code>TRUE</code> if the <code>date</code> is the same as the current day's <i>date</i>, and
@@ -129,7 +184,7 @@ public class DateTime {
      *
      * @return <code>TRUE</code> if the <b>Date Time</b> has expired, and <code>FALSE</code> otherwise
      */
-    private boolean isDue() {
+    public boolean isDue() {
         return LocalDate.now().isAfter(date)
                 || (hasTime() && isToday() && LocalTime.now().isAfter(time));
     }
@@ -145,7 +200,7 @@ public class DateTime {
         } else if (isTomorrow()) {
             return "tomorrow";
         } else {
-            return getDate();
+            return getDateString();
         }
     }
 
@@ -156,7 +211,7 @@ public class DateTime {
      * @return The <code>time</code> in a string format.
      */
     private String timeToString() {
-        return hasTime() ? getTime() : "";
+        return hasTime() ? getTimeString() : "";
     }
 
     /**
@@ -166,10 +221,9 @@ public class DateTime {
      * @return The string representation of <b>Date Time</b>
      */
     public String toShow() {
-        var toShow = dateToString() + " " + timeToString();
-        return (isDue()) ? toShow + " [OVER!!]" : toShow;
+        String toShow = dateToString() + " " + timeToString();
+        return (isDue()) ? toShow + " [OVER!]" : toShow;
     }
-
 
     /**
      * Converts <b>Date Time</b> into its string representation, containing its <code>date</code> and
@@ -179,7 +233,6 @@ public class DateTime {
      */
     @Override
     public String toString() {
-        return getDate() + " " + timeToString();
+        return getDateString() + " " + timeToString();
     }
-
 }
