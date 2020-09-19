@@ -13,7 +13,7 @@ public class HelpCommand extends Command{
             + COMMAND_WORD;
 
     private static final String feedbackToUser =
-                AddTodoCommand.MESSAGE_USAGE
+                         "  "+ AddTodoCommand.MESSAGE_USAGE
                 + "\n" + "  "+ AddDeadlineCommand.MESSAGE_USAGE
                 + "\n" + "  "+ AddEventCommand.MESSAGE_USAGE
                 + "\n" + "  "+ UndoCommand.MESSAGE_USAGE
