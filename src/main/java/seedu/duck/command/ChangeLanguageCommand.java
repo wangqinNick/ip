@@ -29,19 +29,19 @@ public class ChangeLanguageCommand extends Command {
 
     @Override
     public CommandResult executeInEnglish() {
-        switch (language.toUpperCase()){
-        case SECONDARY_SYSTEM_LANGUAGE:
-            SystemSetting.setSystemLanguage(Language.CHINESE);
-            return new CommandResult("系统语言已转换为中文");
-        default:
-        case DEFAULT_SYSTEM_LANGUAGE:
-            SystemSetting.setSystemLanguage(Language.ENGLISH);
-            return new CommandResult("System Language has been changed to English");
-        }
+        return getCommandResult();
     }
 
     @Override
     public CommandResult executeInChinese() {
+        return getCommandResult();
+    }
+
+    /**
+     * Changes the system language and returns the command result according to the system setting
+     * @return the command result according to the system setting
+     */
+    private CommandResult getCommandResult() {
         switch (language.toUpperCase()){
         case SECONDARY_SYSTEM_LANGUAGE:
             SystemSetting.setSystemLanguage(Language.CHINESE);
