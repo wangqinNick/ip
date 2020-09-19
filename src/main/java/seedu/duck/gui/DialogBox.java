@@ -24,8 +24,13 @@ import static seedu.duck.util.Constant.*;
 
 public class DialogBox extends HBox {
 
+    /**
+     * Constructs the dialog box with a label and a imageView
+     *
+     * @param l the label
+     * @param iv the imageView
+     */
     public DialogBox(Label l, ImageView iv) {
-
         l.setWrapText(true);
         iv.setFitWidth(100.0);
         iv.setFitHeight(100.0);
@@ -44,11 +49,26 @@ public class DialogBox extends HBox {
         this.getChildren().setAll(tmp);
     }
 
+    /**
+     * Returns the user dialog box after config its label and imageView with certain properties
+     *
+     * @param l the label
+     * @param iv the imageView
+     * @return the user dialog box contains the label and imageView
+     */
     public static DialogBox getUserDialog(Label l, ImageView iv) {
         customLabelAndImageView(l, iv, Color.web(DEFAULT_DIALOG_COLOR));
         return new DialogBox(l, iv);
     }
 
+    /**
+     * Returns the duck response dialog box with the configured label and imageView
+     *
+     * @param l the label
+     * @param iv the imageView
+     * @param promptType the user command's type
+     * @return the duck dialog box with the label and imageView
+     */
     public static DialogBox getDukeDialog(Label l, ImageView iv, PromptType promptType) {
         switch (promptType){
         case WARNING:
@@ -67,6 +87,13 @@ public class DialogBox extends HBox {
         return db;
     }
 
+    /**
+     * Configs the label and imageView
+     *
+     * @param l the label
+     * @param iv the imageView
+     * @param paint the color code
+     */
     private static void customLabelAndImageView(Label l, ImageView iv, Paint paint) {
         Font font = new Font(DEFAULT_DIALOG_FONT, DEFAULT_DIALOG_SIZE);
         l.setFont(font);

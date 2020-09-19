@@ -40,6 +40,9 @@ public class MainStage {
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/tenor.gif"));
     private PromptType promptType = PromptType.INFORMATIVE;
 
+    /**
+     * Set the property of the main stage
+     */
     public MainStage(){
         Stage stage = new Stage();
         var bgpView = getBackgroundImage();
@@ -129,7 +132,8 @@ public class MainStage {
     }
 
     /**
-     * a function to generate a response to user input.
+     * Return the response generated according to user input
+     *
      * @param userInput userInput
      * @return the response
      */
@@ -140,6 +144,11 @@ public class MainStage {
         return commandResult.getFeedbackToUser();
     }
 
+    /**
+     * Returns the background music generated
+     *
+     * @return background music generated
+     */
     private MediaView getBackgroundMusic() {
         Media backgroundMusic = new Media(getClass().getResource("/music/windbgm1.mp3").toExternalForm());
         MediaPlayer backgroundMusicPlayer = new MediaPlayer(backgroundMusic);
@@ -153,6 +162,10 @@ public class MainStage {
         return new MediaView(backgroundMusicPlayer);
     }
 
+    /**
+     * Sets the property of the background music
+     * @param backgroundMusicPlayer the background music
+     */
     private void setBackgroundMusic(MediaPlayer backgroundMusicPlayer) {
         backgroundMusicPlayer.setAutoPlay(true);
         backgroundMusicPlayer.setVolume(0.9);

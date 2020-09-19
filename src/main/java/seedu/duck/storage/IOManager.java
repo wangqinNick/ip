@@ -33,15 +33,10 @@ public class IOManager {
     }
 
     /**
-     * Parses user input into command for execution.
+     * Save the task list as a Json file into data folder
      *
-     * @param filePath json file path
-     * @return (boolean) if the filePath is valid, return true
+     * @throws IOException io exceptions related to the path
      */
-    private static boolean isValidPath(Path filePath) {
-        return filePath.toString().endsWith(".json");
-    }
-
     public static void saveAsJson() throws IOException {
         var gson = new GsonBuilder().create();
         if (Files.exists(PATH_TO_DATA_FOLDER)){
@@ -57,7 +52,7 @@ public class IOManager {
     }
 
     /**
-     * create data folder at default path
+     * Create data folder at default path
      */
     private static void createDefaultDataFolder() {
         try {
@@ -68,7 +63,7 @@ public class IOManager {
     }
 
     /**
-     * read the Json file in the data folder into the task list
+     * Read the Json file from the data folder into the task list
      */
     public static void loadList()  {
 
@@ -86,6 +81,12 @@ public class IOManager {
         }
     }
 
+    /**
+     * Return the task list read from Json file
+     *
+     * @param readList the task array read from Json file
+     * @return the task list parsed from readList array
+     */
     public static ArrayList<Task> getDecodedTaskList(Task[] readList) {
         ArrayList<Task> tempTaskList = new ArrayList<>();
         for (Task task : readList) {

@@ -28,6 +28,11 @@ import static seedu.duck.util.Constant.*;
 import static seedu.duck.util.Message.DUCK_LOGIN;
 import static seedu.duck.util.Message.INCORRECT_USER_OR_PW;
 
+
+
+/**
+ * Runs the application.
+ */
 public class DuckApp extends Application {
     String user = DEFAULT_USERNAME;
     String pw = DEFAULT_PASSWORD;
@@ -37,6 +42,10 @@ public class DuckApp extends Application {
 
     }
 
+    /**
+     * init the program:
+     * initialize the task manager, io manager, and the state manager
+     */
     @Override
     public void init() {
         TaskManager.initialise();
@@ -128,6 +137,15 @@ public class DuckApp extends Application {
 
     }
 
+    /**
+     * check Login information: username and username
+     * If valid, then login the system
+     *
+     * @param txtUserName input username
+     * @param pf input password
+     * @param primaryStage stage
+     * @param lblMessage output information
+     */
     private void checkValidationAndLogin(TextField txtUserName, PasswordField pf, Stage primaryStage, Label lblMessage) {
         checkUser = txtUserName.getText().toString();
         checkPw = pf.getText().toString();

@@ -1,7 +1,5 @@
 package seedu.duck.task;
 
-import seedu.duck.util.DateTime;
-
 import java.time.LocalDate;
 
 public class DeadlineTask extends Task implements Timeliness{
@@ -32,7 +30,7 @@ public class DeadlineTask extends Task implements Timeliness{
     }
 
     /**
-     * get the task information in a String
+     * Return the task information in a String
      * @return a string taskInformation contains all essential information for the deadline task
      */
     public String getTaskInformation() {
@@ -54,6 +52,10 @@ public class DeadlineTask extends Task implements Timeliness{
         }
     }
 
+    /**
+     * Return the task date
+     * @return task date
+     */
     @Override
     public LocalDate getDate() {
         if (taskDate!=null){

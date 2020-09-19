@@ -13,9 +13,7 @@ public class Task {
     protected String description;
     protected boolean isDone;
     protected TaskType type;
-    /** deadline and event task attributes*/
     protected String taskDateInString;
-    /** deadline task attributes*/
     protected LocalDate taskDate;
 
     public Task() {
@@ -47,12 +45,16 @@ public class Task {
         isDone = true;
     }
 
+    /**
+     * Return the done status of the task
+     * @return done status
+     */
     public boolean getIsDone() {
         return isDone;
     }
 
     /**
-     * get the status of the task: Done, not Done
+     * Return the status of the task: Done, not Done
      * @return the status of the task
      */
     public char getChar(){
@@ -64,7 +66,7 @@ public class Task {
     }
 
     /**
-     * get the task type: D, E, T
+     * Return the task type: D, E, T
      * @return task type
      */
     public char getType() {
@@ -81,7 +83,7 @@ public class Task {
     }
 
     /**
-     * compare if two tasks have same task description
+     * Return true, if two tasks have same task description
      * @param taskDescription task description
      * @return true, if same; false, if different
      */
@@ -90,7 +92,7 @@ public class Task {
     }
 
     /**
-     * get the task index
+     * Return the task index
      * @return task index
      */
     public int getIndex() {
@@ -98,7 +100,7 @@ public class Task {
     }
 
     /**
-     * get the task description
+     * Return the task description
      * @return task description
      */
     public String getDescription() {
@@ -106,7 +108,7 @@ public class Task {
     }
 
     /**
-     * get the date in String
+     * Return the date in String
      * @return the date in String
      */
     public String getTaskDateInString() {
@@ -114,7 +116,7 @@ public class Task {
     }
 
     /**
-     * get the date in DateTime
+     * Return the date in DateTime
      * @return the date in DateTime
      */
     public LocalDate getTaskDate() {

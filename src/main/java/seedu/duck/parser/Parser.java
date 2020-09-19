@@ -51,6 +51,8 @@ public class Parser {
     }
 
     /**
+     * Return the command parsed from the user input
+     *
      * @param commandType, commandArgs the input String spited parts
      * @return parsed duck.command
      */
@@ -95,6 +97,13 @@ public class Parser {
         }
     }
 
+
+    /**
+     * Return the command parsed from user input argument
+     *
+     * @param commandArgs user input argument
+     * @return the parsed command
+     */
     private static Command prepareDueCommand(String commandArgs){
         try {
             return new DueCommand(DateTimeFormat.stringToDate(commandArgs));
@@ -103,23 +112,35 @@ public class Parser {
         }
     }
 
+    /**
+     * Return the command parsed from user input argument
+     *
+     * @param commandArgs user input argument
+     * @return the parsed command
+     */
     private static Command prepareAddTodoTask(String commandArgs) {
-        if (!isValid(commandArgs)) {
+        if (isEmpty(commandArgs)) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         return new AddTodoCommand(new TodoTask(commandArgs));
     }
 
+    /**
+     * Return the command parsed from user input argument
+     *
+     * @param commandArgs user input argument
+     * @return the parsed command
+     */
     private static Command prepareAddDeadlineTask(String commandArgs) {
         String [] taskDescriptionAndTime;
-        if (!isValid(commandArgs)) {
+        if (isEmpty(commandArgs)) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         taskDescriptionAndTime = commandArgs.split(DEADLINE_DATE_SPLITTER);
-        if (!isValid(taskDescriptionAndTime[DESCRIPTION_INDEX])){
+        if (isEmpty(taskDescriptionAndTime[DESCRIPTION_INDEX])){
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        if (!isValid(taskDescriptionAndTime[TIME_INDEX])){
+        if (isEmpty(taskDescriptionAndTime[TIME_INDEX])){
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         try {
@@ -130,9 +151,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Return the command parsed from user input argument
+     *
+     * @param commandDescription user input argument
+     * @return the parsed command
+     */
     private static Command prepareAddEventTask(String commandDescription) {
         String [] taskDescriptionAndTime;
-        if (!isValid(commandDescription)) {
+        if (isEmpty(commandDescription)) {
             return new IncorrectCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
         taskDescriptionAndTime = commandDescription.split(EVENT_DATE_SPLITTER);
@@ -144,7 +171,7 @@ public class Parser {
         }    }
 
     /**
-     * Parses arguments in the context of the delete person command.
+     * Return the arguments in the context of the delete person command
      *
      * @param args full command args string
      * @return the prepared command
@@ -160,6 +187,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Return the command parsed from user input argument
+     *
+     * @param args user input argument
+     * @return the parsed command
+     */
     private static Command prepareDone (String args) {
         try {
             final int targetIndex = parseArgsAsDisplayedIndex(args, DONE_INDEX);
@@ -171,6 +204,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Return the integer index parsed from user input
+     *
+     * @param args user input
+     * @param indexOfIndex the index of "Index" part in user input String array
+     * @return  the integer index
+     * @throws ParseException parseException if the index cannot be parsed
+     * @throws NumberFormatException numberFormatException if the index is not is not a number
+     * @throws StringIndexOutOfBoundsException stringIndexOutOfBoundsException if the index is missing
+     */
     public static int parseArgsAsDisplayedIndex(String args, int indexOfIndex) throws ParseException,
                                                                                       NumberFormatException,
                                                                                       StringIndexOutOfBoundsException{
@@ -184,7 +227,13 @@ public class Parser {
         return Integer.parseInt(args.substring(indexOfIndex)) - 2;
     }
 
-    private static Boolean isValid(String str) {
+    /**
+     * Return true if the user input is empty
+     *
+     * @param str user input String
+     * @return true if the user input is empty
+     */
+    private static Boolean isEmpty(String str) {
         return str.length() > 0;
     }
 }

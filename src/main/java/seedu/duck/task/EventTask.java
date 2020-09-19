@@ -26,7 +26,7 @@ public class EventTask extends Task implements Timeliness{
     }
 
     /**
-     * get the task information
+     * Return the task information for output related issue
      * @return a string taskInformation contains all essential information for the deadline task
      */
     public String getTaskInformation() {

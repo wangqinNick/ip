@@ -1,10 +1,8 @@
 package seedu.duck.data;
 
-import seedu.duck.storage.IOManager;
 import seedu.duck.task.Task;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -14,7 +12,7 @@ public class TaskManager {
     private static ArrayList<Task> filteredTaskList;
 
     /**
-     * Initialises the TaskManager class.
+     * Initialises the TaskManager class
      *
      * @param taskList
      *  The hash map containing NUS provided modules
@@ -31,7 +29,8 @@ public class TaskManager {
 
 
     /**
-     *  Set the entire Task List to a new list
+     * Sets the entire Task List to a new list
+     *
      * @param assignedTaskList assigned taskList
      */
     public static void setTaskList(ArrayList<Task> assignedTaskList) {
@@ -39,18 +38,29 @@ public class TaskManager {
     }
 
     /**
-     *  Returns the entire Task List
-     * @return
-     *  The Task List
+     * Returns the entire Task List
+     *
+     * @return The Task List
      */
     public static ArrayList<Task> getTaskList() {
         return taskList;
     }
 
+    /**
+     * Returns true if the task is inside the system
+     *
+     * @param description the task description
+     * @return true if the task is inside the system
+     */
     private static boolean contains(String description) {
         return taskList.stream().anyMatch(task -> task.isSameTask(description));
     }
 
+    /**
+     * Adds a task into the system
+     *
+     * @param toAdd the task to add
+     */
     public static void add(Task toAdd) {
         if (contains(toAdd.getDescription())) {
             //throw new DuplicateTaskException();
@@ -60,21 +70,21 @@ public class TaskManager {
         }
     }
 
-    public static int size(){
-        return taskList.size();
-    }
-
+    /**
+     * Removes a task
+     *
+     * @param toRemove the task
+     */
     public static void removeTask(Task toRemove){
         taskList.remove(toRemove);
     }
 
-
-    public static ArrayList<Task> getFilteredTaskList() {
-        return filteredTaskList;
-    }
-
     /**
+     * Returns a list of tasks contains the keywords
      * Search a key word int the whole list
+     *
+     * @param toSearch the keyword to search
+     * @return a list of tasks contains the keywords
      */
     public static ArrayList<Task> searchTask(String toSearch) {
         filteredTaskList = new ArrayList<>();
@@ -84,6 +94,11 @@ public class TaskManager {
         return filteredTaskList;
     }
 
+    /**
+     * Returns the index of the next task
+     *
+     * @return the index of the next task
+     */
     public static int getNextIndex(){
         return taskList.size();
     }

@@ -13,7 +13,7 @@ public class TextUi {
     private static StringBuilder tasksMessages;
 
     /**
-     * get the message of all tasks in a specific task list
+     * Return the message of all tasks in a specific task list
      * @param taskListToPrint the specific task list
      * @return the appended task message
      */
