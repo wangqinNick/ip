@@ -1,5 +1,3 @@
-
-
 # Duck - User Guide
 By: `Wang Qin` Since: `Sep 2020`
 
@@ -24,7 +22,7 @@ By: `Wang Qin` Since: `Sep 2020`
 
 
 ##  1. Introduction
-
+Duck is a task manage system
 
 <a name="quick-start"></a>
 
@@ -33,7 +31,9 @@ By: `Wang Qin` Since: `Sep 2020`
 *    Ensure that `Java 11` or above is installed in your Computer.
 *    Download the latest `Duck.jar` [_here_](https://github.com/JosephLimWeiJie/duke/releases/download/v0.2.0/duke.jar).
 *    Double click the jar file
+*    Enter the correct `username` and `password` (default username is `duck` default password is `123`) ,then press `ENTER` key
 
+<a name="features"></a>
 ## 3. Features
 
 
@@ -52,6 +52,8 @@ Adds a task into Duck
     * `todo return book`
     * `deadline Thesis submission /by 12-12-2019`
     * `event Wedding Ceremony /at 12-12-2019`
+    
+    
 
 <a name="list"></a>
 
