@@ -12,12 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import seedu.duck.Executor;
 import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
@@ -39,6 +36,7 @@ public class MainStage {
     private Image user = new Image(this.getClass().getResourceAsStream("/images/original.gif"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/tenor.gif"));
     private PromptType promptType = PromptType.INFORMATIVE;
+    private static MediaView bgmView;
 
     /**
      * Set the property of the main stage
@@ -46,7 +44,6 @@ public class MainStage {
     public MainStage(){
         Stage stage = new Stage();
         var bgpView = getBackgroundImage();
-        var bgmView = getBackgroundMusic();
         //Step 1. Setting up required components
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
@@ -145,30 +142,7 @@ public class MainStage {
         return commandResult.getFeedbackToUser();
     }
 
-    /**
-     * Returns the background music generated
-     *
-     * @return background music generated
-     */
-    private MediaView getBackgroundMusic() {
-        Media backgroundMusic = new Media(getClass().getResource("/music/windbgm1.mp3").toExternalForm());
-        MediaPlayer backgroundMusicPlayer = new MediaPlayer(backgroundMusic);
-        setBackgroundMusic(backgroundMusicPlayer);
-        //***************** loop (repeat) the music  ******************
-        backgroundMusicPlayer.setOnEndOfMedia(new Runnable() {
-            public void run() {
-                backgroundMusicPlayer.seek(Duration.ZERO);
-            }
-        });
-        return new MediaView(backgroundMusicPlayer);
-    }
-
-    /**
-     * Sets the property of the background music
-     * @param backgroundMusicPlayer the background music
-     */
-    private void setBackgroundMusic(MediaPlayer backgroundMusicPlayer) {
-        backgroundMusicPlayer.setAutoPlay(true);
-        backgroundMusicPlayer.setVolume(0.9);
+    public static void setBgmView(MediaView mediaView) {
+        bgmView = mediaView;
     }
 }

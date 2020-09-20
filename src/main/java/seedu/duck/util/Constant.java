@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Constant {
+    public static final String DEFAULT_SYSTEM_MUSIC = "/music/windbgm1.mp3";
     public static final String SECONDARY_SYSTEM_LANGUAGE = "CHINESE";
     public static final String DEFAULT_SYSTEM_LANGUAGE = "ENGLISH";
     public static final String USER_DIALOG_COLOR = "#a1f7f7";

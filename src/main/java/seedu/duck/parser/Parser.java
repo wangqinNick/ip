@@ -1,6 +1,7 @@
 package seedu.duck.parser;
 
 import seedu.duck.command.ChangeLanguageCommand;
+import seedu.duck.command.ChangeVolumeCommand;
 import seedu.duck.command.ClearCommand;
 import seedu.duck.command.Command;
 import seedu.duck.command.DeleteCommand;
@@ -32,11 +33,13 @@ import static seedu.duck.util.Message.*;
  *  Parser the String to a Command object
  */
 public class Parser {
+    public static final Pattern VOLUME_FORMAT = Pattern.compile("\\w+\\s.+");
     public static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
     public static final String DEADLINE_DATE_SPLITTER = "/by";
     public static final String EVENT_DATE_SPLITTER = "/at";
     public static final String COMMAND_SPLITTER = " ";
     public static final int DONE_INDEX = 5;
+    public static final int CHANGE_VOLUME_INDEX = 7;
     public static final int DELETE_INDEX = 7;
     public static final int DESCRIPTION_INDEX = 0;
     public static final int TIME_INDEX = 1;
@@ -60,6 +63,9 @@ public class Parser {
      */
     private static Command getCommand(String commandWord, String commandType, String commandArgs) {
         switch (commandType){
+        //Change Volume
+        case ChangeVolumeCommand.COMMAND_WORD:
+            return prepareChangeVolumeCommand(commandWord);
         //Change Language
         case ChangeLanguageCommand.COMMAND_WORD:
             return prepareChangeLanguageCommand(commandArgs);
@@ -102,6 +108,17 @@ public class Parser {
         //Incorrect
         default:
             return getIncorrectCommand();
+        }
+    }
+
+    private static Command prepareChangeVolumeCommand(String commandArgs){
+        try {
+            final double volume = parseArgsAsDisplayedIndexInDouble(commandArgs, CHANGE_VOLUME_INDEX);
+            return new ChangeVolumeCommand(volume);
+        } catch (ParseException pe) {
+            return getIncorrectCommand();
+        } catch (NumberFormatException | StringIndexOutOfBoundsException nfe) {
+            return getIncorrectCommandAccordingToSystemLanguage();
         }
     }
 
@@ -253,6 +270,41 @@ public class Parser {
         default:
             return new IncorrectCommand(MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_ENGLISH);
         }
+    }
+
+    /**
+     * Return the integer index parsed from user input
+     *
+     * @param args user input
+     * @param indexOfIndex the index of "Index" part in user input String array
+     * @return  the integer index
+     * @throws ParseException parseException if the index cannot be parsed
+     * @throws NumberFormatException numberFormatException if the index is not is not a number
+     * @throws StringIndexOutOfBoundsException stringIndexOutOfBoundsException if the index is missing
+     */
+    public static double parseArgsAsDisplayedIndexInDouble(String args, int indexOfIndex) throws ParseException,
+            NumberFormatException,
+            StringIndexOutOfBoundsException{
+        final Matcher matcher = VOLUME_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            switch (SystemSetting.getSystemLanguage()) {
+            case CHINESE:
+                throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_CHINESE);
+            case ENGLISH:
+            default:
+                throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_ENGLISH);
+            }
+        }
+        if (args.length() < indexOfIndex) {
+            switch (SystemSetting.getSystemLanguage()) {
+            case CHINESE:
+                throw new StringIndexOutOfBoundsException(MESSAGE_INVALID_COMMAND_FORMAT_IN_CHINESE);
+            case ENGLISH:
+            default:
+                throw new StringIndexOutOfBoundsException(MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH);
+            }
+        }
+        return Double.parseDouble(args.substring(indexOfIndex));
     }
 
     /**
