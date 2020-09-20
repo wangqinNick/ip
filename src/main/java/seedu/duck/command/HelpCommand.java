@@ -3,6 +3,7 @@ package seedu.duck.command;
 import seedu.duck.command.add.AddDeadlineCommand;
 import seedu.duck.command.add.AddEventCommand;
 import seedu.duck.command.add.AddTodoCommand;
+import seedu.duck.command.misc.HistoryTraverseCommand;
 import seedu.duck.command.misc.UndoCommand;
 
 public class HelpCommand extends Command{
@@ -30,6 +31,7 @@ public class HelpCommand extends Command{
                     + "\n" + "  "+ HelpCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ ClearCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ ChangeVolumeCommand.MESSAGE_USAGE_IN_ENGLISH
+                    + "\n" + "  "+ HistoryTraverseCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ ExitCommand.MESSAGE_USAGE_IN_ENGLISH;
 
     private static final String feedbackToUserInChinese =
@@ -45,6 +47,7 @@ public class HelpCommand extends Command{
                     + "\n" + "  "+ HelpCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ ClearCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ ChangeVolumeCommand.MESSAGE_USAGE_IN_CHINESE
+                    + "\n" + "  "+ HistoryTraverseCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ ExitCommand.MESSAGE_USAGE_IN_CHINESE;
 
     public HelpCommand() {
