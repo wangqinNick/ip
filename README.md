@@ -13,7 +13,10 @@ By: `Wang Qin` Since: `Sep 2020`
     + [3.6. Complete a task:](#complete) `done`
     + [3.7. Show all possible functions:](#help) `help`
     + [3.8. Undo:](#undo) `undo`
-    + [3.9. Exiting the program:](#exit) `bye`
+    + [3.9. Navigate through command history:](#Navi) `Up` `Down` 
+    + [3.10. Change the system language:](#Change) `change`
+    + [3.11. Check all task due/happene on a certain date:](#due) `due`
+    + [3.12. Exiting the program:](#exit) `bye`
 * [4. FAQ](#faq)
 * [5. Command Summary](#command-summary)
 
@@ -137,7 +140,7 @@ An interesting fact is not only `help` can make `Kuri` list all possible functio
 
 <a name="undo"></a>
 
-### 3.9. Undo a command: `undo`
+### 3.8. Undo a command: `undo`
 
 The undo command is only for those "data-changing" operations. For example, adding a task, deleting a task, or marking a task as done.
 
@@ -146,33 +149,52 @@ The undo command is only for those "data-changing" operations. For example, addi
 * **Example**:
     * undo
 
-![Alt Text](./docs/undo.gif)
+ ![Alt Text](./docs/undo.gif)
 
 
-<a name="navi"></a>
+<a name="Navi"></a>
 
-### 3.10 Navigate command history: `Up` `Down` 
+### 3.9 Navigate through command history: `Up` `Down` 
 
 Navigate through the command history by `Up` and `Down` arrow on the keyboard
 
 **Format**: `Up` `Down`
 
 
-![Alt Text](./docs/traverse_history_command.gif)
+ ![Alt Text](./docs/traverse_history_command.gif)
 
 
+<a name="Change"></a>
+
+### 3.10 Change the system language: `change`
+
+Changes the system display language 
+(The duck system supports English and Chinese)
+
+**Format**: `change Language`
+* **Example**:
+    * change Chinese
+    
+    ![Alt Text](./docs/change_language.gif)
+
+
+
+<a name="due"></a>
+
+### 3.11 Check all tasks due/happene on a certain date: `due`
+
+List all tasks happens/ due on a certain date
+
+**Format**: `due DATE`
+* **Example**:
+    * due 12-12-2019
+    
+    ![Alt Text](./docs/due.gif)
+    
+    
 <a name="exit"></a>
 
-### 3.10 Exiting the program: `bye`
-
-Exits the program.
-
-**Format**: `bye`
-
-
-<a name="exit"></a>
-
-### 3.10 Exiting the program: `bye`
+### 3.12 Exiting the program: `bye`
 
 Exits the program.
 
