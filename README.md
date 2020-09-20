@@ -99,7 +99,7 @@ Deletes a specified task from Duke.
     * The index refers to the index number shown on the displayed task list.
     * The index must be a positive number 1,2,3,...
 ```
-![Alt Text](./docs/delete_command.gif)
+   ![Alt Text](./docs/delete_command.gif)
 
 <a name="clear"></a>
 
@@ -127,7 +127,7 @@ Marks a task as completed at the specified INDEX.
     * The index must be a positive number 1,2,3,..
 ```
     
-![Alt Text](./docs/done.gif)
+   ![Alt Text](./docs/done.gif)
 
 <a name="help"></a>
 
@@ -149,7 +149,7 @@ The undo command is only for those "data-changing" operations. For example, addi
 * **Example**:
     * undo
 
- ![Alt Text](./docs/undo.gif)
+    ![Alt Text](./docs/undo.gif)
 
 
 <a name="Navi"></a>
@@ -161,7 +161,7 @@ Navigate through the command history by `Up` and `Down` arrow on the keyboard
 **Format**: `Up` `Down`
 
 
- ![Alt Text](./docs/traverse_history_command.gif)
+   ![Alt Text](./docs/traverse_history_command.gif)
 
 
 <a name="Change"></a>
