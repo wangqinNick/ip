@@ -8,6 +8,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -20,6 +21,7 @@ import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
 import seedu.duck.command.HelpCommand;
 import seedu.duck.command.PromptType;
+import seedu.duck.data.CommandManager;
 import seedu.duck.parser.Parser;
 
 import static seedu.duck.util.Constant.DEFAULT_DIALOG_FONT;
@@ -37,7 +39,6 @@ public class MainStage {
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/tenor.gif"));
     private PromptType promptType = PromptType.INFORMATIVE;
     private static MediaView bgmView;
-
     /**
      * Set the property of the main stage
      */
@@ -98,6 +99,9 @@ public class MainStage {
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(new Label(WELCOME_TEXT), new ImageView(duke), promptType));
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(new Label(HelpCommand.getFeedbackToUserInEnglish()), new ImageView(duke), promptType));
         //Part 3. Add functionality to handle user input.
+
+        userInput.setOnKeyPressed(event -> handleKeyPress(event.getCode()));
+
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
         });
@@ -139,10 +143,32 @@ public class MainStage {
         promptType = parsedCommand.getPromptType();
         CommandResult commandResult;
         commandResult = Executor.executeCommand(parsedCommand);
+        CommandManager.add(userInput);
         return commandResult.getFeedbackToUser();
     }
 
     public static void setBgmView(MediaView mediaView) {
         bgmView = mediaView;
+    }
+
+    /**
+     * Handles key presses for `userInput`, displaying the command history on
+     * {@code KeyCode.UP} and {@code KeyCode.DOWN}.
+     *
+     * @param keyCode the key that was pressed by the user.
+     */
+    private void handleKeyPress(KeyCode keyCode) {
+        switch (keyCode) {
+        case UP:
+            userInput.setText(CommandManager.traverseUpHistoryCommand());
+            break;
+        case DOWN:
+            userInput.setText(CommandManager.traverseDownHistoryCommand());
+            break;
+        default:
+            return;
+        }
+        // Set the caret position to the end of the string.
+        userInput.positionCaret(userInput.getLength());
     }
 }

@@ -29,6 +29,7 @@ public class HelpCommand extends Command{
                     + "\n" + "  "+ ListCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ HelpCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ ClearCommand.MESSAGE_USAGE_IN_ENGLISH
+                    + "\n" + "  "+ ChangeVolumeCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ ExitCommand.MESSAGE_USAGE_IN_ENGLISH;
 
     private static final String feedbackToUserInChinese =
@@ -43,6 +44,7 @@ public class HelpCommand extends Command{
                     + "\n" + "  "+ ListCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ HelpCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ ClearCommand.MESSAGE_USAGE_IN_CHINESE
+                    + "\n" + "  "+ ChangeVolumeCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ ExitCommand.MESSAGE_USAGE_IN_CHINESE;
 
     public HelpCommand() {
