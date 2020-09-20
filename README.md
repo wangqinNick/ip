@@ -237,6 +237,9 @@ Exits the program.
 * Clear/Delete all tasks: `clear`
 * Help: `help`
 * Undo: `undo`
+* Check all tasks due/happens on a given date: `due` 
+* Navigate through the history command: `Up` `Down'
+* Change the system language: `change` 
 * Exit: `bye`
 
 
