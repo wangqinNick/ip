@@ -1,9 +1,9 @@
-# Duck 嘎嘎
+# Duck 
 By: `Wang Qin` Since: `Sep 2020`
 
 
 ##  1. Introduction
-Duck is a task manage system
+Duck is a task manage system 嘎嘎
 
 <a name="quick-start"></a>
 
