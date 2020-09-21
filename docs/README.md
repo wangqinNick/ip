@@ -36,7 +36,7 @@ Duck is a task manage system
 *    Double click the jar file
 *    Enter the correct `username` and `password` (default username is `duck` default password is `123`) ,then press `ENTER` key
 
-  ![Alt Text](./docs/login.gif)
+  ![Alt Text](./login.gif)
 
 
 <a name="features"></a>
@@ -60,7 +60,7 @@ Adds a task into Duck
     * `event Wedding Ceremony /at 12-12-2019`
     
     
-    ![Alt Text](./docs/add_todo.gif)
+    ![Alt Text](./add_todo.gif)
     
 
 <a name="list"></a>
@@ -99,7 +99,7 @@ Deletes a specified task from Duke.
     * The index refers to the index number shown on the displayed task list.
     * The index must be a positive number 1,2,3,...
 ```
-   ![Alt Text](./docs/delete_command.gif)
+   ![Alt Text](./delete_command.gif)
 
 <a name="clear"></a>
 
@@ -127,7 +127,7 @@ Marks a task as completed at the specified INDEX.
     * The index must be a positive number 1,2,3,..
 ```
     
-   ![Alt Text](./docs/done.gif)
+   ![Alt Text](./done.gif)
 
 <a name="help"></a>
 
@@ -149,7 +149,7 @@ The undo command is only for those "data-changing" operations. For example, addi
 * **Example**:
     * undo
 
-    ![Alt Text](./docs/undo.gif)
+    ![Alt Text](./undo.gif)
 
 
 <a name="Navi"></a>
@@ -161,7 +161,7 @@ Navigate through the command history by `Up` and `Down` arrow on the keyboard
 **Format**: `Up` `Down`
 
 
-   ![Alt Text](./docs/traverse_history_command.gif)
+   ![Alt Text](./traverse_history_command.gif)
 
 
 <a name="Change"></a>
@@ -175,7 +175,7 @@ Changes the system display language
 * **Example**:
     * change Chinese
     
-    ![Alt Text](./docs/change_language.gif)
+    ![Alt Text](./change_language.gif)
 
 
 
@@ -189,7 +189,7 @@ List all tasks happens/ due on a certain date
 * **Example**:
     * due 12-12-2019
     
-    ![Alt Text](./docs/due.gif)
+    ![Alt Text](./due.gif)
     
     
 <a name="exit"></a>
