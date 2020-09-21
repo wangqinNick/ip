@@ -20,7 +20,7 @@ public class SystemSetting {
      */
     public static void initialise(){
         systemLanguage = Language.ENGLISH;
-        setBackgroundMediaView(DEFAULT_SYSTEM_MUSIC, 0.4, true);
+        setBackgroundMediaView(DEFAULT_SYSTEM_MUSIC, 0.1, true);
         MainStage.setBgmView(backgroundMusicView);
     }
 

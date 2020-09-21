@@ -1,4 +1,3 @@
-
 # Duck - User Guide
 By: `Wang Qin` Since: `Sep 2020`
 
@@ -13,8 +12,11 @@ By: `Wang Qin` Since: `Sep 2020`
     + [3.5. Delete all tasks in the task list](#clear) `clear`
     + [3.6. Complete a task:](#complete) `done`
     + [3.7. Show all possible functions:](#help) `help`
-    + [3.8. Undo:](#save_json) `undo`
-    + [3.9. Exiting the program:](#exit) `bye`
+    + [3.8. Undo:](#undo) `undo`
+    + [3.9. Navigate through command history:](#Navi) `Up` `Down` 
+    + [3.10. Change the system language:](#Change) `change`
+    + [3.11. Check all task due/happene on a certain date:](#due) `due`
+    + [3.12. Exiting the program:](#exit) `bye`
 * [4. FAQ](#faq)
 * [5. Command Summary](#command-summary)
 
@@ -23,7 +25,7 @@ By: `Wang Qin` Since: `Sep 2020`
 
 
 ##  1. Introduction
-
+Duck is a task manage system
 
 <a name="quick-start"></a>
 
@@ -32,7 +34,12 @@ By: `Wang Qin` Since: `Sep 2020`
 *    Ensure that `Java 11` or above is installed in your Computer.
 *    Download the latest `Duck.jar` [_here_](https://github.com/JosephLimWeiJie/duke/releases/download/v0.2.0/duke.jar).
 *    Double click the jar file
+*    Enter the correct `username` and `password` (default username is `duck` default password is `123`) ,then press `ENTER` key
 
+  ![Alt Text](./docs/login.gif)
+
+
+<a name="features"></a>
 ## 3. Features
 
 
@@ -51,6 +58,10 @@ Adds a task into Duck
     * `todo return book`
     * `deadline Thesis submission /by 12-12-2019`
     * `event Wedding Ceremony /at 12-12-2019`
+    
+    
+    ![Alt Text](./docs/add_todo.gif)
+    
 
 <a name="list"></a>
 
@@ -71,6 +82,7 @@ Finds tasks that contain a given keyword.
 
 **Example**: `find book`
 
+
 <a name="delete"></a>
 
 ### 3.4 Delete a task: `delete`
@@ -87,6 +99,7 @@ Deletes a specified task from Duke.
     * The index refers to the index number shown on the displayed task list.
     * The index must be a positive number 1,2,3,...
 ```
+   ![Alt Text](./docs/delete_command.gif)
 
 <a name="clear"></a>
 
@@ -110,9 +123,11 @@ Marks a task as completed at the specified INDEX.
     * done 2
 
 ```javascript
-* The index refers to the index number shown on the displayed task list.
-* The index must be a positive number 1,2,3,..
+    * The index refers to the index number shown on the displayed task list.
+    * The index must be a positive number 1,2,3,..
 ```
+    
+   ![Alt Text](./docs/done.gif)
 
 <a name="help"></a>
 
@@ -123,14 +138,9 @@ An interesting fact is not only `help` can make `Kuri` list all possible functio
 
 **Format**: `help`
 
-<p align="center">
-  <img src="https://github.com/wangqinNick/duke/blob/master/src/main/resources/images/list%20of%20help.png">
-</p>
+<a name="undo"></a>
 
-
-<a name="save_json"></a>
-
-### 3.9. Undo a command: `save_json`
+### 3.8. Undo a command: `undo`
 
 The undo command is only for those "data-changing" operations. For example, adding a task, deleting a task, or marking a task as done.
 
@@ -139,13 +149,52 @@ The undo command is only for those "data-changing" operations. For example, addi
 * **Example**:
     * undo
 
-<p align="center">
-  <img src="https://github.com/wangqinNick/duke/blob/master/src/main/resources/images/data%20saved.png">
-</p>
+    ![Alt Text](./docs/undo.gif)
 
+
+<a name="Navi"></a>
+
+### 3.9 Navigate through command history: `Up` `Down` 
+
+Navigate through the command history by `Up` and `Down` arrow on the keyboard
+
+**Format**: `Up` `Down`
+
+
+   ![Alt Text](./docs/traverse_history_command.gif)
+
+
+<a name="Change"></a>
+
+### 3.10 Change the system language: `change`
+
+Changes the system display language 
+(The duck system supports English and Chinese)
+
+**Format**: `change Language`
+* **Example**:
+    * change Chinese
+    
+    ![Alt Text](./docs/change_language.gif)
+
+
+
+<a name="due"></a>
+
+### 3.11 Check all tasks due/happene on a certain date: `due`
+
+List all tasks happens/ due on a certain date
+
+**Format**: `due DATE`
+* **Example**:
+    * due 12-12-2019
+    
+    ![Alt Text](./docs/due.gif)
+    
+    
 <a name="exit"></a>
 
-### 3.10 Exiting the program: `bye`
+### 3.12 Exiting the program: `bye`
 
 Exits the program.
 
@@ -188,6 +237,9 @@ Exits the program.
 * Clear/Delete all tasks: `clear`
 * Help: `help`
 * Undo: `undo`
+* Check all tasks due/happens on a given date: `due` 
+* Navigate through the history command: `Up` `Down'
+* Change the system language: `change` 
 * Exit: `bye`
 
 
