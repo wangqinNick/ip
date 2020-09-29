@@ -40,7 +40,7 @@ public class AddTodoCommand extends AddCommand {
      */
     @Override
     public CommandResult executeInEnglish() {
-        if (containsDupTask() && !SystemSetting.isDuplicatedAllowed()){
+        if (containsDupTask() && SystemSetting.isDuplicatedAllowed()){
             return new CommandResult(MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_ENGLISH);
         } else {
             TaskManager.add(toAdd);
@@ -55,7 +55,7 @@ public class AddTodoCommand extends AddCommand {
 
     @Override
     public CommandResult executeInChinese() {
-        if (containsDupTask() && !SystemSetting.isDuplicatedAllowed()){
+        if (containsDupTask() && SystemSetting.isDuplicatedAllowed()){
             return new CommandResult(MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_CHINESE);
         } else {
             TaskManager.add(toAdd);

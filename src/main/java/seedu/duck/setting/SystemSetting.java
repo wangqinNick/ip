@@ -21,7 +21,7 @@ public class SystemSetting {
      */
     public static void initialise(){
         systemLanguage = Language.ENGLISH;
-        isDuplicatedAllowed = false;
+        isDuplicatedAllowed = true;
         setBackgroundMediaView(DEFAULT_SYSTEM_MUSIC, 0.1, true);
         MainStage.setBgmView(backgroundMusicView);
     }
@@ -75,10 +75,50 @@ public class SystemSetting {
     }
 
     public static boolean isDuplicatedAllowed() {
-        return isDuplicatedAllowed;
+        return !isDuplicatedAllowed;
     }
 
     public static void setIsDuplicatedAllowed(boolean duplicatedIsAllowed) {
         SystemSetting.isDuplicatedAllowed = duplicatedIsAllowed;
+    }
+
+    public static String getBackgroundMusicViewInString() {
+        return DEFAULT_SYSTEM_MUSIC;
+    }
+
+    public static String getIsDuplicatedTaskAllowedInString() {
+        if (isDuplicatedAllowed){
+            return "Allowed";
+        } else {
+            return "Not Allowed";
+        }
+    }
+
+    public static String getSystemLanguageInString() {
+        if (systemLanguage == Language.ENGLISH){
+            return "English";
+        } else {
+            return "Chinese";
+        }
+    }
+
+    public static String getBackgroundMusicViewInStringInChinese() {
+        return DEFAULT_SYSTEM_MUSIC;
+    }
+
+    public static String getIsDuplicatedTaskAllowedInStringInChinese() {
+        if (isDuplicatedAllowed){
+            return "允许";
+        } else {
+            return "不允许";
+        }
+    }
+
+    public static String getSystemLanguageInStringInChinese() {
+        if (systemLanguage == Language.ENGLISH){
+            return "英文";
+        } else {
+            return "中文";
+        }
     }
 }

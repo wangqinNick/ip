@@ -15,6 +15,8 @@ import seedu.duck.command.ListCommand;
 import seedu.duck.command.add.AddDeadlineCommand;
 import seedu.duck.command.add.AddEventCommand;
 import seedu.duck.command.add.AddTodoCommand;
+import seedu.duck.command.misc.AllowDuplicatedTaskCommand;
+import seedu.duck.command.misc.DisplaySystemSettingCommand;
 import seedu.duck.command.misc.UndoCommand;
 import seedu.duck.data.TaskManager;
 import seedu.duck.exception.ParseException;
@@ -23,6 +25,7 @@ import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.EventTask;
 import seedu.duck.task.TodoTask;
 import seedu.duck.util.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -66,11 +69,18 @@ public class Parser {
     /**
      * Return the command parsed from the user input
      *
-     * @param commandType, commandArgs the input String spited parts
+     * @param commandWord, commandWord the input String spited parts
+     * @param commandType, commandType the input String first part
+     * @param commandArgs, commandArgs the input String argument part
      * @return parsed duck.command
      */
     private static Command getCommand(String commandWord, String commandType, String commandArgs) {
         switch (commandType){
+        case AllowDuplicatedTaskCommand.COMMAND_WORD:
+            return prepareAllowDuplicatedTaskCommand(commandArgs);
+        //Display system settings
+        case DisplaySystemSettingCommand.COMMAND_WORD:
+            return new DisplaySystemSettingCommand();
         //Change Volume
         case ChangeVolumeCommand.COMMAND_WORD:
             return prepareChangeVolumeCommand(commandWord);
@@ -249,6 +259,23 @@ public class Parser {
         } catch (ParseException | NumberFormatException pe) {
             return getIncorrectCommand();
         } catch (StringIndexOutOfBoundsException se) {
+            return getIncorrectCommandAccordingToSystemLanguage();
+        }
+    }
+
+    private static Command prepareAllowDuplicatedTaskCommand(String args){
+        try {
+            int target = Integer.parseInt(args.trim());
+            if (target == 0){
+                return new AllowDuplicatedTaskCommand(false);
+            } else if (target == 1){
+                return new AllowDuplicatedTaskCommand(true);
+            } else {
+                return getIncorrectCommand();
+            }
+        } catch (NumberFormatException pe) {
+            return getIncorrectCommand();
+        } catch (IndexOutOfBoundsException se) {
             return getIncorrectCommandAccordingToSystemLanguage();
         }
     }

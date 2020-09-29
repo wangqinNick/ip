@@ -46,7 +46,7 @@ public class AddDeadlineCommand extends AddCommand {
         if (deadlineTask == null) {
             return new CommandResult(MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH);
         }
-        if (containsDupTask() && !SystemSetting.isDuplicatedAllowed()){
+        if (containsDupTask() && SystemSetting.isDuplicatedAllowed()){
             return new CommandResult(MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_CHINESE);
         } else {
             TaskManager.add(deadlineTask);
@@ -77,7 +77,7 @@ public class AddDeadlineCommand extends AddCommand {
         if (deadlineTask == null) {
             return new CommandResult(MESSAGE_INVALID_COMMAND_IN_CHINESE);
         }
-        if (containsDupTask() && !SystemSetting.isDuplicatedAllowed()){
+        if (containsDupTask() && SystemSetting.isDuplicatedAllowed()){
             return new CommandResult(MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_CHINESE);
         } else {
             TaskManager.add(deadlineTask);
