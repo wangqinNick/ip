@@ -28,8 +28,8 @@ public class DisplaySystemSettingCommand extends Command {
 
     private final String feedbackToUserInChinese =
             "  "+ "System Language: " + SystemSetting.getSystemLanguageInStringInChinese() +
-                    "  "+ "System Music: " + SystemSetting.getBackgroundMusicViewInStringInChinese() +
-                    "  "+ "System Duplicated tasks: " + SystemSetting.getIsDuplicatedTaskAllowedInStringInChinese();
+            "\n  "+ "System Music: " + SystemSetting.getBackgroundMusicViewInStringInChinese() +
+            "\n  "+ "System Duplicated tasks: " + SystemSetting.getIsDuplicatedTaskAllowedInStringInChinese();
 
     @Override
     public CommandResult executeInEnglish() {
