@@ -7,7 +7,10 @@ import seedu.duck.task.EventTask;
 import seedu.duck.task.Task;
 
 import static seedu.duck.util.Constant.LIST_INDEX_OFFSET;
-import static seedu.duck.util.Message.*;
+import static seedu.duck.util.Message.MESSAGE_EVENT_SUCCESS_IN_CHINESE;
+import static seedu.duck.util.Message.MESSAGE_EVENT_SUCCESS_IN_ENGLISH;
+import static seedu.duck.util.Message.MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH;
+import static seedu.duck.util.Message.MESSAGE_INVALID_COMMAND_FORMAT_IN_CHINESE;
 
 public class AddEventCommand extends AddCommand {
 
@@ -39,7 +42,7 @@ public class AddEventCommand extends AddCommand {
     @Override
     public CommandResult executeInEnglish() {
         if (eventTask == null) {
-            return new CommandResult("Invalid Command Format");
+            return new CommandResult(MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH);
         }
         TaskManager.add(eventTask);
         if (eventTask.getTaskDate()!=null){
@@ -65,7 +68,7 @@ public class AddEventCommand extends AddCommand {
     @Override
     public CommandResult executeInChinese() {
         if (eventTask == null) {
-            return new CommandResult("Invalid Command Format");
+            return new CommandResult(MESSAGE_INVALID_COMMAND_FORMAT_IN_CHINESE);
         }
         TaskManager.add(eventTask);
         if (eventTask.getTaskDate()!=null){

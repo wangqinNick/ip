@@ -27,7 +27,11 @@ import seedu.duck.gui.MainStage;
 import seedu.duck.data.TaskManager;
 import seedu.duck.setting.SystemSetting;
 import seedu.duck.storage.IOManager;
-import static seedu.duck.util.Constant.*;
+
+import static seedu.duck.util.Constant.DEFAULT_DIALOG_FONT;
+import static seedu.duck.util.Constant.DEFAULT_DIALOG_SIZE;
+import static seedu.duck.util.Constant.DEFAULT_PASSWORD;
+import static seedu.duck.util.Constant.DEFAULT_USERNAME;
 import static seedu.duck.util.Message.DUCK_LOGIN;
 import static seedu.duck.util.Message.INCORRECT_USER_OR_PW;
 

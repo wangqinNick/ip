@@ -20,7 +20,13 @@ import javafx.scene.text.Font;
 import seedu.duck.command.PromptType;
 
 import static javafx.scene.layout.BorderStroke.MEDIUM;
-import static seedu.duck.util.Constant.*;
+import static seedu.duck.util.Constant.DEFAULT_DIALOG_BORDER_COLOR;
+import static seedu.duck.util.Constant.DEFAULT_DIALOG_COLOR;
+import static seedu.duck.util.Constant.DEFAULT_DIALOG_FONT;
+import static seedu.duck.util.Constant.DEFAULT_DIALOG_SIZE;
+import static seedu.duck.util.Constant.INFORMATIVE_DIALOG_COLOR;
+import static seedu.duck.util.Constant.USER_DIALOG_COLOR;
+import static seedu.duck.util.Constant.WARNING_DIALOG_COLOR;
 
 public class DialogBox extends HBox {
 

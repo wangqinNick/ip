@@ -26,7 +26,15 @@ import seedu.duck.util.DateTimeFormat;
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import static seedu.duck.util.Message.*;
+
+import static seedu.duck.util.Message.MESSAGE_EMPTY_LIST_IN_CHINESE;
+import static seedu.duck.util.Message.MESSAGE_EMPTY_LIST_IN_ENGLISH;
+import static seedu.duck.util.Message.MESSAGE_INVALID_COMMAND_FORMAT_IN_CHINESE;
+import static seedu.duck.util.Message.MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH;
+import static seedu.duck.util.Message.MESSAGE_INVALID_DATE_IN_CHINESE;
+import static seedu.duck.util.Message.MESSAGE_INVALID_DATE_IN_ENGLISH;
+import static seedu.duck.util.Message.MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_CHINESE;
+import static seedu.duck.util.Message.MESSAGE_INVALID_TASK_DISPLAYED_INDEX_IN_ENGLISH;
 
 
 /**

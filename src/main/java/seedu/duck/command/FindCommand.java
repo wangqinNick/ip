@@ -5,7 +5,8 @@ import seedu.duck.task.Task;
 
 import java.util.ArrayList;
 
-import static seedu.duck.ui.TextUi.*;
+import static seedu.duck.ui.TextUi.getAppendedTasksMessage;
+
 
 public class FindCommand extends Command {
 

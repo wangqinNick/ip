@@ -7,7 +7,8 @@ import seedu.duck.task.Task;
 import seedu.duck.task.TodoTask;
 
 import static seedu.duck.util.Constant.LIST_INDEX_OFFSET;
-import static seedu.duck.util.Message.*;
+import static seedu.duck.util.Message.MESSAGE_TODO_SUCCESS_IN_CHINESE;
+import static seedu.duck.util.Message.MESSAGE_TODO_SUCCESS_IN_ENGLISH;
 
 public class AddTodoCommand extends AddCommand {
     private final TodoTask toAdd;

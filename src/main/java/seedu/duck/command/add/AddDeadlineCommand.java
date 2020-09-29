@@ -7,7 +7,10 @@ import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.Task;
 
 import static seedu.duck.util.Constant.LIST_INDEX_OFFSET;
-import static seedu.duck.util.Message.*;
+import static seedu.duck.util.Message.MESSAGE_DEADLINE_SUCCESS_IN_CHINESE;
+import static seedu.duck.util.Message.MESSAGE_DEADLINE_SUCCESS_IN_ENGLISH;
+import static seedu.duck.util.Message.MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH;
+import static seedu.duck.util.Message.MESSAGE_INVALID_COMMAND_IN_CHINESE;
 
 public class AddDeadlineCommand extends AddCommand {
 
@@ -39,7 +42,7 @@ public class AddDeadlineCommand extends AddCommand {
     @Override
     public CommandResult executeInEnglish() {
         if (deadlineTask == null) {
-            return new CommandResult("Invalid Command Format");
+            return new CommandResult(MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH);
         }
         TaskManager.add(deadlineTask);
         //according to the data format
@@ -66,7 +69,7 @@ public class AddDeadlineCommand extends AddCommand {
     @Override
     public CommandResult executeInChinese() {
         if (deadlineTask == null) {
-            return new CommandResult("无效指令");
+            return new CommandResult(MESSAGE_INVALID_COMMAND_IN_CHINESE);
         }
         TaskManager.add(deadlineTask);
         //according to the data format

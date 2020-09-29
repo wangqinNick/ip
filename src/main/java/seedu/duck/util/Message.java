@@ -39,6 +39,9 @@ public class Message {
     public static final String MESSAGE_CLEAR_SUCCESS_IN_ENGLISH = "The system has been cleared!";
     public static final String MESSAGE_CLEAR_SUCCESS_IN_CHINESE = "所有任务都已被删除!";
     public static final String MESSAGE_INVALID_DATE_IN_ENGLISH = "Invalid date!";
-    public static final String MESSAGE_INVALID_DATE_IN_CHINESE = "Invalid date!";
+    public static final String MESSAGE_INVALID_DATE_IN_CHINESE = "无效日期!";
+
+    public static final String MESSAGE_INVALID_COMMAND_IN_ENGLISH = "Invalid Command";
+    public static final String MESSAGE_INVALID_COMMAND_IN_CHINESE = "无效指令";
 
 }

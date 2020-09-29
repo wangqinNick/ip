@@ -1,6 +1,6 @@
 package seedu.duck.command;
 
-/** Display the execute result, by constructing a CommandResult object **/
+/** Display the execute result, by constructing a CommandResult object */
 public class CommandResult {
     private final String feedbackToUser;
 

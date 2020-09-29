@@ -5,8 +5,14 @@ import seedu.duck.task.EventTask;
 import seedu.duck.task.Task;
 import seedu.duck.task.TodoTask;
 import java.util.ArrayList;
-import static seedu.duck.util.Constant.*;
-import static seedu.duck.util.Message.*;
+
+import static seedu.duck.util.Constant.INDEX_OFF_SET;
+import static seedu.duck.util.Constant.LIST_INDEX_OFFSET;
+import static seedu.duck.util.Constant.NEWLINE;
+import static seedu.duck.util.Message.MESSAGE_DEADLINE_LIST;
+import static seedu.duck.util.Message.MESSAGE_EVENT_LIST;
+import static seedu.duck.util.Message.MESSAGE_LIST_RESPOND_FORMAT;
+import static seedu.duck.util.Message.MESSAGE_TODO_LIST;
 
 
 public class TextUi {
