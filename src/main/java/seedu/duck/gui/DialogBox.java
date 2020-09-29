@@ -107,6 +107,7 @@ public class DialogBox extends HBox {
         l.setMinHeight(50);
         l.setBorder(new Border(new BorderStroke(Color.web(DEFAULT_DIALOG_BORDER_COLOR), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, MEDIUM)));
         l.setBackground(new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY)));
+        l.setOpacity(0.8);
         iv.setPreserveRatio(true);
     }
 }
