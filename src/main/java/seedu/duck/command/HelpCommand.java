@@ -3,6 +3,8 @@ package seedu.duck.command;
 import seedu.duck.command.add.AddDeadlineCommand;
 import seedu.duck.command.add.AddEventCommand;
 import seedu.duck.command.add.AddTodoCommand;
+import seedu.duck.command.misc.AllowDuplicatedTaskCommand;
+import seedu.duck.command.misc.DisplaySystemSettingCommand;
 import seedu.duck.command.misc.HistoryTraverseCommand;
 import seedu.duck.command.misc.UndoCommand;
 
@@ -30,7 +32,8 @@ public class HelpCommand extends Command{
                     + "\n" + "  "+ ListCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ HelpCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ ClearCommand.MESSAGE_USAGE_IN_ENGLISH
-                    //+ "\n" + "  "+ ChangeVolumeCommand.MESSAGE_USAGE_IN_ENGLISH
+                    + "\n" + "  "+ DisplaySystemSettingCommand.MESSAGE_USAGE_IN_ENGLISH
+                    + "\n" + "  "+ AllowDuplicatedTaskCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ HistoryTraverseCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ ExitCommand.MESSAGE_USAGE_IN_ENGLISH;
 
@@ -46,7 +49,8 @@ public class HelpCommand extends Command{
                     + "\n" + "  "+ ListCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ HelpCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ ClearCommand.MESSAGE_USAGE_IN_CHINESE
-                    //+ "\n" + "  "+ ChangeVolumeCommand.MESSAGE_USAGE_IN_CHINESE
+                    + "\n" + "  "+ DisplaySystemSettingCommand.MESSAGE_USAGE_IN_CHINESE
+                    + "\n" + "  "+ AllowDuplicatedTaskCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ HistoryTraverseCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ ExitCommand.MESSAGE_USAGE_IN_CHINESE;
 
