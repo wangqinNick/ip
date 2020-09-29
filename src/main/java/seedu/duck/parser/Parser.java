@@ -1,6 +1,8 @@
 package seedu.duck.parser;
 
 import seedu.duck.command.ChangeLanguageCommand;
+import seedu.duck.command.ChangePasswordCommand;
+import seedu.duck.command.ChangeUsernameCommand;
 import seedu.duck.command.ChangeVolumeCommand;
 import seedu.duck.command.ClearCommand;
 import seedu.duck.command.Command;
@@ -76,6 +78,12 @@ public class Parser {
      */
     private static Command getCommand(String commandWord, String commandType, String commandArgs) {
         switch (commandType){
+        //Change Username
+        case ChangeUsernameCommand.COMMAND_WORD:
+            return prepareChangeUsernameCommand(commandArgs);
+        //Change Password
+        case ChangePasswordCommand.COMMAND_WORD:
+            return prepareChangePasswordCommand(commandArgs);
         case AllowDuplicatedTaskCommand.COMMAND_WORD:
             return prepareAllowDuplicatedTaskCommand(commandArgs);
         //Display system settings
@@ -126,6 +134,22 @@ public class Parser {
         //Incorrect
         default:
             return getIncorrectCommand();
+        }
+    }
+
+    private static Command prepareChangeUsernameCommand(String commandArgs){
+        if (!isEmpty(commandArgs)){
+            return new ChangeUsernameCommand(commandArgs);
+        } else {
+            return getIncorrectCommandAccordingToSystemLanguage();
+        }
+    }
+
+    private static Command prepareChangePasswordCommand(String commandArgs){
+        if (!isEmpty(commandArgs)){
+            return new ChangePasswordCommand(commandArgs);
+        } else {
+            return getIncorrectCommandAccordingToSystemLanguage();
         }
     }
 

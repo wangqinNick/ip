@@ -24,12 +24,17 @@ public class DisplaySystemSettingCommand extends Command {
     private final String feedbackToUserInEnglish =
             "  "+ "System Language: " + SystemSetting.getSystemLanguageInString() +
             "\n  "+ "System Music: " + SystemSetting.getBackgroundMusicViewInString() +
-            "\n  "+ "System Duplicated tasks: " + SystemSetting.getIsDuplicatedTaskAllowedInString();
+            "\n  "+ "System Duplicated tasks: " + SystemSetting.getIsDuplicatedTaskAllowedInString() +
+            "\n  "+ "Username: " + SystemSetting.getUsername() +
+            "\n  "+ "Password: " + SystemSetting.getPassword();
+
 
     private final String feedbackToUserInChinese =
-            "  "+ "System Language: " + SystemSetting.getSystemLanguageInStringInChinese() +
-            "\n  "+ "System Music: " + SystemSetting.getBackgroundMusicViewInStringInChinese() +
-            "\n  "+ "System Duplicated tasks: " + SystemSetting.getIsDuplicatedTaskAllowedInStringInChinese();
+            "  "+ "系统语言: " + SystemSetting.getSystemLanguageInStringInChinese() +
+            "\n  "+ "系统音乐: " + SystemSetting.getBackgroundMusicViewInStringInChinese() +
+            "\n  "+ "是否允许重复添加相同任务: " + SystemSetting.getIsDuplicatedTaskAllowedInStringInChinese() +
+            "\n  "+ "用户名: " + SystemSetting.getUsername() +
+            "\n  "+ "密码: " + SystemSetting.getPassword();
 
     @Override
     public CommandResult executeInEnglish() {

@@ -23,15 +23,13 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.duck.data.StateManager;
-import seedu.duck.gui.MainStage;
 import seedu.duck.data.TaskManager;
+import seedu.duck.gui.MainStage;
 import seedu.duck.setting.SystemSetting;
 import seedu.duck.storage.IOManager;
 
 import static seedu.duck.util.Constant.DEFAULT_DIALOG_FONT;
 import static seedu.duck.util.Constant.DEFAULT_DIALOG_SIZE;
-import static seedu.duck.util.Constant.DEFAULT_PASSWORD;
-import static seedu.duck.util.Constant.DEFAULT_USERNAME;
 import static seedu.duck.util.Message.DUCK_LOGIN;
 import static seedu.duck.util.Message.INCORRECT_USER_OR_PW;
 
@@ -170,7 +168,7 @@ public class DuckApp extends Application {
     private void checkValidationAndLogin(TextField txtUserName, PasswordField pf, Stage primaryStage, Label lblMessage) {
         var checkUser = txtUserName.getText().toString();
         var checkPw = pf.getText().toString();
-        if (checkUser.equals(DEFAULT_USERNAME) && checkPw.equals(DEFAULT_PASSWORD)) {
+        if (checkUser.equals(SystemSetting.getUsername()) && checkPw.equals(SystemSetting.getPassword())) {
             new MainStage();
             primaryStage.hide();
         } else {

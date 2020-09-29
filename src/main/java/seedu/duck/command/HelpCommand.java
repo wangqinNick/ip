@@ -34,6 +34,8 @@ public class HelpCommand extends Command{
                     + "\n" + "  "+ ClearCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ DisplaySystemSettingCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ AllowDuplicatedTaskCommand.MESSAGE_USAGE_IN_ENGLISH
+                    + "\n" + "  "+ ChangeUsernameCommand.MESSAGE_USAGE_IN_ENGLISH
+                    + "\n" + "  "+ ChangePasswordCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ HistoryTraverseCommand.MESSAGE_USAGE_IN_ENGLISH
                     + "\n" + "  "+ ExitCommand.MESSAGE_USAGE_IN_ENGLISH;
 
@@ -51,6 +53,8 @@ public class HelpCommand extends Command{
                     + "\n" + "  "+ ClearCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ DisplaySystemSettingCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ AllowDuplicatedTaskCommand.MESSAGE_USAGE_IN_CHINESE
+                    + "\n" + "  "+ ChangeUsernameCommand.MESSAGE_USAGE_IN_CHINESE
+                    + "\n" + "  "+ ChangePasswordCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ HistoryTraverseCommand.MESSAGE_USAGE_IN_CHINESE
                     + "\n" + "  "+ ExitCommand.MESSAGE_USAGE_IN_CHINESE;
 

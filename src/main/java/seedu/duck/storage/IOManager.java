@@ -3,6 +3,7 @@ package seedu.duck.storage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import seedu.duck.data.TaskManager;
+import seedu.duck.setting.SystemSetting;
 import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.EventTask;
 import seedu.duck.task.Task;
@@ -112,6 +113,36 @@ public class IOManager {
             }
         }
         return tempTaskList;
+    }
+
+    public static void loadUserInfo() throws IOException {
+        try {
+            FileReader fileReader = new FileReader("data/save.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String rawUsername = bufferedReader.readLine();
+            String rawPassword = bufferedReader.readLine();
+            SystemSetting.setUsername(Decoder.decodeUsername(rawUsername));
+            SystemSetting.setPassword(Decoder.decodePassword(rawPassword));
+            bufferedReader.close();
+            fileReader.close();
+        } catch (IOException e) {
+            throw new IOException("User Info not found");
+        }
+    }
+
+    public static void saveUserInfo() throws IOException{
+        String encodedUserInfo = Encoder.encode(SystemSetting.getUsername(),
+                                                SystemSetting.getPassword());
+        try {
+            File saveFile = new File("data/save.txt");
+            saveFile.getParentFile().mkdirs();
+            FileWriter fileWriter = new FileWriter(saveFile);
+            fileWriter.write(encodedUserInfo);
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new IOException("Save UserInfo failed");
+        }
     }
 }
 

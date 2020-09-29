@@ -5,14 +5,21 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 import seedu.duck.gui.MainStage;
+import seedu.duck.storage.IOManager;
 import seedu.duck.util.Language;
 
+import java.io.IOException;
+
+import static seedu.duck.util.Constant.DEFAULT_PASSWORD;
 import static seedu.duck.util.Constant.DEFAULT_SYSTEM_MUSIC;
+import static seedu.duck.util.Constant.DEFAULT_USERNAME;
 
 public class SystemSetting {
     private static Language systemLanguage;
     private static MediaView backgroundMusicView;
     private static boolean isDuplicatedAllowed;
+    private static String username;
+    private static String password;
 
     /**
      * Initialises the system setting
@@ -24,6 +31,12 @@ public class SystemSetting {
         isDuplicatedAllowed = true;
         setBackgroundMediaView(DEFAULT_SYSTEM_MUSIC, 0.1, true);
         MainStage.setBgmView(backgroundMusicView);
+        try {
+            IOManager.loadUserInfo();
+        } catch (IOException ioe){
+            SystemSetting.setUsername(DEFAULT_USERNAME);
+            SystemSetting.setPassword(DEFAULT_PASSWORD);
+        }
     }
 
     /**
@@ -120,5 +133,21 @@ public class SystemSetting {
         } else {
             return "中文";
         }
+    }
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
+    public static void setUsername(String username) {
+        SystemSetting.username = username;
+    }
+
+    public static void setPassword(String password) {
+        SystemSetting.password = password;
     }
 }
