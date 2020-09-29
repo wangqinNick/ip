@@ -1,5 +1,7 @@
 package seedu.duck.gui;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,6 +12,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -44,7 +48,6 @@ public class MainStage {
      */
     public MainStage(){
         Stage stage = new Stage();
-        var bgpView = getBackgroundImage();
         //Step 1. Setting up required components
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
@@ -56,11 +59,8 @@ public class MainStage {
 
         Button sendButton = new Button("Send");
         AnchorPane mainLayout = new AnchorPane();
-        AnchorPane subLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
-        subLayout.getChildren().addAll(bgmView, bgpView);
-
-        Parent root = new StackPane(mainLayout, subLayout);
+        Parent root = new StackPane( mainLayout);
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
@@ -79,6 +79,16 @@ public class MainStage {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
+
+        Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/bgp.png"));
+        dialogContainer.setBackground(new Background(new BackgroundImage(backgroundImage, null, null, null, null)));
+
+        scrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov,
+                                Number old_val, Number new_val) {
+                mainLayout.setLayoutY(-new_val.doubleValue());
+            }
+        });
 
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
         userInput.setPrefWidth(STAGE_WIDTH-75);
@@ -110,12 +120,6 @@ public class MainStage {
             handleUserInput();
         });
 
-    }
-    private ImageView getBackgroundImage() {
-        Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/bgp.png"));
-        ImageView bgpView = new ImageView(backgroundImage);
-        bgpView.setOpacity(0.2);
-        return bgpView;
     }
 
     /**
