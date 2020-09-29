@@ -12,6 +12,7 @@ import static seedu.duck.util.Constant.DEFAULT_SYSTEM_MUSIC;
 public class SystemSetting {
     private static Language systemLanguage;
     private static MediaView backgroundMusicView;
+    private static boolean isDuplicatedAllowed;
 
     /**
      * Initialises the system setting
@@ -20,6 +21,7 @@ public class SystemSetting {
      */
     public static void initialise(){
         systemLanguage = Language.ENGLISH;
+        isDuplicatedAllowed = false;
         setBackgroundMediaView(DEFAULT_SYSTEM_MUSIC, 0.1, true);
         MainStage.setBgmView(backgroundMusicView);
     }
@@ -70,5 +72,13 @@ public class SystemSetting {
 
     public static MediaView getBackgroundMusicView() {
         return backgroundMusicView;
+    }
+
+    public static boolean isDuplicatedAllowed() {
+        return isDuplicatedAllowed;
+    }
+
+    public static void setIsDuplicatedAllowed(boolean duplicatedIsAllowed) {
+        SystemSetting.isDuplicatedAllowed = duplicatedIsAllowed;
     }
 }

@@ -3,12 +3,14 @@ package seedu.duck.command.add;
 import seedu.duck.command.CommandResult;
 import seedu.duck.command.PromptType;
 import seedu.duck.data.TaskManager;
+import seedu.duck.setting.SystemSetting;
 import seedu.duck.task.DeadlineTask;
 import seedu.duck.task.Task;
 
 import static seedu.duck.util.Constant.LIST_INDEX_OFFSET;
 import static seedu.duck.util.Message.MESSAGE_DEADLINE_SUCCESS_IN_CHINESE;
 import static seedu.duck.util.Message.MESSAGE_DEADLINE_SUCCESS_IN_ENGLISH;
+import static seedu.duck.util.Message.MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_CHINESE;
 import static seedu.duck.util.Message.MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH;
 import static seedu.duck.util.Message.MESSAGE_INVALID_COMMAND_IN_CHINESE;
 
@@ -44,26 +46,30 @@ public class AddDeadlineCommand extends AddCommand {
         if (deadlineTask == null) {
             return new CommandResult(MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH);
         }
-        TaskManager.add(deadlineTask);
-        //according to the data format
-        if (deadlineTask.getTaskDate()!=null){
+        if (containsDupTask() && !SystemSetting.isDuplicatedAllowed()){
+            return new CommandResult(MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_CHINESE);
+        } else {
+            TaskManager.add(deadlineTask);
+            //according to the data format
+            if (deadlineTask.getTaskDate() != null) {
+                return new CommandResult(
+                        String.format(
+                                MESSAGE_DEADLINE_SUCCESS_IN_ENGLISH,
+                                deadlineTask.getIndex() + LIST_INDEX_OFFSET,
+                                COMMAND_TYPE,
+                                deadlineTask.getChar(),
+                                deadlineTask.getDescription(),
+                                deadlineTask.getTaskDate().toString()));
+            }
             return new CommandResult(
                     String.format(
-                            MESSAGE_DEADLINE_SUCCESS_IN_ENGLISH ,
+                            MESSAGE_DEADLINE_SUCCESS_IN_ENGLISH,
                             deadlineTask.getIndex() + LIST_INDEX_OFFSET,
                             COMMAND_TYPE,
                             deadlineTask.getChar(),
                             deadlineTask.getDescription(),
-                            deadlineTask.getTaskDate().toString()));
+                            deadlineTask.getTaskDeadlineInString()));
         }
-        return new CommandResult(
-                String.format(
-                        MESSAGE_DEADLINE_SUCCESS_IN_ENGLISH ,
-                        deadlineTask.getIndex() + LIST_INDEX_OFFSET,
-                        COMMAND_TYPE,
-                        deadlineTask.getChar(),
-                        deadlineTask.getDescription(),
-                        deadlineTask.getTaskDeadlineInString()));
     }
 
     @Override
@@ -71,26 +77,36 @@ public class AddDeadlineCommand extends AddCommand {
         if (deadlineTask == null) {
             return new CommandResult(MESSAGE_INVALID_COMMAND_IN_CHINESE);
         }
-        TaskManager.add(deadlineTask);
-        //according to the data format
-        if (deadlineTask.getTaskDate()!=null){
+        if (containsDupTask() && !SystemSetting.isDuplicatedAllowed()){
+            return new CommandResult(MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_CHINESE);
+        } else {
+            TaskManager.add(deadlineTask);
+            //according to the data format
+            if (deadlineTask.getTaskDate() != null) {
+                return new CommandResult(
+                        String.format(
+                                MESSAGE_DEADLINE_SUCCESS_IN_CHINESE,
+                                deadlineTask.getIndex() + LIST_INDEX_OFFSET,
+                                COMMAND_TYPE,
+                                deadlineTask.getChar(),
+                                deadlineTask.getDescription(),
+                                deadlineTask.getTaskDate().toString()));
+            }
             return new CommandResult(
                     String.format(
-                            MESSAGE_DEADLINE_SUCCESS_IN_CHINESE ,
+                            MESSAGE_DEADLINE_SUCCESS_IN_CHINESE,
                             deadlineTask.getIndex() + LIST_INDEX_OFFSET,
                             COMMAND_TYPE,
                             deadlineTask.getChar(),
                             deadlineTask.getDescription(),
-                            deadlineTask.getTaskDate().toString()));
+                            deadlineTask.getTaskDeadlineInString()));
         }
-        return new CommandResult(
-                String.format(
-                        MESSAGE_DEADLINE_SUCCESS_IN_CHINESE ,
-                        deadlineTask.getIndex() + LIST_INDEX_OFFSET,
-                        COMMAND_TYPE,
-                        deadlineTask.getChar(),
-                        deadlineTask.getDescription(),
-                        deadlineTask.getTaskDeadlineInString()));
+    }
 
+    public boolean containsDupTask(){
+        return  (int)TaskManager.getTaskList().stream()
+                .filter(task -> task.getType() == deadlineTask.getType())
+                .filter(task -> task.getDescription().equalsIgnoreCase(deadlineTask.getDescription()))
+                .count() != 0;
     }
 }

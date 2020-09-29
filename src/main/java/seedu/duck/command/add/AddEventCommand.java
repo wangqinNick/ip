@@ -3,10 +3,13 @@ package seedu.duck.command.add;
 import seedu.duck.command.CommandResult;
 import seedu.duck.command.PromptType;
 import seedu.duck.data.TaskManager;
+import seedu.duck.setting.SystemSetting;
 import seedu.duck.task.EventTask;
 import seedu.duck.task.Task;
 
 import static seedu.duck.util.Constant.LIST_INDEX_OFFSET;
+import static seedu.duck.util.Message.MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_ENGLISH;
+import static seedu.duck.util.Message.MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_CHINESE;
 import static seedu.duck.util.Message.MESSAGE_EVENT_SUCCESS_IN_CHINESE;
 import static seedu.duck.util.Message.MESSAGE_EVENT_SUCCESS_IN_ENGLISH;
 import static seedu.duck.util.Message.MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH;
@@ -44,8 +47,20 @@ public class AddEventCommand extends AddCommand {
         if (eventTask == null) {
             return new CommandResult(MESSAGE_INVALID_COMMAND_FORMAT_IN_ENGLISH);
         }
-        TaskManager.add(eventTask);
-        if (eventTask.getTaskDate()!=null){
+        if (containsDupTask() && !SystemSetting.isDuplicatedAllowed()){
+            return new CommandResult(MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_ENGLISH);
+        } else {
+            TaskManager.add(eventTask);
+            if (eventTask.getTaskDate() != null) {
+                return new CommandResult(
+                        String.format(
+                                MESSAGE_EVENT_SUCCESS_IN_ENGLISH,
+                                eventTask.getIndex() + LIST_INDEX_OFFSET,
+                                COMMAND_TYPE,
+                                eventTask.getChar(),
+                                eventTask.getDescription(),
+                                eventTask.getTaskDate().toString()));
+            }
             return new CommandResult(
                     String.format(
                             MESSAGE_EVENT_SUCCESS_IN_ENGLISH,
@@ -53,16 +68,8 @@ public class AddEventCommand extends AddCommand {
                             COMMAND_TYPE,
                             eventTask.getChar(),
                             eventTask.getDescription(),
-                            eventTask.getTaskDate().toString()));
+                            eventTask.getTaskDateInString()));
         }
-        return new CommandResult(
-                String.format(
-                    MESSAGE_EVENT_SUCCESS_IN_ENGLISH,
-                    eventTask.getIndex() + LIST_INDEX_OFFSET,
-                    COMMAND_TYPE,
-                    eventTask.getChar(),
-                    eventTask.getDescription(),
-                    eventTask.getTaskDateInString()));
     }
 
     @Override
@@ -70,24 +77,35 @@ public class AddEventCommand extends AddCommand {
         if (eventTask == null) {
             return new CommandResult(MESSAGE_INVALID_COMMAND_FORMAT_IN_CHINESE);
         }
-        TaskManager.add(eventTask);
-        if (eventTask.getTaskDate()!=null){
+        if (containsDupTask() && !SystemSetting.isDuplicatedAllowed()){
+            return new CommandResult(MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_CHINESE);
+        } else {
+            TaskManager.add(eventTask);
+            if (eventTask.getTaskDate() != null) {
+                return new CommandResult(
+                        String.format(
+                                MESSAGE_EVENT_SUCCESS_IN_CHINESE,
+                                eventTask.getIndex() + LIST_INDEX_OFFSET,
+                                COMMAND_TYPE,
+                                eventTask.getChar(),
+                                eventTask.getDescription(),
+                                eventTask.getTaskDate().toString()));
+            }
             return new CommandResult(
                     String.format(
-                            MESSAGE_EVENT_SUCCESS_IN_CHINESE ,
+                            MESSAGE_EVENT_SUCCESS_IN_CHINESE,
                             eventTask.getIndex() + LIST_INDEX_OFFSET,
                             COMMAND_TYPE,
                             eventTask.getChar(),
                             eventTask.getDescription(),
-                            eventTask.getTaskDate().toString()));
+                            eventTask.getTaskDateInString()));
         }
-        return new CommandResult(
-                String.format(
-                        MESSAGE_EVENT_SUCCESS_IN_CHINESE,
-                        eventTask.getIndex() + LIST_INDEX_OFFSET,
-                        COMMAND_TYPE,
-                        eventTask.getChar(),
-                        eventTask.getDescription(),
-                        eventTask.getTaskDateInString()));
+    }
+
+    public boolean containsDupTask(){
+        return  (int)TaskManager.getTaskList().stream()
+                .filter(task -> task.getType() == eventTask.getType())
+                .filter(task -> task.getDescription().equalsIgnoreCase(eventTask.getDescription()))
+                .count() != 0;
     }
 }

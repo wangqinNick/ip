@@ -44,4 +44,6 @@ public class Message {
     public static final String MESSAGE_INVALID_COMMAND_IN_ENGLISH = "Invalid Command";
     public static final String MESSAGE_INVALID_COMMAND_IN_CHINESE = "无效指令";
 
+    public static final String MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_ENGLISH = "Duplicated tasks is not allowed in current mode!";
+    public static final String MESSAGE_DUPLICATED_TASK_NOT_ALLOWED_IN_CHINESE = "当前设定下不允许添加重复事项！";
 }
