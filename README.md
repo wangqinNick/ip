@@ -1,10 +1,7 @@
 <h1 align="center">Duck</h1>
 <h3 align="center">Task manager app powered by JavaFX</h3>
 <p align="center"><em>Qin Wang</em>
-<p align="center"><img src="docs/Ui.png" width="100%"/></p>
-
-# Duck 
-By: `Wang Qin` Since: `Sep 2020`
+<p align="center"><img src="docs/ui.gif" width="100%"/></p>
 
 
 ## About Duck
