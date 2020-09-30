@@ -59,11 +59,21 @@ public class MainStage {
 
         //
         MenuBar menuBar = new MenuBar();
-        Menu menu = new Menu("New");
-        menuBar.getMenus().add(menu);
-        MenuItem menuItem = new MenuItem("New Task");
-        menu.getItems().add(menuItem);
+        Menu menuNew= new Menu("New");
+        Menu menuHelp= new Menu("Help");
+        Menu menuAbout= new Menu("About");
 
+        menuBar.getMenus().add(menuNew);
+        menuBar.getMenus().add(menuHelp);
+        menuBar.getMenus().add(menuAbout);
+
+        MenuItem menuItem = new MenuItem("New Task");
+        MenuItem menuItemHelp = new MenuItem("Display Help Message");
+        MenuItem menuItemAbout = new MenuItem("Show developer Info");
+
+        menuNew.getItems().add(menuItem);
+        menuHelp.getItems().add(menuItemHelp);
+        menuAbout.getItems().add(menuItemAbout);
 
 
         //Step 1. Setting up required components
@@ -139,6 +149,14 @@ public class MainStage {
             createNewTask();
         });
 
+        menuItemAbout.setOnAction((event) -> {
+            displayInfoMessage();
+        });
+
+        menuItemHelp.setOnAction((event) -> {
+            displayHelpMessage();
+        });
+
         userInput.setOnAction((event) -> {
             handleUserInput();
         });
@@ -207,6 +225,36 @@ public class MainStage {
             loader.<NewTaskWindowController>getController().setParentController(this);
             Stage stage = new Stage();
             stage.setTitle("Create New Task");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void displayInfoMessage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(DuckApp.class.getResource("/view/InfoWindow.fxml"));
+            Parent root = loader.load();
+            loader.<InfoWindow>getController().setParentController(this);
+            Stage stage = new Stage();
+            stage.setTitle("Developer Info");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void displayHelpMessage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(DuckApp.class.getResource("/view/HelpWindow.fxml"));
+            Parent root = loader.load();
+            loader.<HelpWindow>getController().setParentController(this);
+            Stage stage = new Stage();
+            stage.setTitle("Help Message");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
