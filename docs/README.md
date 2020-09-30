@@ -75,12 +75,13 @@ Adds a task into Duck
 There are two ways of adding tasks to the system.
 The first (recommanded) way is using the 'menu bar' at the top left corner of the program.
 It is recommanded because you can select the date using the calendar.
+This function is inspired from A-BetterGUI part, from le0tan's project.
 
 *       Click the 'New' -> 'Task'
 *       Select the corret task type 
 *       Enter 'task infomation' and select 'date' if neccessary
 
-![Alt Text](./add_task_through_bar.gif)
+   ![Alt Text](./add_task_through_bar.gif)
 
 The second way of adding tasks is through through the command line.
 
