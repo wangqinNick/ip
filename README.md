@@ -14,7 +14,7 @@ are expected to learn more about SE principles and practices and apply them on a
 ## Quick Start
 
 *    Ensure that `Java 11` or above is installed in your Computer.
-1.   Download the latest `Duck.jar` [_here_](https://github.com/JosephLimWeiJie/duke/releases/download/v0.2.0/duke.jar).
+1.   Download the latest `Duck.jar` [_here_](https://github.com/wangqinNick/ip/releases/download/v0.2/duck.jar).
 2.   Double click the jar file
 3.   Enter the correct `username` and `password` (default username is `duck` default password is `123`) ,
      then press `ENTER` key (or the login button)
