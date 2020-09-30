@@ -2,10 +2,15 @@ package seedu.duck.gui;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -20,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import seedu.duck.DuckApp;
 import seedu.duck.Executor;
 import seedu.duck.command.Command;
 import seedu.duck.command.CommandResult;
@@ -27,6 +33,8 @@ import seedu.duck.command.HelpCommand;
 import seedu.duck.command.PromptType;
 import seedu.duck.data.CommandManager;
 import seedu.duck.parser.Parser;
+
+import java.io.IOException;
 
 import static seedu.duck.util.Constant.DEFAULT_DIALOG_FONT;
 import static seedu.duck.util.Constant.DEFAULT_DIALOG_SIZE;
@@ -48,6 +56,16 @@ public class MainStage {
      */
     public MainStage(){
         Stage stage = new Stage();
+
+        //
+        MenuBar menuBar = new MenuBar();
+        Menu menu = new Menu("New");
+        menuBar.getMenus().add(menu);
+        MenuItem menuItem = new MenuItem("New Task");
+        menu.getItems().add(menuItem);
+
+
+
         //Step 1. Setting up required components
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
@@ -58,8 +76,9 @@ public class MainStage {
         userInput.setFont(font);
 
         Button sendButton = new Button("Send");
+
         AnchorPane mainLayout = new AnchorPane();
-        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
+        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton,menuBar);
         Parent root = new StackPane( mainLayout);
         Scene scene = new Scene(root);
 
@@ -114,6 +133,10 @@ public class MainStage {
 
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
+        });
+
+        menuItem.setOnAction((event) -> {
+            createNewTask();
         });
 
         userInput.setOnAction((event) -> {
@@ -174,5 +197,20 @@ public class MainStage {
         }
         // Set the caret position to the end of the string.
         userInput.positionCaret(userInput.getLength());
+    }
+
+    @FXML
+    void createNewTask() {
+        try {
+            FXMLLoader loader = new FXMLLoader(DuckApp.class.getResource("/view/NewTaskWindow.fxml"));
+            Parent root = loader.load();
+            loader.<NewTaskWindowController>getController().setParentController(this);
+            Stage stage = new Stage();
+            stage.setTitle("Create New Task");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
