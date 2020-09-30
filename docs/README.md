@@ -98,7 +98,7 @@ The second way of adding tasks is through through the command line.
     ![Alt Text](./add_todo.gif)
     
 
-<a name="list"></a>
+<a name="undo"></a>
 
 ### 3.2. Undo previous operations: `undo`
 
@@ -203,12 +203,12 @@ However, you can always use `undo` command to recover your data.
 
 ### 3.9 Display system preferences: `sys` 
 
-Display system preferences.
-System language
-System music
-System duplicated tasks allowed
-Username
-Password
+*       Display system preferences.
+*       System language
+*       System music
+*       System duplicated tasks allowed
+*       Username
+*       Password
 
 **Format**: `sys`
 
@@ -263,7 +263,7 @@ The default username is `duck`.
 * **Example**:
     * username duck
     
-    ![Alt Text](./username.gif)
+    ![Alt Text](./name.gif)
 
 
 <a name="pw"></a>
