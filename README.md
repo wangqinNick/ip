@@ -18,6 +18,8 @@ are expected to learn more about SE principles and practices and apply them on a
 2.   Double click the jar file
 3.   Enter the correct `username` and `password` (default username is `duck` default password is `123`) ,
      then press `ENTER` key (or the login button)
+     
+*    Please refer [_here_](https://wangqinnick.github.io/ip/) for more detailed user guide.
 
   ![Alt Text](./docs/duck.jpg)
   
