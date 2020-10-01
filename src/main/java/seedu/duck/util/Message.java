@@ -41,6 +41,12 @@ public class Message {
     public static final String MESSAGE_INVALID_DATE_IN_ENGLISH = "Invalid date!";
     public static final String MESSAGE_INVALID_DATE_IN_CHINESE = "无效日期!";
 
+    public static final String MESSAGE_CHANGE_USER_INFO_FAILED_IN_ENGLISH = "Failed! Invasion detected, user Info recovered to default!";
+    public static final String MESSAGE_CHANGE_USER_INFO_FAILED_IN_CHINESE = "失败! 疑似遭到入侵，用户信息重置为原始默认信息!";
+    public static final String MESSAGE_CHANGE_USER_INFO_SUCCESS_IN_ENGLISH = "User information updated";
+    public static final String MESSAGE_CHANGE_USER_INFO_SUCCESS_IN_CHINESE = "失败! 疑似遭到入侵，用户信息重置为原始默认信息!";
+
+
     public static final String MESSAGE_INVALID_COMMAND_IN_ENGLISH = "Invalid Command";
     public static final String MESSAGE_INVALID_COMMAND_IN_CHINESE = "无效指令";
 

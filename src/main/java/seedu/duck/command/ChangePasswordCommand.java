@@ -7,6 +7,10 @@ import java.io.IOException;
 
 import static seedu.duck.util.Constant.DEFAULT_PASSWORD;
 import static seedu.duck.util.Constant.DEFAULT_USERNAME;
+import static seedu.duck.util.Message.MESSAGE_CHANGE_USER_INFO_FAILED_IN_CHINESE;
+import static seedu.duck.util.Message.MESSAGE_CHANGE_USER_INFO_FAILED_IN_ENGLISH;
+import static seedu.duck.util.Message.MESSAGE_CHANGE_USER_INFO_SUCCESS_IN_CHINESE;
+import static seedu.duck.util.Message.MESSAGE_CHANGE_USER_INFO_SUCCESS_IN_ENGLISH;
 
 public class ChangePasswordCommand extends Command {
     public static final String COMMAND_WORD = "pw";
@@ -36,9 +40,9 @@ public class ChangePasswordCommand extends Command {
         } catch (IOException ioe){
             SystemSetting.setUsername(DEFAULT_USERNAME);
             SystemSetting.setPassword(DEFAULT_PASSWORD);
-            return new CommandResult("Failed! Invasion detected, user Info recovered to default!");
+            return new CommandResult(MESSAGE_CHANGE_USER_INFO_FAILED_IN_ENGLISH);
         }
-        return new CommandResult("Success!");
+        return new CommandResult(MESSAGE_CHANGE_USER_INFO_SUCCESS_IN_ENGLISH);
     }
 
     @Override
@@ -49,8 +53,8 @@ public class ChangePasswordCommand extends Command {
         } catch (IOException ioe){
             SystemSetting.setUsername(DEFAULT_USERNAME);
             SystemSetting.setPassword(DEFAULT_PASSWORD);
-            return new CommandResult("失败! 疑似遭到入侵，用户信息重置为原始默认信息!");
+            return new CommandResult(MESSAGE_CHANGE_USER_INFO_FAILED_IN_CHINESE);
         }
-        return new CommandResult("成功!");
+        return new CommandResult(MESSAGE_CHANGE_USER_INFO_SUCCESS_IN_CHINESE);
     }
 }
